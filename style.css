@@ -1,0 +1,28 @@
+body	
+{
+	font-family: Arial;
+	background-color: black;
+}
+#display
+{
+	color: lightblue;
+	margin-bottom: 50px;
+	text-align: center;
+	font-size: 25px;
+	text-shadow: 5px 2px red;
+}
+#contact
+{
+	font-size: 35px;
+	color: white;
+	margin: 25px;
+	text-align:center;
+}
+#name
+{
+	color:lightblue;
+	text-shadow: 7px 5px grey;
+	text-align: center;
+	font-size: 200px;
+	margin: 150px;
+}

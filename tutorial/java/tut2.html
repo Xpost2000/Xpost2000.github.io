@@ -1,0 +1,35 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<title>Variables</title>
+</head>
+<body>
+<p id="display">Tutorial 2: Variables and printf</p>
+<div id="body">
+<p>So I'm going to assume first you want the code right? Here it is.</p>
+<iframe src="src/tut2src.html" width="650", height="350"></iframe>
+<div class="bd">
+	<p>please don't mind the broken formatting.</p>
+</div>
+<div class="b">
+<p>See a difference between this and HelloWorld? Well it's harder yeah. No not the fact there are variables.</p>
+<p>printf is the difference from the previous println and let me introduce you to it!</p>
+<h1>Printf The Superior Printing Function</h1>
+<p>Printf stands for Formatted Printing! Not sure what formatting is?</p>
+<p>say you created a language. Some symbols will stand for other things.</p>
+<p>printf formats specific symbols. Here is the Symbol Table</p>
+<table style="width:85%; border: 5px solid black; margin:20px; padding:10px;">
+<tr><th>Format Code</th> <th>In English</th> <th>What It Does</th> <th>Example Usage</th></tr>
+<tr><td>%d</td> <td>Decimal/Double Precision Number</td> <td>Allows decimal numbers to print use %f for floats</td> <td>printf("%d",3.3);</td></tr>
+<tr><td>%i</td> <td>Integer Number</td> <td>Allows strictly integers to print (characters also work cause ASCII)</td> <td>printf("%i", 1);</td></tr>
+<tr><td>%c</td> <td>Character</td> <td>Prints integers to the appropriate ASCII code</td> <td>printf("%c", 25); or printf("%c", 'a');</td></tr>
+<tr><td>%b</td> <td>Boolean (Java exclusive)</td> <td>prints whether a Boolean is true or not</td> <td>printf("%b", true);</td></tr>
+<tr><td>%s</td> <td>String (array of Characters)</td> <td>prints an entire string</td> <td>printf("%s","O Hello!");</td></tr>
+<tr></tr>
+<tr></tr>
+</table>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+/*
+ * Main stylesheet
+ * for IXL website
+ */
+/*Pretty much all text follows this pattern*/
+body{
+	font-family: Arial; /*I'd like to think it looks professional*/
+}
+/*
+ *  GLOBALS ABOVE THIS COMMENT
+ */
+.box-shadow-light{
+	box-shadow: 10px 5px 20px grey;
+}
+.shadow-light{
+	text-shadow: 25px 3px 1px grey;
+}
+.CLASS-HEADER_BANNER{
+	box-shadow: 30px 20px 10px grey;
+	width: auto;
+	background-color: black;
+	overflow-x : hidden;
+	margin: 10 auto;
+	padding: 0 5%;
+}
+#header-banner{
+	font-family: Helvetica;
+	font-size: 70px;
+	padding-top: 25px;	
+	padding-bottom: 05px;	
+	padding-left: 35px;	
+	color: white;
+}
+#header-banner-little{
+	font-family: Times;
+	font-size: 25px;
+	margin: 0;
+	margin-bottom: 29px;
+	padding-left: 30px;
+	position : relative;	
+	bottom: 40px;
+	left: 17px;
+	color: white;
+}
+.retard-box{
+	border: groove 4px black;
+	font-size: 16px;
+	margin: 5px;
+	padding: 15px;
+	padding-left: 76px;
+}
+#slightly-bigger-text{
+	font-size: 32px;
+}
+#right-copy{
+	text-align: center;
+	font-size: 9px;
+	font-family: "Times New Roman";
+	margin: 20px;
+	padding: 5px;
+	color: black;
+}
+.special-button{
+	border-radius: 5px;
+	border: groove 5px black;
+	background-color:white;
+	font-size: 15px;
+	margin : 5px;
+	padding: 0px;
+	box-shadow: 14px 5px 5px grey;
+	-webkit-transition-duration: 0.2s;
+	transition-duration: 0.2s;
+}
+.special-button:hover{
+	background-color: black;
+	color: white;
+	font-size: 20px;
+	margin: 10px;
+}
+.special-button:active{
+	position: relative;
+	top: 5px;
+	color: rgb(125, 200, 100);
+}
+.boxnumerodos{
+	margin: 10px;
+	padding: 20px;
+	border: groove 10px black;
+	border-radius: 2px;
+}

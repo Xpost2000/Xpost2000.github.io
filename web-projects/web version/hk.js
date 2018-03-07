@@ -1,13 +1,16 @@
 // JS FILE
 
 var gameOver=0;
-var killCount=0;
-var spawnTimer=95;
+var killCount=1;
+var spawnTimer=150;
 var canvas;
 var ctx;
 
 var bomb;
 var chin;
+var deng;
+
+var fireTest = -1;
 
 var gunFire = new Audio("gun.wav")
 var music = new Audio("themesong.wav");
@@ -50,25 +53,41 @@ function GameObject(x, y, w, h, dead){
 	this.h = h;
 	this.fireCoolDown=95;
 	this.dead = dead;
+	this.health = 150; // for our god
+	this.god=0;
 	this.draw = function(color){
+		if(this.god){
+		ctx.drawImage(deng, this.x, this.y, this.w, this.h);
+		}else{
 		ctx.drawImage(chin, this.x, this.y, this.w, this.h);
+		}
 	};
 	this.update = function(screenw, screenh){
 		if(this.x+this.w > screenw || this.x < 0){
 			this.xSpeed = -this.xSpeed;
 			this.y += this.h;
 		}
-		if(this.fireCoolDown >= 30){
+		if(this.fireCoolDown >= 40){
+			if(!this.god)
 			this.fireCoolDown=0;
+			else if(this.god==1)
+			this.fireCoolDown=15;
+
 			bullets.push(new Bullet(this.x, this.y+this.h+3, 10, 10, 5, 150, "e"));
+			if(this.god==1)
+				{
+					bullets.push(new Bullet(this.x-15, this.y+this.h+5, 10, 10, 5, 150, "e"));
+					bullets.push(new Bullet(this.x+15, this.y+this.h+5, 10, 10, 5, 150, "e"));
+					bullets.push(new Bullet(this.x+30, this.y+this.h+5, 10, 10, 5, 150, "e"));
+				}
 		}else{
 			this.fireCoolDown++;
 		}
 		this.x += this.xSpeed;
 	}
 }
-
 var Chin = new GameObject(0, 0, 30, 60, 0);
+var GOD = new GameObject(0, 0, 90, 90, 1);
 var backgroundSwap = 150;
 var backgrounds = [];
 var bkgrndIndex = 1;
@@ -87,6 +106,9 @@ function gameDraw(){
 	}
 	for(var i = 0; i < bullets.length; ++i){
 		bullets[i].draw("yellow");
+	}
+	if(!GOD.dead){
+		GOD.draw("yellow");
 	}
 }
 
@@ -122,12 +144,31 @@ function gameUpdate(){
 			if(bullets[i].touching(Chin) && bullets[i].owner == "e"){
 				gameOver = 1;
 			}
+			if(bullets[i].touching(GOD) && bullets[i].owner == "c"){
+				if(GOD.health <= 0){
+					GOD.dead = 1;
+					killCount++;
+				}else{
+					bullets[i].lifeTime = -1;
+					GOD.health -= 30;
+				}
+			}
 			if(bullets[i].lifeTime > 0){
 				bullets[i].update();
 			}else{
 				bullets.splice(i, 1);
 			}
 		}	
+		if((killCount % 15) == 0 && GOD.dead){
+			GOD = new GameObject(0, 0, 90, 90, 1);
+			GOD.god = 1;
+			GOD.dead = 0;
+			enemies.splice(0, enemies.length);
+			bullets.splice(0, bullets.length);
+		}
+		if(!GOD.dead){
+			GOD.update(canvas.width, canvas.height);
+		}
 		for(var i = 0; i < enemies.length; ++i){
 				if(enemies[i].dead != 1){
 				enemies[i].update(canvas.width, canvas.height);
@@ -145,13 +186,17 @@ function gameUpdate(){
 				}
 			}
 		}
-		if(spawnTimer >= 65){
+		if(spawnTimer >= 160 && GOD.dead){
 			spawnTimer = 0;
 			enemies.push(new GameObject(35, 0, 30, 60, 0));
 			enemies.push(new GameObject(35*5, 0, 30, 60, 0));
 			enemies.push(new GameObject(35*8, 0, 30, 60, 0));
 		}else{
+			if(GOD.dead)
 			spawnTimer++;
+		}
+		if(fireTest > -1){
+			fireTest--;
 		}
 		}
 	}else{
@@ -176,7 +221,9 @@ function init(){
 
 	chin = new Image();
 	bomb = new Image();
+	deng = new Image();
 	chin.src = "chin.png";
+	deng.src = "boss.png";
 	bomb.src = "tsar bomba.png";
 
 	console.log("Testing if the javascript is working.");
@@ -190,14 +237,17 @@ function init(){
 	function(event){
 		switch(event.key){
 			case "ArrowLeft":
-				Chin.x -= 15;
+				Chin.x -= 19;
 				break;
 			case "ArrowRight":
-				Chin.x += 15;
+				Chin.x += 19;
 				break;
 			case " ":
+				if(fireTest < 0){
 				gunFire.play();
-				bullets.push(new Bullet(Chin.x, Chin.y - 20, 10, 10, -3, 150, "c"));
+				bullets.push(new Bullet(Chin.x, Chin.y - 20, 10, 10, -6, 150, "c"));
+				fireTest = 30;
+				}
 				break;
 		}
 	}

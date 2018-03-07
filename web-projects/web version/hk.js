@@ -67,6 +67,7 @@ function GameObject(x, y, w, h, dead){
 			this.xSpeed = -this.xSpeed;
 			this.y += this.h;
 		}
+		if(this.y > screenh){ this.y = 0; }
 		if(this.fireCoolDown >= 40){
 			if(!this.god)
 			this.fireCoolDown=0;

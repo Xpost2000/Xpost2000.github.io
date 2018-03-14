@@ -1,0 +1,33 @@
+.default-font{
+	font-family: Verdana;
+}
+.default-style{
+	text-align: center;
+	font-size: 10px;
+	margin: 5px;
+}
+#page-title{
+	text-align: left;
+	font-size: 60px;
+	padding: 5px;
+}
+#instructions{
+	padding: 5px;
+	margin-left: 50px;
+	border: solid 3px black;
+	text-align:center;
+	position: relative;	
+	right: 30px;
+}
+#dc,#dc2{
+	border: solid;
+	border-width: 3px;
+	display: block;
+	margin: auto;
+}
+#dc2{
+	position:absolute;
+	top: 235px;
+	left: 342px;
+	z-index:10;
+}

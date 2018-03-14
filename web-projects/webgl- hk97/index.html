@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- 
+			Two simple setup shaders to make sure webgl is working correctly.
+		--!>
+		<script type="text/glsl-shader" id="glsl3_vertexShader">
+			//vertex shader
+		  	attribute vec2 vAttribPos; // OpenGL 3 and higher styled GLSL.
+			attribute vec2 vAttribUvs;
+			attribute vec3 vAttribColor;
+			varying vec4 outColor;
+			varying vec2 outUvs;
+			void main(){
+				gl_Position = vec4( vAttribPos.xy, 0, 1 );
+				outColor = vec4(vAttribColor, 1);
+				outUvs = vAttribUvs;
+			}
+		</script>
+		<script type="text/glsl-shader" id="glsl3_fragmentShader">
+			// fragment shader
+			precision mediump float;
+			varying vec4 outColor;
+			varying vec2 outUvs;
+
+			uniform sampler2D texture;
+			void main(){
+				gl_FragColor = texture2D(texture, outUvs)*outColor;
+			}
+		</script>
+		<link rel="stylesheet" href="style.css">
+		<!--
+			The actual game code logic
+			is very similar to the original game.
+
+			Infact I'm essentially retyping it because
+			it's much faster to do so.
+		!-->
+		<script src="bullet.js" type="text/javascript"></script>
+		<script src="gameobject.js" type="text/javascript"></script>
+		<script src="texture.js" type="text/javascript"></script>
+		<script src="webgl-renderer.js" type="text/javascript"></script>
+		<script src="main.js" type="text/javascript"></script>
+		<title>WebGL Hong Kong 97</title>
+	</head>
+	<body onload="main()" onunload="main_unload()">
+		<h1 id="page-title">Hong Kong 97 WebGL Edition</h1>
+		<div class="default-font">
+		<div class="default-style">
+		<p>So what's the difference between this one and the canvas one?</p>
+		<p>well other than using webgl, it also fixes some of the issues from the last game.</p>
+		<p><strike>Also I intend to make this more like the actual Hong Kong 97.</strike></p>
+		</div>
+		<p id="error-message" style="color:white; background-color:black; text-align:center; font-family:Arial"></p>
+
+		<canvas width="640" height="480" id="dc">
+			<p>You seem to not support the canvas element, <b><i>Update your browser.</i></b></p>
+		</canvas>
+		<canvas width="640" height="480" id="dc2">
+			<p>You seem to not support the canvas element, <b><i>Update your browser.</i></b></p>
+		</canvas>
+	</body>
+	<ul id="instructions">
+		<h2>Game Instructions</h2>
+		<li><b>A, D, and Arrow Keys</b> for horizontal movement</li>
+		<li><b>Space Bar</b> for firing bullets</li>
+		<li><b>Escape</b> to pause the game.</li>
+	</ul>
+		</div>
+</html>

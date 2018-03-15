@@ -8,6 +8,10 @@ var chinFireDelay=40;
 
 var chin = new GameObject( 300, 600, 45, 100 );
 var god  = new GameObject( 0, 0, 200, 200 );
+
+var themesong = new Sound();
+var bullet = new Sound();
+
 god.type=-1;
 god.dead=true;
 chin.type=1;
@@ -36,6 +40,8 @@ var Key = {
 };
 
 function main(){
+	bullet.load("snd/gun.wav");
+	themesong.load("snd/themesong.wav");
 	var lastMessage = "Nothing";
 	var shouldRun = false;
 	var textCanvas = document.getElementById("dc2").getContext("2d");
@@ -73,6 +79,7 @@ function main(){
 var pauseKeyDelay=0;
 function main_update(){
 	if(document.hasFocus()){
+		themesong.play();
 		// it takes values from the upper case ascii value.
 		if(Key.isDown(65)){
 			if(chin.x > 0)
@@ -94,6 +101,7 @@ function main_update(){
 		if(Key.isDown(32)){
 			global_bullets.push(new Bullet(chin.x, chin.y, 15, 15, 0, -7, 300));
 			chinFireDelay=0;
+			bullet.play();
 		}}else{
 			chinFireDelay++;
 		}

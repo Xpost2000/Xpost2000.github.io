@@ -9,8 +9,8 @@ var chinFireDelay=40;
 var chin = new GameObject( 300, 600, 45, 100 );
 var god  = new GameObject( 0, 0, 200, 200 );
 
-var themesong = new Sound();
-var bullet = new Sound();
+var themesong = new Audio("snd/themesong.wav");
+var bullet = new Audio("snd/gun.wav");
 
 god.type=-1;
 god.dead=true;
@@ -40,8 +40,6 @@ var Key = {
 };
 
 function main(){
-	bullet.load("snd/gun.wav");
-	themesong.load("snd/themesong.wav");
 	var lastMessage = "Nothing";
 	var shouldRun = false;
 	var textCanvas = document.getElementById("dc2").getContext("2d");

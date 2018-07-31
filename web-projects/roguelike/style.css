@@ -1,0 +1,76 @@
+#game-area{
+	width: 550px;
+	height: 380px;
+	padding: 3px;
+	margin-bottom: 20px;
+	display: inline-block;
+	float: left;
+	background-color: black;
+	color: white;
+}
+
+#game-arena-draw{
+}
+
+#consoleHead{
+	float: left;
+	margin: 0px;
+	padding: 0px;
+}
+
+.con-text{
+	font-family: Courier;
+	font-size: 15px;
+	color: yellow;
+}
+
+#game-console{
+	display: inline-block;
+	border-radius: 20px;
+	width: 600px;
+	height: 360px;
+	padding: 12px;
+	background-color: rgb(0, 43, 54);
+	overflow: auto;
+}
+
+#game-control-area{
+	margin-top: 30px;
+	padding: 20px;
+	background-color: rgb(100, 100, 120);
+	border-radius: 20px;
+}
+
+#north-button,
+#south-button{
+	text-align: left;
+	display: block;
+	margin-left: 20px;
+}
+
+#east-button,
+#west-button{
+	text-align: center;
+	display: inline-block;
+}
+
+#controlHead{
+	font-family: Arial;
+	font-size: 30px;
+	text-align: center;
+	margin: 0px;
+}
+
+#movement-controls{
+	background-color: rgb(50, 50, 60);
+	padding: 15px;
+	display: inline-block;
+	border-radius: 20px;
+}
+#other-controls{
+	background-color: rgb(50, 50, 60);
+	padding: 20px;
+	display: inline-block;
+	margin-bottom: 15px;
+	border-radius: 20px;
+}

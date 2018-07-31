@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Adventurous One</title>
+		<link rel="stylesheet" href="style.css">
+		<script src="Entity.js"></script>
+		<script src="map.js"></script>
+		<script src="console.js"></script>
+		<script src="game.js"></script>
+	</head>
+	<body onload="initGame()">
+		<h1>Adventurous One : A Roguelike</h1>
+		<div id="game-area">
+			<pre id="game-area-draw">
+			</pre>
+		</div>
+		<div id="game-console">
+			<div class="con-text">
+				<p id="consoleHead">Welcome to Adventurous One by Xpost2000!</p>
+<br>
+				<pre id="cmd-text">
+				</pre>
+			</div>
+		</div>
+		<div id="game-control-area">
+			<p id="controlHead"><b>Game Controls Here</b></p>
+			<div id = "movement-controls">
+				<button id="north-button" onclick="playerMove(0, -1)">North</button>
+				<button id="west-button" onclick="playerMove(-1, 0)">West</button>
+				<button id="east-button" onclick="playerMove(1, 0)">East</button>
+				<button id="south-button" onclick="playerMove(0, 1)">South</button>
+			</div>
+
+			<div id = "other-controls">
+			<button onclick="playerInventory()">View Inventory</button>
+			<button onclick="playerPickup()">Pickup</button>
+			<button onclick="">Throw</button>
+			<button onclick="">Eat</button>
+			<button onclick="">Quaff</button>
+			<button onclick="playerPray()">Pray</button>
+			<br>
+			<button onclick="">Cast Spell</button>
+			<button onclick="">Fire Weapon</button>
+			<button onclick="">Zap with Wand</button>
+			<button onclick="">Kick</button>
+			<br>
+			<button onclick="playerEquip()">Equip Item</button>
+			<button onclick="">Wear Item</button>
+			</div>
+		</div>
+	</body>
+</html>

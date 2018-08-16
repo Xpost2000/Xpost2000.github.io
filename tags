@@ -1,0 +1,113 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Bullet	.\web-projects\web version\hk.js	/^function Bullet(x, y, w, h, speed, lifeTime, owner){$/;"	c
+Bullet	.\web-projects\webgl- hk97\bullet.js	/^function Bullet( x, y, w, h, sx, sy, lifeTime, parent="CHIN" ){$/;"	c
+Bullet.draw	.\web-projects\web version\hk.js	/^	this.draw = function(color){$/;"	m
+Bullet.draw	.\web-projects\webgl- hk97\bullet.js	/^	this.draw = function(renderer){$/;"	m
+Bullet.touching	.\web-projects\web version\hk.js	/^	this.touching = function( other ){$/;"	m
+Bullet.update	.\web-projects\web version\hk.js	/^	this.update = function(){$/;"	m
+Bullet.update	.\web-projects\webgl- hk97\bullet.js	/^	this.update = function(){$/;"	m
+Console	.\web-projects\roguelike\console.js	/^function Console( elementId ){$/;"	c
+Console.Print	.\web-projects\roguelike\console.js	/^	this.Print = function( string ){$/;"	m
+Creature	.\web-projects\roguelike\Entity.js	/^function Creature(){$/;"	c
+Creature.move	.\web-projects\roguelike\Entity.js	/^	this.move = function(map, x, y){$/;"	m
+Creature.update	.\web-projects\roguelike\Entity.js	/^	this.update = function(map){$/;"	m
+Entity	.\web-projects\roguelike\Entity.js	/^function Entity(x, y, drawSymbol){$/;"	c
+GameObject	.\web-projects\web version\hk.js	/^function GameObject(x, y, w, h, dead){$/;"	c
+GameObject	.\web-projects\webgl- hk97\gameobject.js	/^function GameObject( x, y, w, h ){$/;"	c
+GameObject.draw	.\web-projects\web version\hk.js	/^	this.draw = function(color){$/;"	m
+GameObject.draw	.\web-projects\webgl- hk97\gameobject.js	/^	this.draw = function(renderer){$/;"	m
+GameObject.touch	.\web-projects\webgl- hk97\gameobject.js	/^	this.touch = function( other ){$/;"	m
+GameObject.update	.\web-projects\web version\hk.js	/^	this.update = function(screenw, screenh){$/;"	m
+GameObject.update	.\web-projects\webgl- hk97\gameobject.js	/^	this.update = function( limitX, limitY ){$/;"	m
+JumpToLine	.\tutorial\java\src\src3\elseIf.html	/^function JumpToLine()$/;"	f
+JumpToLine	.\tutorial\java\src\src3\forloop.java.html	/^function JumpToLine()$/;"	f
+JumpToLine	.\tutorial\java\src\src3\ifElse.html	/^function JumpToLine()$/;"	f
+JumpToLine	.\tutorial\java\src\src3\ifStatement.html	/^function JumpToLine()$/;"	f
+JumpToLine	.\tutorial\java\src\src3\while.html	/^function JumpToLine()$/;"	f
+JumpToLine	.\tutorial\java\src\tut1src.html	/^function JumpToLine()$/;"	f
+JumpToLine	.\tutorial\java\src\tut2src.html	/^function JumpToLine()$/;"	f
+JumpToLine	.\tutorial\java\src\tut4Src2.html	/^function JumpToLine()$/;"	f
+JumpToLine	.\tutorial\java\src\tut4src.html	/^function JumpToLine()$/;"	f
+Key.keyDown	.\web-projects\webgl- hk97\main.js	/^	keyDown:[],$/;"	p
+MakeCreature	.\web-projects\roguelike\Entity.js	/^function MakeCreature(x, y, drawSymbol, name, className, race){$/;"	f
+Map	.\web-projects\roguelike\map.js	/^function Map(){$/;"	c
+Map.addEntity	.\web-projects\roguelike\map.js	/^	this.addEntity = function(entity){$/;"	m
+Map.addRoom	.\web-projects\roguelike\map.js	/^	this.addRoom = function(x, y, w, h){$/;"	m
+Map.addWall	.\web-projects\roguelike\map.js	/^	this.addWall   = function(x, y){$/;"	m
+Map.removeWall	.\web-projects\roguelike\map.js	/^	this.removeWall = function(x, y){$/;"	m
+Map.setStaircases	.\web-projects\roguelike\map.js	/^	this.setStaircases = function( x1, y1, x2, y2 ){$/;"	m
+Map.updateEntities	.\web-projects\roguelike\map.js	/^	this.updateEntities = function(){$/;"	m
+Texture	.\web-projects\webgl- hk97\texture.js	/^function Texture( gl ){$/;"	c
+Texture._onload_callback	.\web-projects\webgl- hk97\texture.js	/^	this._onload_callback = function(){$/;"	m
+Texture.finish	.\web-projects\webgl- hk97\texture.js	/^	this.finish = function(){$/;"	m
+Texture.init	.\web-projects\webgl- hk97\texture.js	/^	this.init = function( url="OPT" ){$/;"	m
+Texture.unuse	.\web-projects\webgl- hk97\texture.js	/^	this.unuse = function(){$/;"	m
+Texture.use	.\web-projects\webgl- hk97\texture.js	/^	this.use = function(){$/;"	m
+WebGLRenderer	.\web-projects\webgl- hk97\webgl-renderer.js	/^function WebGLRenderer(context){$/;"	c
+WebGLRenderer.clear	.\web-projects\webgl- hk97\webgl-renderer.js	/^	this.clear = function(r, g, b, a){$/;"	m
+WebGLRenderer.finish	.\web-projects\webgl- hk97\webgl-renderer.js	/^	this.finish = function(){$/;"	m
+WebGLRenderer.init	.\web-projects\webgl- hk97\webgl-renderer.js	/^	this.init  = function( vertexId, fragmentId ){$/;"	m
+WebGLRenderer.loadTexture	.\web-projects\webgl- hk97\webgl-renderer.js	/^	this.loadTexture = function(url, name){$/;"	m
+WebGLRenderer.renderRectangle	.\web-projects\webgl- hk97\webgl-renderer.js	/^	this.renderRectangle = function( x, y, w, h, r=255, g=255, b=255, texture="default" ){$/;"	m
+backgroundSwap	.\web-projects\web version\hk.js	/^var backgroundSwap = 150;$/;"	v
+background_change_timer	.\web-projects\webgl- hk97\main.js	/^var background_change_timer=0;$/;"	v
+backgrounds	.\web-projects\web version\hk.js	/^var backgrounds = [];$/;"	v
+bkgnd	.\web-projects\webgl- hk97\main.js	/^var bkgnd=1;$/;"	v
+bkgrndIndex	.\web-projects\web version\hk.js	/^var bkgrndIndex = 1;$/;"	v
+bomb	.\web-projects\web version\hk.js	/^var bomb;$/;"	v
+bullets	.\web-projects\web version\hk.js	/^var bullets = [];$/;"	v
+canvas	.\web-projects\web version\hk.js	/^var canvas;$/;"	v
+chin	.\web-projects\web version\hk.js	/^var chin;$/;"	v
+chinFireDelay	.\web-projects\webgl- hk97\main.js	/^var chinFireDelay=40;$/;"	v
+con	.\web-projects\roguelike\game.js	/^var con;$/;"	v
+ctx	.\web-projects\web version\hk.js	/^var ctx;$/;"	v
+cutSceneImages	.\web-projects\web version\hk.js	/^var cutSceneImages = [];$/;"	v
+deng	.\web-projects\web version\hk.js	/^var deng;$/;"	v
+displayMap	.\web-projects\roguelike\game.js	/^    displayMap[player.prototype.y][player.prototype.x] = player.prototype.drawSymbol;$/;"	c
+displayMap.x	.\web-projects\roguelike\game.js	/^    displayMap[player.prototype.y][player.prototype.x] = player.prototype.drawSymbol;$/;"	m
+drawMap	.\web-projects\roguelike\game.js	/^function drawMap(){$/;"	f
+enemies	.\web-projects\web version\hk.js	/^var enemies = [];$/;"	v
+enemies	.\web-projects\webgl- hk97\main.js	/^var enemies = [];$/;"	v
+fireTest	.\web-projects\web version\hk.js	/^var fireTest = -1;$/;"	v
+frameLength	.\web-projects\web version\hk.js	/^var frameLength = 150;$/;"	v
+gameDraw	.\web-projects\web version\hk.js	/^function gameDraw(){$/;"	f
+gameOver	.\web-projects\web version\hk.js	/^var gameOver=0;$/;"	v
+gameStep	.\web-projects\roguelike\game.js	/^function gameStep(){$/;"	f
+gameUpdate	.\web-projects\web version\hk.js	/^function gameUpdate(){$/;"	f
+global_bullets	.\web-projects\webgl- hk97\bullet.js	/^var global_bullets= [];$/;"	v
+global_count_times	.\web-projects\ixl-fake\script.js	/^var global_count_times=0;$/;"	v
+index	.\web-projects\web version\hk.js	/^var index=-1;$/;"	v
+init	.\web-projects\web version\hk.js	/^function init(){$/;"	f
+introLength	.\web-projects\web version\hk.js	/^var introLength = frameLength*4;$/;"	v
+isEmpty	.\web-projects\ixl-fake\script.js	/^function isEmpty( str ){$/;"	f
+killCount	.\web-projects\web version\hk.js	/^var killCount=1;$/;"	v
+killCount	.\web-projects\webgl- hk97\main.js	/^var killCount=0;$/;"	v
+main	.\web-projects\webgl- hk97\main.js	/^function main(){$/;"	f
+main_draw	.\web-projects\webgl- hk97\main.js	/^function main_draw(gl, txtDc){$/;"	f
+main_unload	.\web-projects\webgl- hk97\main.js	/^function main_unload(){$/;"	f
+main_update	.\web-projects\webgl- hk97\main.js	/^function main_update(){$/;"	f
+maze	.\web-projects\roguelike\game.js	/^var maze;$/;"	v
+minor	.\web-projects\ixl-fake\script.js	/^function minor(){$/;"	f
+objToConvert	.\web-projects\roguelike\Entity.js	/^	objToConvert.prototype = Object.create(Entity.prototype);$/;"	c
+objToConvert.drawSymbol	.\web-projects\roguelike\Entity.js	/^	objToConvert.prototype.drawSymbol = drawSymbol;$/;"	m
+objToConvert.x	.\web-projects\roguelike\Entity.js	/^	objToConvert.prototype.x = x;$/;"	m
+objToConvert.y	.\web-projects\roguelike\Entity.js	/^	objToConvert.prototype.y = y;$/;"	m
+pause	.\web-projects\webgl- hk97\main.js	/^var pause=false;$/;"	v
+pauseKeyDelay	.\web-projects\webgl- hk97\main.js	/^var pauseKeyDelay=0;$/;"	v
+play_aud	.\web-projects\ixl-fake\script.js	/^function play_aud(){$/;"	f
+player	.\web-projects\roguelike\game.js	/^var player = MakeCreature(1, 8, '@', "HeroNameHere", 0, 1);$/;"	v
+playerEquip	.\web-projects\roguelike\game.js	/^function playerEquip(){$/;"	f
+playerInventory	.\web-projects\roguelike\game.js	/^function playerInventory(){$/;"	f
+playerMove	.\web-projects\roguelike\game.js	/^function playerMove(x, y){$/;"	f
+playerPickup	.\web-projects\roguelike\game.js	/^function playerPickup(){$/;"	f
+playerPray	.\web-projects\roguelike\game.js	/^function playerPray(){$/;"	f
+print	.\tutorial\java\index.html	/^	function print()$/;"	f
+renderer	.\web-projects\webgl- hk97\main.js	/^var renderer;$/;"	v
+skipCutscene	.\web-projects\web version\hk.js	/^function skipCutscene(){$/;"	f
+spawnTimer	.\web-projects\web version\hk.js	/^var spawnTimer=150;$/;"	v
+spawn_timer	.\web-projects\webgl- hk97\main.js	/^var spawn_timer=0;$/;"	v

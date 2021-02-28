@@ -120,11 +120,19 @@ int output_blog_html(char* blog_source, char* blog_output, char** out_blog_title
                 fprintf(html_document, "<p><b>Date Published:</b> <span style=\"background-color: yellow; color: black;\">(%s)</span></p>\n", date_created);
                 fprintf(html_document, "<br>\n");
                 {
+                    int needs_opening_tag = 1;
                     for (size_t line_index = 2; line_index < lines.count; ++line_index) {
                         if ((lines.lines[line_index] == NULL)) {
+                            fprintf(html_document, "</p>\n");
                             fprintf(html_document, "<br>\n");
+                            needs_opening_tag = 1;
                         } else {
-                            fprintf(html_document, "<p>%s</p>\n", lines.lines[line_index]);
+                            if (needs_opening_tag) {
+                                fprintf(html_document, "<p>");
+                                needs_opening_tag = 0;
+                            }
+                            fprintf(html_document, "%s ", lines.lines[line_index]);
+                            /* fprintf(html_document, "<p>%s</p>\n", lines.lines[line_index]); */
                         }
                     }
                 }

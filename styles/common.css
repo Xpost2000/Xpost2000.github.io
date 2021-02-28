@@ -31,6 +31,13 @@ body {
     margin-top: 0;
     margin-left: 1.2em;
     line-height: 1.2em;
+    width: 60%;
+}
+
+@media(max-width: 650px) {
+    .body-container {
+        width: 80%;
+    }
 }
 
 .link-bar-class {

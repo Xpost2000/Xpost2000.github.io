@@ -1,0 +1,13 @@
+Page Generation in Order?
+2/28/2021 2:13 AM
+
+Okay now we have page generation using a pretty scuffy C program.
+
+Why did I pick C? It allows me to access my inner peace. No but seriously
+it's pretty calming to do C since the language is small and simple.
+
+Sure I am doing a lot of redundant work, but honestly it's a small issue in
+the grand scheme of things.
+
+The program is just for now, it may either be refactored or rewritten in another
+language.

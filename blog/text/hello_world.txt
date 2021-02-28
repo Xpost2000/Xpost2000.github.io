@@ -1,0 +1,18 @@
+Blog Created
+2/21/2021 9:38 PM
+
+This is a manually typed blog page.
+However this time, we're generating it from a text file.
+
+This is a very basic text file format, where the first two lines are special, the rest of
+the text is just a paragraph.
+
+I don't think I'll support any markdown/markup yet, so that sucks... But that's okay.
+
+This is just the bare minimum to generate a page.
+
+Hopefully this looks correct. This was generated from a C file.
+
+Date unfortunately has to be manually specified atm.
+
+I don't build the index automatically yet unfortunately. That's for next time!

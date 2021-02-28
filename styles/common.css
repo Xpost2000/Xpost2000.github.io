@@ -4,17 +4,20 @@
 * {
     margin: 0;
     padding: 0;
-    font-size: 10px;
+    /* font-size: 10px; */
+    font-size: calc(0.24rem + 1.2vw);
 	font-family: GNUUnifont;
 }
-@media(min-width: 700px) {
+
+@media(max-width: 768px) {
     * {
-        font-size: 12px;
+        font-size: calc(0.4rem + 1.0vh);
     }
 }
-@media(min-width: 1000px) {
+
+@media(max-width: 650px) {
     * {
-        font-size: calc(16px + 0.2vw);
+        font-size: calc(0.3rem + 1.1vh);
     }
 }
 
@@ -51,6 +54,7 @@ body {
     border-color: rgba(255,255,150,255);
     border-style: solid;
     border-width: 0.1em;
+    margin-bottom: 2em;
 }
 
 .link-bar-class a:hover {
@@ -82,11 +86,6 @@ body {
 .blinking-cursor {
     display: inline-block;
     animation: blink step-start 1.4s infinite;
-}
-
-.modeline-holder {
-    width: 100%;
-    margin: 0 auto;
 }
 
 .modeline-holder {

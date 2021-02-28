@@ -120,7 +120,7 @@ int output_blog_html(char* blog_source, char* blog_output, char** out_blog_title
                 fprintf(html_document, "<p><b>Date Published:</b> <span style=\"background-color: yellow; color: black;\">(%s)</span></p>\n", date_created);
                 fprintf(html_document, "<br>\n");
                 {
-                    for (size_t line_index = 0; line_index < lines.count; ++line_index) {
+                    for (size_t line_index = 2; line_index < lines.count; ++line_index) {
                         if ((lines.lines[line_index] == NULL)) {
                             fprintf(html_document, "<br>\n");
                         } else {

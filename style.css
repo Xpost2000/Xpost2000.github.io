@@ -31,5 +31,12 @@
 }
 
 #space-holder {
-    height: 35%;
+    height: 25%;
 }
+
+@media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) {
+    #space-holder {
+        height: 50%;
+    }
+}
+

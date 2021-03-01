@@ -1,0 +1,15 @@
+Probably Doing 7DRL
+3/1/2021 11:57 AM
+
+So for this week up to the start of 7DRL I'm going to setup some
+base code, for a relatively generic RL with some bog-standard algorithms.
+
+This is to avoid spending too much time on the first few days doing "engine"
+work. Or at least to get a feel for how I'd like to structure the code in Godot,
+as I'm choosing to work in Godot to avoid having to deal with crossplatform and
+graphics programming.
+
+It also does a lot of other things for free to avoid me having too much pain.
+
+It should be under the gd-rogue-skeleton or something like that. The actual 7DRL
+game is going to be a fork of that project.

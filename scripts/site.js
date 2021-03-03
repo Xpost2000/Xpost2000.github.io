@@ -24,3 +24,11 @@ function handle_resize(event) {
 
 window.addEventListener("resize", handle_resize);
 handle_resize();
+
+const mini_buffer = document.querySelector("#mini-buffer-main");
+const mini_buffer_autocompletion = document.querySelector("#mini-buffer-autocompletion");
+
+mini_buffer.addEventListener("mouseover", function(event) { mini_buffer_autocompletion.style.display = "block"; });
+mini_buffer_autocompletion.addEventListener("mouseover", function(event) { mini_buffer_autocompletion.style.display = "block"; });
+mini_buffer_autocompletion.addEventListener("click", function(event) { mini_buffer_autocompletion.style.display = "none"; });
+mini_buffer_autocompletion.addEventListener("mouseout", function(event) { mini_buffer_autocompletion.style.display = "none"; });

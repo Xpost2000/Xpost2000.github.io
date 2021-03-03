@@ -2,20 +2,20 @@
 <html>
   <head>
     <style>
-        @font-face {
-            font-family: OCR;
-            src: url('./shared-resources/OCRAEXT.TTF');
-        }
+      @font-face {
+          font-family: OCR;
+          src: url('./shared-resources/OCRAEXT.TTF');
+      }
 
-        @font-face {
-            font-family: Orator;
-            src: url('./shared-resources/OratorStd.otf');
-        }
+      @font-face {
+          font-family: Orator;
+          src: url('./shared-resources/OratorStd.otf');
+      }
 
-        @font-face {
-            font-family: GNUUnifont;
-            src: url('./shared-resources/unifont-13.0.04.ttf');
-        }
+      @font-face {
+          font-family: GNUUnifont;
+          src: url('./shared-resources/unifont-13.0.04.ttf');
+      }
     </style>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="styles/common.css">
@@ -36,37 +36,50 @@
       <!-- TODO make this typed -->
       <div id="info-container">
         <div id="info">
-          <p>I make no guarantees that this website will display properly, and</p>
-          <p>if you're an old browser platform I'm likely not supporting it. Sorry.</p>
-
-          <p>Hi, I kind of make video games and do random things in my spare time.</p>
-          <p>I've been programming for some time, and I also play video games excessively,</p>
-          <p>currently with an interest in Lisp like languages (particularly Clojure). Also still</p>
-          <p>trying to figure out how to use EMACS correctly. Can't find ways to play nice with evil mode...</p>
+          <p>I make no guarantees that this website will display properly, and
+            if you're an old browser platform I'm likely not supporting it, sorry.</p>
           <br>
-          <p>I'm a predominately C++ programmer although I'm sticking to standard C more.</p>
-          <p>You can use the <u>modeline</u> at the bottom of the site to return to here at anytime.</p>
-          <p>If you're interested in anything, click one of the links below. <span class="blinking-cursor">█</span></p>
+          <p>Hi, I kind of make video games and do random things in my spare time.
+            I've been programming for some time, and I also play video games excessively,
+            currently with an interest in Lisp like languages (particularly Clojure). Also still
+            trying to figure out how to use EMACS correctly. Can't find ways to play nice with evil mode...</p>
+          <br>
+          <p>I'm a predominately C++ programmer although I'm sticking to standard C more.
+            You can use the <u>modeline</u> at the bottom of the site to return to here at anytime.
+            If you're interested in anything, mouse over the mini-buffer and click on the links.</p>
+          <br>
+          <p>At the moment this probably won't work on mobile. Please bear with me until I update this.
+             This design is still <b>experimental and subject to change.</b></p>
         </div>
       </div>
     </div>
-    <!-- <p id="name">Jerry Zhu</p> -->
-    <!-- <p id="contact"><b>Contact me at xpost2000cod@gmail.com</b></p> -->
-    <!-- This should be generated... -->
     <div class="link-bar-class">
       <a href="projects/index.html"><p>Games</p></a>
       <a href="projects/index.html"><p>Toy Things</p></a>
       <a href="blog/index.html"><p>Blog?</p></a>
     </div>
+    <!-- <p id="name">Jerry Zhu</p> -->
+    <!-- <p id="contact"><b>Contact me at xpost2000cod@gmail.com</b></p> -->
+    <!-- This should be generated... -->
     <!-- You DON'T want to see how this gutter was generated. -->
     <!--Why do I need so many containers???-->
     <br>
     <div id="ugly-ass-gutter"> </div>
     <div class="modeline-holder">
+      <div id="mini-buffer-autocompletion">
+        <p>Click on a link to be taken to the page!</p> <br>
+        <ul id="mini-buffer-links">
+          <li><a href="#">./.</a></li>
+          <li><a href="#">./..</a></li>
+          <li><a href="#">./games/</a></li>
+          <li><a href="#">./toy_things/</a></li>
+          <li><a href="#">./blog/</a></li>
+        </ul> <br>
+      </div>
       <div class="mode-bar">
         <pre>U\--- <b>index.html&lt<a href="index.html" style="text-decoration:none">xpost2000.github.io</a>&gt</b>    All (0, 0) [NORMAL] (HTML+)</pre>
       </div>
-      <div class="mini-buffer">
+      <div class="mini-buffer" id="mini-buffer-main">
         <pre>welcome-to-my-website<span class="blinking-cursor">█</span></pre>
       </div>
     </div>

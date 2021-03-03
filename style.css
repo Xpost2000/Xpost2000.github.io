@@ -25,6 +25,27 @@
     width: 60%;
 }
 
+@media screen and (max-width: 650px) {
+    #info {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #head-container {
+        padding: 1em;
+        text-align: center;
+    }
+
+    #info {
+        width: 90%;
+    }
+
+    #header-title-id {
+        font-size: 4em;
+    }
+}
+
 #displays {
     color: rgba(255, 255, 190, 255);
     margin: 3em;

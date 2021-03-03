@@ -30,5 +30,13 @@ const mini_buffer_autocompletion = document.querySelector("#mini-buffer-autocomp
 
 mini_buffer.addEventListener("mouseover", function(event) { mini_buffer_autocompletion.style.display = "block"; });
 mini_buffer_autocompletion.addEventListener("mouseover", function(event) { mini_buffer_autocompletion.style.display = "block"; });
-mini_buffer_autocompletion.addEventListener("click", function(event) { mini_buffer_autocompletion.style.display = "none"; });
+// This is for mobile access
+mini_buffer.addEventListener("click", function(event) {
+    if (mini_buffer_autocompletion.style.display != "none") {
+        mini_buffer_autocompletion.style.display = "none";
+    } else {
+        mini_buffer_autocompletion.style.display = "block";
+    }
+});
 mini_buffer_autocompletion.addEventListener("mouseout", function(event) { mini_buffer_autocompletion.style.display = "none"; });
+mini_buffer_autocompletion.addEventListener("click", function(event) { mini_buffer_autocompletion.style.display = "none"; });

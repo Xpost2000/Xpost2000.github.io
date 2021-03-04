@@ -1,0 +1,17 @@
+Minibuffer Update
+3/3/2021 7:20 PM
+
+I added an update to this new website. Firstly it should be slightly better on mobile...
+At least that's what I'm hoping for.
+
+However more importantly now you can now use the mini-buffer for some more Unix editor style
+navigation. The mini-buffer should also work on mobile, and the blog generator was updated to
+propagate the mini-buffer change everywhere.
+
+I'll need to make a new generator as I'm increasingly getting more complicated requirements (even
+if those requirements are rather simple.)
+
+Anyways that's it for now.
+
+The next/previous entry links do not work, because the crappy static generator isn't flexible enough
+for that unfortunately.

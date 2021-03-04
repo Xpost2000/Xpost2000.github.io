@@ -269,6 +269,9 @@ int main(void) {
                 }
                 fprintf(html_document, "</div>\n");
                 fprintf(html_document, "<br>\n");
+
+                /* <li><a href="#">./.</a></li> */
+                /*      <li><a href="../index.html">./..</a></li> */
                 {
                     fprintf(html_document,
                             STRINGIFY(
@@ -279,6 +282,8 @@ int main(void) {
                                 <ul id="mini-buffer-links">
                             ));
                     /* fprintf(html_document, STRINGIFY(<li><a href="#">./.</a></li> <li><a href="../index.html">./..</a></li>)); */
+                    fprintf(html_document, "<li><a href=\"#\">./.</a></li>\n");
+                    fprintf(html_document, "<li><a href=\"../index.html\">./..</a></li>\n");
                     for (size_t string_index = 0; string_index < blog_entries.count; ++string_index) {
                         fprintf(html_document, "<li><a href=\"%s\">%s</a></li>\n", blog_links.strings[string_index], blog_links.strings[string_index]);
                     }
@@ -287,7 +292,7 @@ int main(void) {
                                 </ul> <br>
                                 </div>
                                 <div class="mode-bar">
-                                <pre>U\--- <b>index.html&lt<a href="index.html" style="text-decoration:none">xpost2000.github.io</a>&gt</b>    All (0, 0) [NORMAL] (HTML+)</pre>
+                                <pre>U\--- <b>index.html&lt<a href="../index.html" style="text-decoration:none">xpost2000.github.io</a>&gt</b>    All (0, 0) [NORMAL] (HTML+)</pre>
                                 </div>
                                 <div class="mini-buffer" id="mini-buffer-main">
                                 <pre>welcome-to-my-website<span class="blinking-cursor">█</span></pre>

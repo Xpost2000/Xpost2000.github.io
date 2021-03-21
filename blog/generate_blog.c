@@ -5,8 +5,11 @@
   keeping their lifetimes with freeing is kind of annoying.
 */
 #include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include <windows.h>
 
 #define STRINGIFY(x) #x
 
@@ -178,8 +181,6 @@ int output_blog_html(char* blog_source, char* blog_output, char** out_blog_title
     return 0;
 }
 
-#include <dirent.h>
-
 struct string_list {
     char** strings;
     size_t count;
@@ -196,15 +197,12 @@ void string_list_push(struct string_list* list, char* str) {
     list->strings[list->count++] = strdup(str);
 }
 
+#include "directory_utility.c"
+
 int main(void) {
-    DIR* directory;
+    struct directory_listing directory = directory_listing_build("text/");
+    directory_listing_sort_by(&directory, DIRECTORY_LISTING_SORT_BY_DATE_ASCENDING_ORDER);
     {
-        directory = opendir("text/");
-        struct dirent* directory_entry;
-        {
-            directory_entry = readdir(directory);
-            directory_entry = readdir(directory);
-        }
 
         struct string_list blog_entries = {};
         struct string_list blog_links = {};
@@ -248,25 +246,25 @@ int main(void) {
                 fprintf(html_document, "<br>\n");
                 fprintf(html_document, "<p>Feel free to use the modeline as an alternative form of navigation.</p>\n");
                 fprintf(html_document, "<p><b>Listing:</b></p>");
-                while (directory_entry = readdir(directory)) {
-                    snprintf(temporary_buffer, 1024, "text/%s", directory_entry->d_name);
-                    // more evil truncation
-                    {
-                        char* start = directory_entry->d_name;
-                        while (*start && *start != '.') {
-                            start++;
-                        }
-                        *start = 0;
-                    }
-                    snprintf(other_temporary_buffer, 1024, "pages/%s.html", directory_entry->d_name);
+
+                for (size_t directory_entry_index = 2;
+                     directory_entry_index < directory.entry_count;
+                     ++directory_entry_index) {
+                    struct directory_listing_entry* entry = directory_listing_get_entry(&directory, directory_entry_index);
+                    snprintf(temporary_buffer, 1024, "text/%s", entry->name);
+                    struct directory_listing_entry_string filename_without_extension = directory_listing_entry_name_without_extension(entry);
+                    snprintf(other_temporary_buffer, 1024, "pages/%s.html", filename_without_extension.name);
+                    printf("%s\n", other_temporary_buffer);
                     char* name_of_blog;
                     output_blog_html(temporary_buffer, other_temporary_buffer, &name_of_blog);
                     string_list_push(&blog_entries, name_of_blog);
                     string_list_push(&blog_links, other_temporary_buffer);
                 }
+
                 for (size_t string_index = 0; string_index < blog_entries.count; ++string_index) {
-                    fprintf(html_document, "<a href=\"%s\"><p>%s</p></a>\n", blog_links.strings[string_index], blog_entries.strings[string_index]); 
+                    fprintf(html_document, "<a href=\"%s\"><p>%s</p></a>\n", blog_links.strings[string_index], blog_entries.strings[string_index]);
                 }
+                
                 fprintf(html_document, "</div>\n");
                 fprintf(html_document, "<br>\n");
 
@@ -308,6 +306,6 @@ int main(void) {
             }
         }
     }
-    closedir(directory);
-    return 0; 
+    directory_listing_free(&directory);
+    return 0;
 }

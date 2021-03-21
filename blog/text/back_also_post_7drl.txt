@@ -1,0 +1,27 @@
+I should probably not use C, but this is still kind of fun.
+3/21/2021
+
+Anyways I've finished 7DRL a week ago or something. Used Godot, and had
+a jolly time writing bad code.
+
+Also spending time away from C, and too much time in javascript land.
+
+Not fun, because there's no error checking. I don't want to use typescript,
+but I probably should've.
+
+Static generation now has a better directory listing, but might require some
+implementation patches. Works well enough for this but I should probably decide
+on a consistent API.
+
+I do count "./", and "../" as valid directories, although I'm not exactly sure if I should?
+For now to get past them just start counting from index=2.
+
+TODO, use a higher level language for this? Or don't since I don't seem to touch this very
+often.
+
+Anyways I'm trying to <a href="https://www.youtube.com/watch?v=eAhWIO1Ra6M.">https://www.youtube.com/watch?v=eAhWIO1Ra6M.</a>
+
+Which reminds me that this doesn't support links. So I'll need some minimal markdown support.
+I don't escape HTML in here, which is a problem... I'll work on that next time I guess.
+
+I'll handle that later I guess.

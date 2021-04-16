@@ -1,3 +1,16 @@
+<!-- By template, I mean I'm using printf as the formatter. 
+
+     (I will replace with my own template system with semantic formatting when
+     I feel like it...)
+
+     in this order:
+
+     body-container-text
+     
+     mini-buffer-links
+
+     modeline-link, modeline-text,
+-->
 <html>
   <head>
     <style>
@@ -13,6 +26,7 @@
   </head>
   <body>
     <div class="body-container">
+      %s
     </div>
     <br>
     <div id="ugly-ass-gutter"> </div>
@@ -21,11 +35,12 @@
         <p>Click on a link to be taken to the page!</p>
         <br>
         <ul id="mini-buffer-links">
+          %s
         </ul>
         <br>
       </div>
       <div class="mode-bar">
-        <pre>U--- <b>index.html&lt<a href="../index.html" style="text-decoration:none">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre>
+        <pre>U--- <b>index.html&lt<a href=%s style="text-decoration:none">%s</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre>
       </div>
       <div class="mini-buffer" id="mini-buffer-main">
         <pre>welcome-to-my-website<span class="blinking-cursor">█</span></pre>

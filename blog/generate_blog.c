@@ -93,8 +93,8 @@ int main(void) {
         size_t written_mini_buffer_strings = 0;
         char mini_buffer_strings[8192] = {};
 
-        snprintf(mini_buffer_strings, 8192, "<li><a href=\"#\">./.</a></li>\n");
-        snprintf(mini_buffer_strings, 8192, "<li><a href=\"../index.html\">./..</a></li>\n");
+        written_mini_buffer_strings += snprintf(mini_buffer_strings + written_mini_buffer_strings, 8192 - written_mini_buffer_strings, "<li><a href=\"#\">./.</a></li>\n");
+        written_mini_buffer_strings += snprintf(mini_buffer_strings + written_mini_buffer_strings, 8192 - written_mini_buffer_strings, "<li><a href=\"../index.html\">./..</a></li>\n");
 
         char temporary_buffer[1024] = {};
         char other_temporary_buffer[1024] = {};

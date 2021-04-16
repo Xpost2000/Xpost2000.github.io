@@ -188,12 +188,7 @@ struct string_list {
 
 // This is dumb cause I know I'm only going to push.
 void string_list_push(struct string_list* list, char* str) {
-    char** ptr = list->strings;
-    if (list->strings) {
-        list->strings = realloc(ptr, list->count);
-     } else {
-         list->strings = malloc(sizeof(char*));
-     }
+    list->strings = realloc(list->strings, sizeof(*list->strings)*(list->count+1));
     list->strings[list->count++] = strdup(str);
 }
 
@@ -252,24 +247,26 @@ int main(void) {
                      ++directory_entry_index) {
                     struct directory_listing_entry* entry = directory_listing_get_entry(&directory, directory_entry_index);
                     snprintf(temporary_buffer, 1024, "text/%s", entry->name);
+
                     struct directory_listing_entry_string filename_without_extension = directory_listing_entry_name_without_extension(entry);
                     snprintf(other_temporary_buffer, 1024, "pages/%s.html", filename_without_extension.name);
-                    printf("%s\n", other_temporary_buffer);
-                    char* name_of_blog;
-                    output_blog_html(temporary_buffer, other_temporary_buffer, &name_of_blog);
+                    char* name_of_blog; output_blog_html(temporary_buffer, other_temporary_buffer, &name_of_blog);
+
                     string_list_push(&blog_entries, name_of_blog);
                     string_list_push(&blog_links, other_temporary_buffer);
+                    printf("(%s) (%s): %s\n", name_of_blog, temporary_buffer, other_temporary_buffer);
+                    fprintf(html_document, "<a href=\"%s\"><p>%s</p></a>\n", other_temporary_buffer, name_of_blog);
                 }
+                printf("SZ: %d\n", blog_entries.count);
+                printf("SZ: %d\n", blog_links.count);
 
                 for (size_t string_index = 0; string_index < blog_entries.count; ++string_index) {
-                    fprintf(html_document, "<a href=\"%s\"><p>%s</p></a>\n", blog_links.strings[string_index], blog_entries.strings[string_index]);
+                    printf("--- (%s)\n", blog_links.strings[string_index]);
                 }
                 
                 fprintf(html_document, "</div>\n");
                 fprintf(html_document, "<br>\n");
 
-                /* <li><a href="#">./.</a></li> */
-                /*      <li><a href="../index.html">./..</a></li> */
                 {
                     fprintf(html_document,
                             STRINGIFY(

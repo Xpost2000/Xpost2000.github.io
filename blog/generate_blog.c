@@ -181,17 +181,6 @@ int output_blog_html(char* blog_source, char* blog_output, char** out_blog_title
     return 0;
 }
 
-struct string_list {
-    char** strings;
-    size_t count;
-};
-
-// This is dumb cause I know I'm only going to push.
-void string_list_push(struct string_list* list, char* str) {
-    list->strings = realloc(list->strings, sizeof(*list->strings)*(list->count+1));
-    list->strings[list->count++] = strdup(str);
-}
-
 #include "directory_utility.c"
 
 int main(void) {
@@ -213,9 +202,7 @@ int main(void) {
         char temporary_buffer[1024] = {};
         char other_temporary_buffer[1024] = {};
 
-        for (size_t directory_entry_index = 2;
-             directory_entry_index < directory.entry_count;
-             ++directory_entry_index) {
+        for (size_t directory_entry_index = 2; directory_entry_index < directory.entry_count; ++directory_entry_index) {
             struct directory_listing_entry* entry = directory_listing_get_entry(&directory, directory_entry_index);
             snprintf(temporary_buffer, 1024, "text/%s", entry->name);
 
@@ -232,6 +219,7 @@ int main(void) {
         fprintf(html_document, page_template_text, listing_strings, mini_buffer_strings);
         fclose(html_document);
     }
+    free(page_template_text);
 
     directory_listing_free(&directory);
     return 0;

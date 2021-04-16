@@ -1,39 +1,89 @@
-<html>
-<head>
-<style>
-@font-face { font-family: OCR; src: url('../../shared-resources/OCRAEXT.TTF'); }
-@font-face { font-family: Orator; src: url('../../shared-resources/OratorStd.otf'); }
-@font-face { font-family: GNUUnifont; src: url('../../shared-resources/unifont-13.0.04.ttf'); }
-</style>
-<link rel="stylesheet" href="../../styles/common.css"><link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Jerry Zhu</title><body>
-<div class="body-container">
-<h1>I should probably not use C, but this is still kind of fun.</h1>
-<p><b>Date Published:</b> <span style="background-color: yellow; color: black;">(3/21/2021)</span></p>
+<!-- By template, I mean I'm using printf as the formatter. 
+
+     (I will replace with my own template system with semantic formatting when
+     I feel like it...)
+
+     in this order:
+
+     body-container-text
+     
+     mini-buffer-links
+
+     modeline-link, modeline-text,
+-->
+<html>
+  <head>
+    <style>
+      @font-face { font-family: OCR; src: url('../../shared-resources/OCRAEXT.TTF'); }
+      @font-face { font-family: Orator; src: url('../../shared-resources/OratorStd.otf'); }
+      @font-face { font-family: GNUUnifont; src: url('../../shared-resources/unifont-13.0.04.ttf'); }
+    </style>
+    <link rel="stylesheet" href="../../styles/common.css">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jerry Zhu</title><body>
+  </head>
+  <body>
+    <div class="body-container">
+      <h1>I should probably not use C, but this is still kind of fun.</h1>
+      <p>
+        <b>Date Published</b>
+        <span style="background-color: yellow; color: black;">(3/21/2021)</span>
+      </p>
+      </p>
 <br>
-</p>
+<p>
+Anyways I've finished 7DRL a week ago or something. Used Godot, and had a jolly time writing bad code. </p>
 <br>
-<p>Anyways I've finished 7DRL a week ago or something. Used Godot, and had a jolly time writing bad code. </p>
+<p>
+Also spending time away from C, and too much time in javascript land. </p>
 <br>
-<p>Also spending time away from C, and too much time in javascript land. </p>
+<p>
+Not fun, because there's no error checking. I don't want to use typescript, but I probably should've. </p>
 <br>
-<p>Not fun, because there's no error checking. I don't want to use typescript, but I probably should've. </p>
+<p>
+Static generation now has a better directory listing, but might require some implementation patches. Works well enough for this but I should probably decide on a consistent API. </p>
 <br>
-<p>Static generation now has a better directory listing, but might require some implementation patches. Works well enough for this but I should probably decide on a consistent API. </p>
+<p>
+I do count "./", and "../" as valid directories, although I'm not exactly sure if I should? For now to get past them just start counting from index=2. </p>
 <br>
-<p>I do count "./", and "../" as valid directories, although I'm not exactly sure if I should? For now to get past them just start counting from index=2. </p>
+<p>
+TODO, use a higher level language for this? Or don't since I don't seem to touch this very often. </p>
 <br>
-<p>TODO, use a higher level language for this? Or don't since I don't seem to touch this very often. </p>
+<p>
+Anyways I'm trying to <a href="https://www.youtube.com/watch?v=eAhWIO1Ra6M.">https://www.youtube.com/watch?v=eAhWIO1Ra6M.</a> </p>
 <br>
-<p>Anyways I'm trying to <a href="https://www.youtube.com/watch?v=eAhWIO1Ra6M.">https://www.youtube.com/watch?v=eAhWIO1Ra6M.</a> </p>
+<p>
+Which reminds me that this doesn't support links. So I'll need some minimal markdown support. I don't escape HTML in here, which is a problem... I'll work on that next time I guess. </p>
 <br>
-<p>Which reminds me that this doesn't support links. So I'll need some minimal markdown support. I don't escape HTML in here, which is a problem... I'll work on that next time I guess. </p>
-<br>
-<p>I'll handle that later I guess. <br>
+<p>
+I'll handle that later I guess. <br>
 <p>View the plaintext version <a href="../text/back_also_post_7drl.txt">here</a></p>
-</div>
-<br>
-<div id="ugly-ass-gutter"> </div> <div class="modeline-holder"> <div id="mini-buffer-autocompletion"> <p>Click on a link to be taken to the page!</p> <br> <ul id="mini-buffer-links"> <li><a href="#">./.</a></li> <li><a href="../index.html">./..</a></li> <li><a href="#next?">./next_entry</a></li> <li><a href="#previous?">./previous_entry</a></li> </ul> <br> </div> <div class="mode-bar"> <pre>U--- <b>index.html&lt<a href="../index.html" style="text-decoration:none">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre> </div> <div class="mini-buffer" id="mini-buffer-main"> <pre>welcome-to-my-website<span class="blinking-cursor">█</span></pre> </div> </div> <script src="../../scripts/site.js" type="text/javascript"></script></body>
-
-</html>
-
-</head>
+
+    </div>
+    <br>
+    <div id="ugly-ass-gutter"> </div>
+    <div class="modeline-holder">
+      <div id="mini-buffer-autocompletion">
+        <p>Click on a link to be taken to the page!</p>
+        <br>
+        <ul id="mini-buffer-links">
+          <li><a href="#">./.</a></li>
+<li><a href="../index.html">./..</a></li>
+<li><a href="improvements_to_generator.html">./next_entry</a></li>
+<li><a href="modeline_update.html">./previous_entry</a></li>
+
+        </ul>
+        <br>
+      </div>
+      <div class="mode-bar">
+        <pre>U--- <b>index.html&lt<a href="../index.html" style="text-decoration:none">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre>
+      </div>
+      <div class="mini-buffer" id="mini-buffer-main">
+        <pre>welcome-to-my-website<span class="blinking-cursor">█</span></pre>
+      </div>
+    </div>
+    <script src="../../scripts/site.js" type="text/javascript"></script>
+  </body>
+</html>

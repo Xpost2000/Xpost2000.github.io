@@ -1,0 +1,8 @@
+This Site.
+thumb.png
+
+Yes, this is definitely meta. This is one of my web development projects. The website went through older iterations and such,
+generally which shows my growth as a web developer (which is not much as I don't actively really do it.) A retro computing aesthetic
+to resemble an EMACS/VI session was chosen as I really like using those editors, and I think most websites look too generic. The best
+experience for this website is to go fullscreen, and use keyboard. Due to the odd design, it is difficult to work this on mobile (much how
+mobile VI is not a fun time.)

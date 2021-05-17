@@ -1,7 +1,6 @@
 Something To Cry About 2
 thumb.png
 
-This project description goes here. It's some pretty impressive and cool text about stuff...
-Let's just see how long it takes til it fills up, this is the basic card generation system. Very simple
-text files that anyone could read really. This would certainly be easier to do dynamically using javascript
-though. Let's be honest. Although it's an interesting exercise to do something like this.
+This is the "sequel" to the previous project. It now sports an OpenGL renderer that used shaders to support a kind of wonky looking
+underwater effect. Also there was mouse aim and a basic camera/frustrum culling solution for things. Delta-time was also finally used
+so the game was roughly framerate independent.

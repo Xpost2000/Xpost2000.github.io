@@ -1,4 +1,4 @@
 SDL Pong
 pong.png
 
-A Pong game
+A polished Pong game made with SDL2. There's literally nothing else to say about this. It was made in the most naive way possible.

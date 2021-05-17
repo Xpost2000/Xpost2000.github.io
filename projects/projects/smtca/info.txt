@@ -1,7 +1,6 @@
 Something To Cry About
 thumb.png
 
-This project description goes here. It's some pretty impressive and cool text about stuff...
-Let's just see how long it takes til it fills up, this is the basic card generation system. Very simple
-text files that anyone could read really. This would certainly be easier to do dynamically using javascript
-though. Let's be honest. Although it's an interesting exercise to do something like this.
+This is my oldest technical game project. It's a simple top down shooter before I discovered the existance of delta-time. I thought
+it was really cool when I made it though. You could push crates and shoot enemies, along with loading levels from text files which were
+interpreted as tilemaps.

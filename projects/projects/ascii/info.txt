@@ -1,4 +1,6 @@
 ASCII RPG
 ascii.png
 
-An ASCII RPG
+This is mistakenly called an ASCII roguelike despite not being a roguelike, though ASCII it is. It was a small
+game to do with PDCurses, and it was kind of cool to make. It's not very complicated and rather simplistic. Would
+be repeated again in various different projects like Wanderer.

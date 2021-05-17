@@ -22,6 +22,40 @@ function handle_resize(event) {
     gutter.style.height = window.innerHeight * 1.1;
 }
 
+let theme = function() {
+    let theme = localStorage.getItem('theme');
+    // I wish I was joking
+    if (theme === null || theme === undefined || theme === "" || theme === "null") {
+        return "default";
+    }
+
+    return theme;
+}();
+function update_theme() {
+    // to avoid so much work, I'm literally going to link as many paths as I can
+    // find for all the themes...
+    function stylesheet_link(path) {
+        let stylesheet_link = document.createElement('link');
+        stylesheet_link.type = "text/css";
+        stylesheet_link.rel = "stylesheet";
+        stylesheet_link.href = path;
+        return stylesheet_link;
+    }
+    console.log("updating theme");
+
+    let relative_path_prefixes = ["styles/", "../styles/", "../../styles/", "../../../styles/"];
+    console.log(theme);
+    for (const prefix of relative_path_prefixes) {
+        document.head.appendChild(stylesheet_link(`${prefix}${theme}.css`));
+    }
+}
+function switch_to_theme(new_theme) {
+    theme = new_theme;
+    localStorage.setItem('theme', new_theme);
+
+    update_theme();
+}
+
 window.addEventListener("resize", handle_resize);
 handle_resize();
 
@@ -40,3 +74,14 @@ mini_buffer.addEventListener("click", function(event) {
 });
 mini_buffer_autocompletion.addEventListener("mouseout", function(event) { mini_buffer_autocompletion.style.display = "none"; });
 mini_buffer_autocompletion.addEventListener("click", function(event) { mini_buffer_autocompletion.style.display = "none"; });
+
+document.addEventListener("keydown",
+                          function(event) {
+                              if (event.key == 'o' && event.ctrlKey) {
+                                  alert("Theme switch demonstration...");
+                                  switch_to_theme(prompt('Enter a theme name', 'default'));
+                                  event.preventDefault();
+                              }
+                          }
+                         );
+update_theme();

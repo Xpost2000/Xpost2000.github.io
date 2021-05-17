@@ -1,6 +1,6 @@
-.PHONY: all blog
-all: generate.exe blog
-generate.exe: generate_blog.c ../c-vendor/utilities.c
-	gcc generate_blog.c -o $@ -g  -I../c-vendor/
-blog: generate.exe
+.PHONY: all projects
+all: generate.exe projects
+generate.exe: generate_projects.c ../c-vendor/utilities.c
+	gcc generate_projects.c -o $@ -g  -I../c-vendor/
+projects: generate.exe
 	./generate.exe

@@ -8,6 +8,17 @@
 	font-family: GNUUnifont;
 }
 
+::selection {
+    background: yellow;
+    color: black;
+}
+
+ul {
+    margin-left: 2em;
+    padding: 0.5rem;
+    list-style-type: square;
+}
+
 /* @media(max-width: 768px) { */
 /*     * { */
 /*         font-size: calc(0.4rem + 1.0vh); */

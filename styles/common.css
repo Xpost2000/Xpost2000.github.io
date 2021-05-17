@@ -136,8 +136,7 @@ body {
 }
 
 #ugly-ass-gutter {
-    position: absolute;
-    overflow: hidden;
+    position: fixed;
     white-space: nowrap;
     top: 0;
     left: 0;

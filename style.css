@@ -4,14 +4,11 @@
 }
 
 #header-title-id {
-    color: lightblue;
-    text-shadow: 5px 3px red;
     font-size: 5em;
 }
 
 #sub-header-title-id {
     margin-top: 0.4em;
-    color: lightblue;
     font-size: 3em;
 }
 
@@ -44,12 +41,6 @@
     #header-title-id {
         font-size: 4em;
     }
-}
-
-#displays {
-    color: rgba(255, 255, 190, 255);
-    margin: 3em;
-    line-height: 1.2em;
 }
 
 @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (-webkit-device-pixel-ratio: 3) {

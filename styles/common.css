@@ -13,9 +13,11 @@
     color: black;
 }
 
-ul {
+ol, ul {
     margin-left: 2em;
     padding: 0.5rem;
+}
+ul {
     list-style-type: square;
 }
 

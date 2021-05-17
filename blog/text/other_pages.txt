@@ -1,0 +1,31 @@
+Doing the remaining pages?
+5/17/2021 3:05 PM
+
+No I didn't forget this site existed, I just don't really like doing web development or design. Okay I've
+just kind of been lazy and maybe did forget about this website for a few seconds or something like that.
+
+If I don't forget to do anything later, I'll probably write or reuse a similar static content generator
+for the remaining portions of the website. Mostly the project parts.
+
+I'm likely just going to stick with this style of the website (old VI style), and probably add a few nice
+features like theme switching...
+
+I've been doing web development for a classmate's organization, which while I'm not too plussed with having
+to use these frameworks or particularly happy with using them. I did find a bit of enjoyment during some select
+portions.
+
+I'm definitely going to need to reorganize this repository to be more clear, and also probably change the static
+generator into something a little more advanced than a printf machine.
+
+Though I don't suspect anything complicated will be required for a pretty long while, and I can probably just hand-code
+the static generators in a special way in basically C scripts.
+
+If I really can't bear to do it in C (when it gets too cumbersome), I'll probably just switch to doing it with a python or
+common lisp script or something like that. I do endeavor to handwrite as much of this website as I possibly can without
+resorting to external dependencies because I do not wish to wait for thousands of packages to install on a Windows 7 machine
+(Professional still has support!)
+
+Also either way, this is much more sane to do in my opinion. I'm still rather green as far as things are still concerned, so maybe
+my rant is a bit unfounded. Okay I'm not going to lie, doing some styling does make me a little giddy sometimes.
+
+Anyways that's it for now.

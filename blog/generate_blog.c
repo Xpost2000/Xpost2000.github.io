@@ -3,6 +3,9 @@
   
   I do not free anything because I don't have to. Also cause I store pointers and
   keeping their lifetimes with freeing is kind of annoying.
+  
+  TODO(jerry): Markdown parsing, or rather just pass it to a markdown parser in javascript? I don't
+  really want to write a markdown parser.
 */
 #include <stdio.h>
 #include <stdint.h>
@@ -11,10 +14,8 @@
 
 #include <windows.h>
 
-#define STRINGIFY(x) #x
-
-#include "utilities.c"
-#include "directory_utility.c"
+#include <utilities.c>
+#include <directory_utility.c>
 
 int output_blog_html(char* blog_source, char* blog_output, char** out_blog_title, char* previous, char* next) {
     size_t file_buffer_size;

@@ -5,7 +5,12 @@
       @font-face { font-family: Orator; src: url('../shared-resources/OratorStd.otf'); }
       @font-face { font-family: GNUUnifont; src: url('../shared-resources/unifont-13.0.04.ttf'); }
     </style>
-    <link rel="stylesheet" href="../styles/common.css"><link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Jerry Zhu</title><body>
+    <link rel="stylesheet" href="../styles/common.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jerry Zhu</title><body>
       <div class="body-container">
         <h1>Jerry's Projects</h1>
         <br>
@@ -25,10 +30,17 @@
           this should look remarkably similar to the previous generated page as I'm unsure of a way to make this look good at the moment...
         </p>
         <br>
+        <p>
+          Should this page suddenly support more dynamic features, this might have to be generated on the fly with javascript, but I don't think
+          I'll ever do that, since this page should remain pretty small... <b>The page does not generally include released games.</b>
+        </p>
+        <br>
         <p><b>Listing:</b></p>
         <br>
         <!-- listing string -->
+        <ul>
         %s
+        </ul>
       </div>
       <br>
       <div id="ugly-ass-gutter">
@@ -39,7 +51,9 @@
           <br>
           <ul id="mini-buffer-links">
             <!-- mini-buffer string -->
-            %s
+            <ul>
+              %s
+            </ul>
           </ul>
           <br>
         </div>

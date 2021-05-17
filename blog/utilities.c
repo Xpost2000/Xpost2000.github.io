@@ -32,17 +32,13 @@ static char* read_entire_file(const char* file_name, size_t* bytes) {
 static struct line_buffer line_buffer_from_buffer(char* buffer, size_t buffer_length) {
     size_t amount_of_newlines = 0;
     for (size_t character_index = 0; character_index < buffer_length; ++character_index) {
-        // stupid windows line endings
         if (buffer[character_index] == '\r') {
             amount_of_newlines++;
-            buffer[character_index] = 0;
-            if (character_index + 1 < buffer_length && character_index < buffer_length && buffer[character_index+1] == '\n') {
-                buffer[character_index+1] = 0;
+            if (character_index + 1 < buffer_length && buffer[character_index+1] == '\n') {
                 character_index++;
             }
         } else if (buffer[character_index] == '\n') {
             amount_of_newlines++;
-            buffer[character_index] = 0;
         }
     }
 
@@ -53,14 +49,45 @@ static struct line_buffer line_buffer_from_buffer(char* buffer, size_t buffer_le
     for (size_t line_index = 0; line_index < amount_of_newlines; ++line_index) { result.lines[line_index] = NULL; }
 
     size_t line_index = 0;
-    for (size_t character_index = 0; character_index < buffer_length && line_index < result.count; ++character_index) {
-        if (buffer[character_index] == 0 && buffer[character_index+1] == 0) {
+    size_t character_index = 0;
+
+    while (character_index < buffer_length && line_index < result.count) {
+        size_t current_line = line_index++;
+        result.lines[current_line] = &buffer[character_index];
+
+        /*
+          I still use dangerous string manipulation here, as I don't want
+          to spend too much work to fix this...
+         */
+        while (character_index < buffer_length) {
+            if (buffer[character_index] == '\r') {
+                buffer[character_index] = 0;
+                character_index++;
+                if (buffer[character_index] == '\n') {
+                    buffer[character_index] = 0;
+                    break;
+                }
+            } else if (buffer[character_index] == '\n') {
+                buffer[character_index] = 0;
+                break;
+            }
             character_index++;
-            line_index++;
-        } else if (result.lines[line_index] == NULL) {
-            result.lines[line_index] = &buffer[character_index];
         }
+
+        if (result.lines[current_line][0] == 0) {
+            result.lines[current_line] = 0;
+        }
+
+        character_index++;
     }
+
+    printf("%d lines written (%d wanted)\n", line_index, amount_of_newlines);
+
+    printf("-- line buffer\n");
+    for (size_t line_index = 0; line_index < result.count; ++line_index) {
+        printf("(%d): %s\n", line_index, result.lines[line_index]);
+    }
+    printf("-- end line buffer\n");
 
     return result;
 }

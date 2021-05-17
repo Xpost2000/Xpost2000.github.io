@@ -32,7 +32,7 @@ int output_blog_html(char* blog_source, char* blog_output, char** out_blog_title
 
         {
             char* template_text = read_entire_file("template.html", NULL);
-            FILE* html_document = fopen(blog_output, "w+");
+            FILE* html_document = fopen(blog_output, "wb+");
 
             size_t written_blog_text = 0;
             char blog_text[8192] = {};

@@ -1,0 +1,7 @@
+Something To Cry About 2
+thumb.png
+
+This project description goes here. It's some pretty impressive and cool text about stuff...
+Let's just see how long it takes til it fills up, this is the basic card generation system. Very simple
+text files that anyone could read really. This would certainly be easier to do dynamically using javascript
+though. Let's be honest. Although it's an interesting exercise to do something like this.

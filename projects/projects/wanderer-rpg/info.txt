@@ -1,0 +1,9 @@
+Wanderer RPG
+wanderer.png
+
+An incomplete isometric RPG game/engine written in C. This was never hosted on GitHub. It was
+hosted on a private Mercurial server instead, because I still think Mercurial is more easily usable
+than Git. That's just a personal choice though. It supported an OpenGL based isometric renderer, a custom
+config reader, and had a editor for "sprites". It also had a handwritten GUI system that did basic layout,
+and rendering was sorted as you would expect. It uses a directed graph for a dialogue system that was also
+able to query game state for conditionals.

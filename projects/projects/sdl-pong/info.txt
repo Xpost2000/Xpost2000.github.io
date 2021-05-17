@@ -1,0 +1,4 @@
+SDL Pong
+pong.png
+
+A Pong game

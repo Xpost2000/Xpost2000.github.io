@@ -1,0 +1,23 @@
+Styling Updates with More Theming
+5/22/2021 12:38 AM
+
+I read some more about CSS to do this, and I decided to look into flexbox a bit more to
+solve the unresponsive part of the projects page. Thankfully it was a pretty quick thing instead
+of me throwing a bunch of shit together like usual.
+
+Also I'm now targetting CSS3 so I can use variables for styling. There are now a few new styles based
+off of some old computing items.
+
+Default - Dark Theme
+Light   - Light Theme
+Plan9   - A paper/beige theme inspired by the ACME editor.
+Borland Blue - A blisteringly nostalgic colorscheme from Borland's DOS IDEs.
+
+That's all! I also need to fix the way styles are "changed" since it can clutter the DOM if spammed too
+frequently. Although I'm not very worried about that happening, if I'm going to be honest.
+
+Also I should probably switch my static generators into a different language to make them less limited. The
+C thing was really just an exercise, although the generators build and generate the pages lightning fast, so there's
+that.
+
+

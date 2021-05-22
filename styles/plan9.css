@@ -1,0 +1,25 @@
+:root {
+    --highlight-color: black;
+    --background: beige;
+    --primary-face: black;
+
+    --blink-color: #00FFA0FF;
+
+    --project-title-face: #00FFA0FF;
+
+    --modeline-background: lightblue;
+    --modeline-face: black;
+
+    --minibuffer-background: var(--background);
+    --minibuffer-face: var(--primary-face);
+    --minibuffer-active-face: #00FFA0FF;
+
+    --minibuffer-completion-background: var(--background);
+    --minibuffer-completion-face: var(--primary-face);
+    --minibuffer-completion-border-color: var(--minibuffer-completion-face);
+
+    --gutter-face-color: black;
+
+    --title-minor-color: transparent;
+    --title-major-color: black;
+}

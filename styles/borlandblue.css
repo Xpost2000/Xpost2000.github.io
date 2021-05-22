@@ -1,0 +1,29 @@
+:root {
+    --highlight-color: yellow;
+    --background: blue;
+    --primary-face: yellow;
+
+    --blink-color: yellow;
+
+    --project-title-face: gold;
+
+    --modeline-background: black;
+    --modeline-face: yellow;
+
+    --minibuffer-background: var(--background);
+    --minibuffer-face: var(--primary-face);
+    --minibuffer-active-face: red;
+
+    --minibuffer-completion-background: var(--background);
+    --minibuffer-completion-face: var(--primary-face);
+    --minibuffer-completion-border-color: var(--minibuffer-completion-face);
+
+    --gutter-face-color: black;
+
+    --title-minor-color: transparent;
+    --title-major-color: black;
+
+    --link-color: yellow;
+    --link-visited-color: red;
+    --link-active-color: yellow;
+}

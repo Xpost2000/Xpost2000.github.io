@@ -1,0 +1,192 @@
+@import "light.css";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+	font-family: GNUUnifont;
+}
+
+::selection {
+    background: var(--highlight-color);
+    color: var(--background);
+}
+
+ol, ul {
+    margin-left: 2em;
+    padding: 0.5rem;
+}
+ul {
+    list-style-type: square;
+}
+
+body {
+    line-height: 2em;
+    background-color: var(--background);
+    color: var(--primary-face);
+}
+
+.body-container {
+    margin-top: 0;
+    margin-left: 1.2em;
+    line-height: 1.2em;
+    width: 65%;
+}
+
+@media(max-width: 650px) {
+    .body-container {
+        width: 80%;
+    }
+}
+
+@keyframes "blink" {
+    from, to {
+        color: transparent;
+    }
+
+    50% {
+        color: var(--blink-color);
+    }
+}
+
+.blinking-cursor {
+    display: inline-block;
+    animation: blink step-start 1.4s infinite;
+}
+
+.modeline-holder {
+    float: left;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+
+.mode-bar pre {
+    background-color: var(--modeline-background);
+    color: var(--modeline-face);
+    font-family: inherit;
+    font-size: 1.2em;
+    padding: 0;
+    margin: 0;
+}
+
+@media(max-width: 593px) {
+    .mode-bar {
+        font-size: 0.7em;
+    }
+}
+
+.mini-buffer {
+    background-color: var(--minibuffer-background);
+    color: var(--minibuffer-face);
+    font-family: inherit;
+    font-size: 1.1em;
+    padding: 0;
+    margin: 0;
+}
+
+#ugly-ass-gutter {
+    position: fixed;
+    white-space: nowrap;
+    top: 0;
+    left: 0;
+    line-height: 1em;
+}
+
+#ugly-ass-gutter p {
+    margin: 0;
+    padding: 0;
+    font-size: 1.3em;
+    color: var(--gutter-face-color);
+}
+
+#mini-buffer-autocompletion {
+    line-height: 1.1em;
+
+    position: fixed;
+    bottom: 4em;
+    background-color: var(--minibuffer-completion-background);
+    width: calc(100% - 18px);
+
+    max-height: 50%;
+    min-height: 10%;
+    overflow-y: scroll;
+
+    color: var(--minibuffer-completion-face);
+
+    border: 1px solid var(--minibuffer-completion-border-color);
+    padding: 8px;
+    display: none;
+}
+
+#mini-buffer-autocompletion li a {
+    list-style-type: none;
+    color: var(--minibuffer-completion-face);
+    margin-left: 1em;
+}
+
+#mini-buffer-autocompletion li a:hover,
+#mini-buffer-autocompletion li a:focus 
+{
+    margin-left: 1.5em;
+    font-weight: bolder;
+}
+
+
+#mini-buffer-main pre:hover {
+    color: var(--minibuffer-active-face);
+}
+
+#header-title-id {
+    color: var(--title-major-color);
+    text-shadow: 5px 3px var(--title-minor-color);
+}
+
+#sub-header-title-id {
+    color: var(--title-major-color);
+}
+
+#project-listing {
+    display: flex;
+    flex-flow: column;
+}
+#project-listing li {
+    flex-grow: 1;
+}
+
+.project-title {
+    color: var(--project-title-face);
+}
+
+.project-thumb {
+    width: 150px;
+    float: left;
+    padding: 0.5em; 
+    margin: 0.5em;
+}
+
+.project-description {
+    display: flow-root;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--primary-face);
+    
+    width: 110%;
+    max-width: 700px;
+}
+
+@media(max-width: 550px) {
+    .project-thumb {
+        width: 100px;
+        margin: 1.0em;
+    }
+
+    .project-description p {
+        font-size: 0.9rem;
+    }
+}
+
+a:link {color: var(--link-color);}
+a:visited{color: var(--link-visited-color);}
+a:hover, a:active{color: var(--link-active-color);}

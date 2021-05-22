@@ -1,0 +1,80 @@
+<!-- By template, I mean I'm using printf as the formatter. 
+
+     (I will replace with my own template system with semantic formatting when
+     I feel like it...)
+
+     in this order:
+
+     body-container-text
+     
+     mini-buffer-links
+
+     modeline-link, modeline-text,
+-->
+<html>
+  <head>
+    <style>
+      @font-face { font-family: OCR; src: url('../../shared-resources/OCRAEXT.TTF'); }
+      @font-face { font-family: Orator; src: url('../../shared-resources/OratorStd.otf'); }
+      @font-face { font-family: GNUUnifont; src: url('../../shared-resources/unifont-13.0.04.ttf'); }
+    </style>
+    <link rel="stylesheet" href="../../styles/common/theme_selector.css">
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jerry Zhu</title><body>
+  </head>
+  <body>
+    <div class="body-container">
+      <h1>Styling Updates with More Theming</h1>
+      <p>
+        <b>Date Published</b>
+        <span style="background-color: yellow; color: black;">(5/22/2021 12:38 AM)</span>
+      </p>
+      </p>
+<br>
+<p>
+I read some more about CSS to do this, and I decided to look into flexbox a bit more to solve the unresponsive part of the projects page. Thankfully it was a pretty quick thing instead of me throwing a bunch of shit together like usual. </p>
+<br>
+<p>
+Also I'm now targetting CSS3 so I can use variables for styling. There are now a few new styles based off of some old computing items. </p>
+<br>
+<p>
+Default - Dark Theme Light   - Light Theme Plan9   - A paper/beige theme inspired by the ACME editor. Borland Blue - A blisteringly nostalgic colorscheme from Borland's DOS IDEs. </p>
+<br>
+<p>
+That's all! I also need to fix the way styles are "changed" since it can clutter the DOM if spammed too frequently. Although I'm not very worried about that happening, if I'm going to be honest. </p>
+<br>
+<p>
+Also I should probably switch my static generators into a different language to make them less limited. The C thing was really just an exercise, although the generators build and generate the pages lightning fast, so there's that. </p>
+<br>
+</p>
+<br>
+<br>
+<p>View the plaintext version <a href="../text/some_fun_with_styles.txt">here</a></p>
+
+    </div>
+    <br>
+    <div id="ugly-ass-gutter"> </div>
+    <div class="modeline-holder">
+      <div id="mini-buffer-autocompletion">
+        <p>Click on a link to be taken to the page!</p>
+        <br>
+        <ul id="mini-buffer-links">
+          <li><a href="#">./.</a></li>
+<li><a href="../index.html">./..</a></li>
+<li><a href="other_pages.html">./previous_entry</a></li>
+
+        </ul>
+        <br>
+      </div>
+      <div class="mode-bar">
+        <pre>U--- <b>index.html&lt<a href="../index.html" style="text-decoration:none">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre>
+      </div>
+      <div class="mini-buffer" id="mini-buffer-main">
+        <pre>welcome-to-my-website<span class="blinking-cursor">█</span></pre>
+      </div>
+    </div>
+    <script src="../../scripts/site.js" type="text/javascript"></script>
+  </body>
+</html>

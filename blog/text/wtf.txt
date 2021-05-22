@@ -1,0 +1,7 @@
+k
+5/22/2021 12:53 AM
+
+Github pages didn't deploy properly from the last time. Had to blam commit
+and repush although the files were in the repo.
+
+weirdo.

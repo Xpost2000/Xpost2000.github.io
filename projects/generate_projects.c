@@ -65,10 +65,10 @@ int main(void) {
                 // more indepth looks at pages.
                 written_listing_strings += snprintf(listing_strings + written_listing_strings, 8192*2 - written_listing_strings, "<li>\n");
                 written_listing_strings += snprintf(listing_strings + written_listing_strings, 8192*2 - written_listing_strings, "\t<p class=\"project-title\"><u><b>%s</b></u></p>\n", title);
+                written_listing_strings += snprintf(listing_strings + written_listing_strings, 8192*2 - written_listing_strings, "\t<div class=\"project-description\">\n");
                 if (thumbnail[0] != '-') {
                     written_listing_strings += snprintf(listing_strings + written_listing_strings, 8192*2 - written_listing_strings, "\t<img class=\"project-thumb\" src=\"projects/%s/%s\" alt=\"preview\"></img>\n", entry->name, thumbnail);
                 }
-                written_listing_strings += snprintf(listing_strings + written_listing_strings, 8192*2 - written_listing_strings, "\t<div class=\"project-description\">\n");
                 written_listing_strings += snprintf(listing_strings + written_listing_strings, 8192*2 - written_listing_strings, "<p>\n");
                 for (size_t line_index = 3; line_index < lines.count; ++line_index) {
                     written_listing_strings += snprintf(listing_strings + written_listing_strings, 8192*2 - written_listing_strings, "%s\n", lines.lines[line_index]);

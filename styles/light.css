@@ -1,163 +1,29 @@
-/*
-    Some shared style shit.
-*/
-* {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-	font-family: GNUUnifont;
-}
+:root {
+    --highlight-color: black;
+    --background: white;
+    --primary-face: black;
 
-::selection {
-    background: black;
-    color: white;
-}
+    --blink-color: red;
 
-ol, ul {
-    margin-left: 2em;
-    padding: 0.5rem;
-}
-ul {
-    list-style-type: square;
-}
+    --project-title-face: purple;
 
-body {
-    line-height: 2em;
-    background-color: white;
-    color: black;
-}
+    --modeline-background: var(--primary-face);
+    --modeline-face: var(--background);
 
-.body-container {
-    margin-top: 0;
-    margin-left: 1.2em;
-    line-height: 1.2em;
-    width: 60%;
-}
+    --minibuffer-background: var(--background);
+    --minibuffer-face: var(--primary-face);
+    --minibuffer-active-face: red;
 
-@media(max-width: 650px) {
-    .body-container {
-        width: 80%;
-    }
-}
+    --minibuffer-completion-background: var(--background);
+    --minibuffer-completion-face: var(--primary-face);
+    --minibuffer-completion-border-color: var(--minibuffer-completion-face);
 
-@keyframes "blink" {
-    from, to {
-        color: transparent;
-    }
+    --gutter-face-color: red;
 
-    50% {
-        color: black;
-    }
-}
+    --title-minor-color: blue;
+    --title-major-color: black;
 
-.blinking-cursor {
-    display: inline-block;
-    animation: blink step-start 1.4s infinite;
-}
-
-.modeline-holder {
-    float: left;
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-}
-
-
-.mode-bar pre {
-    background-color: black;
-    color: white;
-    font-family: inherit;
-    font-size: 1.2em;
-    padding: 0;
-    margin: 0;
-}
-
-.mini-buffer {
-    background-color: white;
-    color: black;
-    font-family: inherit;
-    font-size: 1.1em;
-    padding: 0;
-    margin: 0;
-}
-
-#ugly-ass-gutter {
-    position: fixed;
-    white-space: nowrap;
-    top: 0;
-    left: 0;
-    line-height: 1em;
-}
-
-#ugly-ass-gutter p {
-    margin: 0;
-    padding: 0;
-    font-size: 1.3em;
-    color: red;
-}
-
-#mini-buffer-autocompletion {
-    line-height: 1.1em;
-
-    position: fixed;
-    bottom: 4em;
-    background-color: white;
-    width: calc(100% - 18px);
-
-    max-height: 50%;
-    min-height: 10%;
-    overflow-y: scroll;
-
-    color: black;
-
-    border: 1px solid black;
-    padding: 8px;
-    display: none;
-}
-
-#mini-buffer-autocompletion li a {
-    list-style-type: none;
-    color: black;
-    margin-left: 1em;
-}
-
-#mini-buffer-autocompletion li a:hover,
-#mini-buffer-autocompletion li a:focus 
-{
-    margin-left: 1.5em;
-    font-weight: bolder;
-}
-
-
-#mini-buffer-main pre:hover {
-    color: red;
-}
-
-#header-title-id {
-    color: black;
-    text-shadow: 5px 3px blue;
-}
-
-#sub-header-title-id {
-    color: black;
-}
-
-.project-title {
-    color: purple;
-}
-
-.project-thumb {
-    width: 150px;
-    float: left; 
-    padding: 0.5em; 
-    margin: 0.5em;
-}
-
-.project-description {
-    border-style: solid;
-    border-width: 1px;
-    border-color: black;
-    
-    height: 180px; 
-    width: 750px;
+    --link-color: purple;
+    --link-visited-color: aqua;
+    --link-active-color: purple;
 }

@@ -1,6 +1,6 @@
 // It was either this or populate the html file itself.
 // Might as well generate it after it's loaded.
-const avaliable_themes = ['default', 'light'];
+const avaliable_themes = ['default', 'light', 'plan9', 'borlandblue'];
 
 // I'm sure there's a better way, but I can always fix this later.
 function paste_lots_of_tildes(event) {
@@ -32,18 +32,23 @@ let current_theme = function() {
 
     return theme;
 }();
+
+function stylesheet_link(path) {
+    let stylesheet_link = document.createElement('link');
+    stylesheet_link.type = "text/css";
+    stylesheet_link.rel = "stylesheet";
+    stylesheet_link.href = path;
+    return stylesheet_link;
+}
+for (const prefix of ["styles/", "../styles/", "../../styles/", "../../../styles/"]) {
+    document.head.appendChild(stylesheet_link(`${prefix}base.css`));
+}
+
 function update_theme() {
     // to avoid so much work, I'm literally going to link as many paths as I can
     // find for all the themes...
-    function stylesheet_link(path) {
-        let stylesheet_link = document.createElement('link');
-        stylesheet_link.type = "text/css";
-        stylesheet_link.rel = "stylesheet";
-        stylesheet_link.href = path;
-        return stylesheet_link;
-    }
+    // TODO(jerry): does this work with a more direct URL?
     console.log("updating theme");
-
     let relative_path_prefixes = ["styles/", "../styles/", "../../styles/", "../../../styles/"];
     for (const prefix of relative_path_prefixes) {
         document.head.appendChild(stylesheet_link(`${prefix}${current_theme}.css`));

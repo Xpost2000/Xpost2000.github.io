@@ -1,0 +1,20 @@
+Little Lisper?
+6/3/2021 12:45 AM
+
+Why is it so incredibly often for me to update this at midnight? Anyways, I decided to start replacing the C
+static generator.
+
+I replaced it with a lisp version of the static generator for BOTH page versions, that according to Windows was
+written in an hour and forty five minutes.
+
+I have no idea how I managed to write something that fast and have it not error out. It's a little longer than the
+C version as it's more "abstract" and more fitted for general template generation. Although you should really just
+be using a library.
+
+It's a weird mixin of hiccup style list structures with inline html as some cases will not trivially "compile" because
+I don't try to pretty print any of the output correctly.
+
+I should be able to use this to replace the projects page later... Will setup make file to generate in a bit from this
+setup.
+
+For some pretty hacky code, it's working okay I guess.

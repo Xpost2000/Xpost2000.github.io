@@ -52,7 +52,7 @@
 (defun compile-html (root)
   (with-output-to-string (stream)
     (cond
-      ((atom root) (format stream "~a" root))
+      ((atom root) (and root (format stream "~a" root)))
       ((listp root)
        (if (symbolp (first root))
            (let* ((element-name (first root)))
@@ -80,6 +80,19 @@
                      '(:br) (list :p x)))
                lines)
               list-elements)))))
+(defun blog-page-content (title date lines)
+  `((:div ((:class "body-container"))
+          ((:h1 ,title)
+           (:p ((:b "Date Published")
+                (:span ((:style "background-color: yellow; color: black;")) ,(format nil "(~a)" date))))
+           (:br)
+           ,@(map 'list
+                (lambda (x)
+                  (if (string= x "")
+                      '(:br) (list :p x)))
+                lines)
+           (:br)
+           (:p "View the plantext version <a href=\"#\">here</a>")))))
 
 (defun page-links (links)
   (let ((length (length links)))
@@ -92,41 +105,78 @@
                :previous (safe-elt (1- index)) 
                :next (safe-elt (1+ index)))))))
 
-(defun generate-mini-buffer (links)
+; this is a terrible name. Your parents must really hate you.
+(defun %adjusted-pathname% (pathname)
+  (format nil "~a.html" (pathname-name pathname)))
+
+(defun list-element-from-link (link entry text)
+  (if (getf link entry)
+      `(:li (:a ((:href ,(%adjusted-pathname% (getf link entry)))) ,text))))
+
+(defun generate-mini-buffer (links &optional current-link)
   `(:ul ((:id "mini-buffer-links"))
         ((:li (:a ((:href "#")) "./."))
          (:li (:a ((:href "../index.html")) "./.."))
-         ,@(loop for link in links
-                 collect
-                 (let* ((current-link (getf link :current))
-                        (adjusted-pathname (format nil "pages/~a.html" (pathname-name current-link))))
-                   `(:li (:a ((:href ,adjusted-pathname)) ,adjusted-pathname)))))))
+         ,@(if current-link
+               `(,(list-element-from-link current-link :next "./next_entry")
+                 ,(list-element-from-link current-link :previous "./previous_entry"))
+               (loop for link in links
+                     collect
+                     (let ((adjusted-pathname (concatenate 'string "pages/" (%adjusted-pathname% (getf link :current)))))
+                       `(:li (:a ((:href ,adjusted-pathname)) ,adjusted-pathname))))))))
 
-(defun generate-page (path-to-source)
+(defun generate-modeline-and-minibuffer (text links &optional current-link)
+  `(:div ((:class "modeline-holder"))
+         ((:div ((:id "mini-buffer-autocompletion"))
+                ((:p "Click on a link to be taken to the page!")
+                 (:br)
+                 ,(generate-mini-buffer links current-link)
+                 (:br)))
+          (:div ((:class "mode-bar"))
+                "          <pre>U--- <b>index.html&lt<a href=\"../index.html\" style=\"text-decoration:none\">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre>"
+                )
+          (:div ((:class "mini-buffer") (:id "mini-buffer-main"))
+                ((:pre ,(format nil "~a<span class=\"blinking-cursor\">█</span>" text)))))))
+
+(defun generate-page (path-to-source links link)
   (let* ((file-lines (with-open-file (file-stream path-to-source)
                       (loop for line = (read-line file-stream nil nil)
                             while line collect line)))
          (title (elt file-lines 0))
          (date-created (elt file-lines 1)))
-    ;; TODO
+    (with-open-file (*standard-output* (format nil "pages/~a.html" (pathname-name path-to-source)) :direction :output :if-exists :supersede :external-format :utf-8)
+      (write-string
+       (compile-html
+        `(:html
+          ((:head
+            ((:style "@font-face { font-family: GNUUnifont; src: url('../../shared-resources/unifont-13.0.04.ttf'); }")
+             (:link ((:rel "stylesheet") (:href "../../styles/common/theme_selector.css")) "")
+             (:link ((:rel "shortcut icon") (:href "../../favicon.ico") (:type "image/x-icon")) "")
+             (:meta ((:http-equiv "content-type") (:content "text/html; charset=utf-8")) "")
+             (:meta ((:name "viewport") (:content "width=device-width, initial-scale=1")) "")
+             (:title "Jerry Zhu")))
+           (:body
+            (,@(blog-page-content title date-created (subseq file-lines 2))
+             (:div ((:id "ugly-ass-gutter")) "")
+             ,(generate-modeline-and-minibuffer "blog-page" links link)
+             (:script ((:src "../../scripts/site.js") (:type "text/javascript")) ""))))))))
     `(:title ,title :date-created ,date-created)))
 
 (defun generate-pages-and-listings (links)
   (loop for link in links
          collect
          (let* ((current-link (getf link :current))
-                (adjusted-pathname (format nil "pages/~a.html" (pathname-name current-link)))
-                (blog-page (generate-page current-link)))
+                (adjusted-pathname (concatenate 'string "pages/" (%adjusted-pathname% current-link)))
+                (blog-page (generate-page current-link links link)))
            `(:a ((:href ,adjusted-pathname)) (:p ,(getf blog-page :title))))))
+
+(defun file-compare-by-write-date (a b)
+  (< (file-write-date a) (file-write-date b)))
 
 (with-open-file (*standard-output* "test-index.html" :direction :output :if-exists :supersede :external-format :utf-8)
   (write-string
    (compile-html
-    (let ((links (page-links (map 'list #'enough-namestring
-                                  (sort (copy-list (uiop:directory-files "./text/"))
-                                        (lambda (a b)
-                                          (< (file-write-date a)
-                                             (file-write-date b))))))))
+    (let ((links (page-links (map 'list #'enough-namestring (sort (uiop:directory-files "./text/") #'file-compare-by-write-date)))))
       `(:html
         ((:head
           ((:style "@font-face { font-family: GNUUnifont; src: url('../shared-resources/unifont-13.0.04.ttf'); }")
@@ -151,16 +201,5 @@
               '(:br)
               (generate-pages-and-listings links))
            (:div ((:id "ugly-ass-gutter")) "")
-           (:div ((:class "modeline-holder"))
-                 ((:div ((:id "mini-buffer-autocompletion"))
-                        ((:p "Click on a link to be taken to the page!")
-                         (:br)
-                         ,(generate-mini-buffer links)
-                         (:br)))
-                  (:div ((:class "mode-bar"))
-                        "          <pre>U--- <b>index.html&lt<a href=\"../index.html\" style=\"text-decoration:none\">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre>"
-                        )
-                  (:div ((:class "mini-buffer") (:id "mini-buffer-main"))
-                        ((:pre ("welcome-to-my-website<span class=\"blinking-cursor\">█</span>"))
-                         ))))
+           ,(generate-modeline-and-minibuffer "welcome-to-my-website" links)
            (:script ((:src "../scripts/site.js") (:type "text/javascript")) "")))))))))

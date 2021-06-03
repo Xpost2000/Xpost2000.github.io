@@ -82,13 +82,14 @@
              (format stream "~a~%" (compile-html child-item))))))))
 
 ;; Avoid <PRE> this generator will crap itself since that requires real pretty printing...
+(defun empty-stringp (s) (or (string= s "") (string= s " ")))
 (defun page-content (title lines &rest list-elements)
   `((:div ((:class "body-container"))
           ((:h1 ,title)
            ,@(concatenate 'list
               (map 'list
                (lambda (x)
-                 (if (string= x "")
+                 (if (empty-stringp x) 
                      '(:br) (list :p x)))
                lines)
               list-elements)))))
@@ -100,7 +101,7 @@
            (:br)
            ,@(map 'list
                 (lambda (x)
-                  (if (string= x "")
+                  (if (empty-stringp x)
                       '(:br) (list :p x)))
                 lines)
            (:br)

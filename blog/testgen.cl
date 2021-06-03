@@ -1,3 +1,15 @@
+;; This is to get ASDF and quicklisp to work since usually I start from a REPL
+;; This is basically whatever quicklisp injects by default. Most common lisp users have
+;; it so might as well.
+#-quicklisp
+(let ((quicklisp-init (merge-pathnames "quicklisp/setup.lisp"
+                                       (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
+(setf asdf:*central-registry*
+      '(*default-pathname-defaults*))
+(ql:quickload :uiop :silent t)
 #|
 	Common Lisp page generator for Xpost2000.github.io
 

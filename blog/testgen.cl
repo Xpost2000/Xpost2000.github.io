@@ -185,7 +185,7 @@
 (defun file-compare-by-write-date (a b)
   (< (file-write-date a) (file-write-date b)))
 
-(with-open-file (*standard-output* "test-index.html" :direction :output :if-exists :supersede :external-format :utf-8)
+(with-open-file (*standard-output* "index.html" :direction :output :if-exists :supersede :external-format :utf-8)
   (write-string
    (compile-html
     (let ((links (page-links (map 'list #'enough-namestring (sort (uiop:directory-files "./text/") #'file-compare-by-write-date)))))

@@ -1,7 +1,11 @@
-k
+Line Ending Broke Stuff.
 5/22/2021 12:53 AM
 
-Github pages didn't deploy properly from the last time. Had to blam commit
-and repush although the files were in the repo.
+Fuck, the dos2unix conversion fucked up all the date-created because it overwrote
+the file creation dates...
 
-weirdo.
+Now all of the dates are wrong... I have no idea how (READ-LINE) handles newlines, so
+this was the best thing to do as Windows Line Endings seemed to break stuff.
+
+Now I have to redo it... Later. Or manually parse the date from the "date published" sectio,
+which is thankfully maintained.

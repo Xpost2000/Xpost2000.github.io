@@ -52,13 +52,15 @@
 (defun %adjusted-pathname% (pathname)
   (format nil "~a.html" (pathname-name pathname)))
 
-(defun script-tag (&optional (depth 1))
-  `(:script ((:src ,(format nil "~ascripts/site.js" (repeat "../" depth))) (:type "text/javascript")) ""))
+;; lazy
+(defun script-tag (&optional (depth 1) (name "scripts/site.js"))
+  `(:script ((:src ,(format nil "~a~a" (repeat "../" depth) name)) (:type "text/javascript")) ""))
 
 (defun generate-page-header (&optional (depth 1))
   (let ((backslashes (repeat "../" depth)))
     `(:head
-      ((:link ((:rel "stylesheet") (:href ,(format nil "~astyles/common/theme_selector.css" backslashes))) "")
+      (,(script-tag depth "scripts/site_theming.js")
+       (:link ((:rel "stylesheet") (:href ,(format nil "~astyles/common/theme_selector.css" backslashes))) "")
        (:link ((:rel "shortcut icon") (:href ,(format nil "~afavicon.ico" backslashes)) (:type "image/x-icon")) "")
        (:meta ((:http-equiv "content-type") (:content "text/html; charset=utf-8")) "")
        (:meta ((:name "viewport") (:content "width=device-width, initial-scale=1")) "")
@@ -75,7 +77,9 @@
                 "          <pre>U--- <b>index.html&lt<a href=\"../index.html\" style=\"text-decoration:none\">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre>"
                 )
           (:div ((:class "mini-buffer") (:id "mini-buffer-main"))
-                ((:pre ,(format nil "~a<span class=\"blinking-cursor\">█</span>" text)))))))
+                ;; For whatever reason, the string constants cannot take multibyte characters
+                ;; weird.
+                ((:pre ,(format nil "~a<span class=\"blinking-cursor\">~a</span>" text (code-char 9608))))))))
 
 ; this is a terrible name. Your parents must really hate you.
 (defun list-element-from-link (link entry text)

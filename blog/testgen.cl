@@ -18,6 +18,10 @@
 |#
 (load "htmlify.cl")
 
+;; This is a PLIST
+;; but it should probably be a hash-table if possible.
+(defparameter *blog-entries* '())
+
 (defun page-content (title lines &rest list-elements)
   `((:div ((:class "body-container"))
           ((:h1 ,title)
@@ -48,7 +52,7 @@
 (defun title-of-blog-entry (blog-lines) (elt blog-lines 0))
 
 (defun generate-blog-page (path-to-source links link)
-  (let* ((file-lines (file-lines path-to-source))
+  (let* ((file-lines (getf *blog-entries* path-to-source))
          (title (title-of-blog-entry file-lines))
          (date-created (date-of-blog-entry file-lines)))
     (with-open-file (*standard-output* (format nil "pages/~a.html" (pathname-name path-to-source)) :direction :output :if-exists :supersede :external-format :utf-8)
@@ -72,7 +76,6 @@
                 (adjusted-pathname (concatenate 'string "pages/" (%adjusted-pathname% current-link)))
                 (blog-page (generate-blog-page current-link links link)))
            (list
-            :date (create-encoded-time-from-date-string (getf blog-page :date-created))
             :link link
             :tag `(:a ((:href ,adjusted-pathname)) (:p ,(getf blog-page :title)))))))
 
@@ -85,18 +88,29 @@
 ;;
 
 (defun directory-files-sorted-by-blog-date (directory)
-  (loop for item in (let ((listing-with-contents
-                            (mapcar
-                             (lambda (item)
-                               (reverse (multiple-value-list
-                                         (file-lines item))))	
-                             (relative-directory-listing directory))))
-                      (sort listing-with-contents
-                            (lambda (a b)
-                              (let ((date-of-first (date-of-blog-entry (second a)))
-                                    (date-of-second (date-of-blog-entry (second b))))
-                                (< (create-encoded-time-from-date-string date-of-first)
-                                   (create-encoded-time-from-date-string date-of-second))))))
+  (loop for item in
+                 (let* ((listing-with-contents
+                          (mapcar
+                           (lambda (item)
+                             (reverse (multiple-value-list
+                                       (file-lines item))))	
+                           (relative-directory-listing directory)))
+                        (sorted-listing
+                          (sort listing-with-contents
+                                (lambda (a b)
+                                  (let ((date-of-first (date-of-blog-entry (second a)))
+                                        (date-of-second (date-of-blog-entry (second b))))
+                                    (< (create-encoded-time-from-date-string date-of-first)
+                                       (create-encoded-time-from-date-string date-of-second)))))))
+                   (setf *blog-entries*
+                         (reduce
+                          (lambda (accumulator next-item)
+                            (append accumulator
+                                    (list (first next-item))
+                                    (list (second next-item))))
+                          sorted-listing
+                          :initial-value '()))
+                   sorted-listing)
         collect (first item)))
 
 (defun sorted-list-of-blog-listing-links (blog-directory)

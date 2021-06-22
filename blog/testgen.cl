@@ -59,7 +59,40 @@
              (:div ((:id "ugly-ass-gutter")) "")
              ,(generate-modeline-and-minibuffer "blog-page" links link)
              ,(script-tag 2))))))))
-    `(:title ,title :date-created ,date-created)))
+    `(:title ,title
+      :date-created ,date-created)))
+
+;; From the blog format
+;; I do require space separation.
+;; M/D/Y HR:MIN AM/PM
+(defun date-string->date-month-year-triplet (date-string)
+  (map 'list #'parse-integer (uiop:split-string date-string :separator '(#\/))))
+
+(defun time-string->time-pair (time &optional antem/post.-merdium)
+  (if time
+   (destructuring-bind (hour minute) (map 'list #'parse-integer (uiop:split-string time :separator '(#\:)))
+     (when antem/post.-merdium
+       (cond
+         ((and (string= antem/post.-merdium "PM")
+               (not (= hour 12)))
+          (incf hour 12))
+         ((and (string= antem/post.-merdium "AM")
+               (= hour 12))
+          (decf hour))))
+     (list hour minute))
+   (list 0 0)))
+
+(defun create-encoded-time-from-date-string (date-string)
+  (destructuring-bind (date &optional time antem/post.-merdium) (uiop:split-string date-string :separator '(#\Space))
+    (let ((date-triplet (date-string->date-month-year-triplet date))
+          (time-pair (time-string->time-pair time antem/post.-merdium)))
+            (encode-universal-time
+             0
+             (second time-pair)
+             (first time-pair)
+             (second date-triplet)
+             (first date-triplet)
+             (third date-triplet)))))
 
 (defun generate-pages-and-listings (links)
   (loop for link in links
@@ -67,12 +100,28 @@
          (let* ((current-link (getf link :current))
                 (adjusted-pathname (concatenate 'string "pages/" (%adjusted-pathname% current-link)))
                 (blog-page (generate-blog-page current-link links link)))
-           `(:a ((:href ,adjusted-pathname)) (:p ,(getf blog-page :title))))))
+           (list
+            :date (create-encoded-time-from-date-string (getf blog-page :date-created))
+            :link link
+            :tag `(:a ((:href ,adjusted-pathname)) (:p ,(getf blog-page :title)))))))
+
+(defun sorted-list-of-blog-listing-links (blog-directory)
+    (sort
+     (generate-pages-and-listings
+      (page-links (map 'list #'enough-namestring (uiop:directory-files blog-directory))))
+     (lambda (a b)
+       (< (getf a :date)
+          (getf b :date)))))
 
 (with-open-file (*standard-output* "index.html" :direction :output :if-exists :supersede :external-format :utf-8)
   (write-string
    (compile-html
-    (let ((links (page-links (map 'list #'enough-namestring (sort (uiop:directory-files "./text/") #'file-compare-by-write-date)))))
+    (let* ((blog-listing-and-links
+             (sorted-list-of-blog-listing-links "./text/"))
+           (listing-tags
+             (loop for item in blog-listing-and-links collect (getf item :tag)))
+           (links
+             (loop for item in blog-listing-and-links collect (getf item :link))))
       `(:html
         (,(generate-page-header)
          (:body
@@ -89,7 +138,7 @@
                     )
               '(:p (:b "Listing: "))
               '(:br)
-              (generate-pages-and-listings links))
+              listing-tags)
            (:div ((:id "ugly-ass-gutter")) "")
            ,(generate-modeline-and-minibuffer "welcome-to-my-website" links)
            ,(script-tag)))))))))

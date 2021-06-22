@@ -1,5 +1,5 @@
 I should probably not use C, but this is still kind of fun.
-3/21/2021
+3/21/2021 12:00 AM
 
 Anyways I've finished 7DRL a week ago or something. Used Godot, and had
 a jolly time writing bad code.

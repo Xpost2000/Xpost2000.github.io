@@ -1,11 +1,18 @@
-The date sorting is now fixed.
+It's kind of almost an exaggeration to call this a CMS,
+but technically it does manage content.
 
-All I do is now parse the date string within the text entries to generate
-the blog listing.
+It makes writing blogs a lot easier than before since it
+generates my files, and stuff. However it's extraordinarily
+limited.
 
-For some reason the dos2unix line ending tool I used, as stated last time, breaks
-the date information on the files, which makes it very difficult to sort using the filesystem.
+Thankfully my blogs are only text files, so I do not really
+need much else.
 
-Using the date within the file is more reliable.
+If I need more, I can just use markdown, and maybe defer steps when
+publishing I suppose.
 
-So yeah that works now!
+Right now, it's a write-once -> commit/publish. It would be more flexible
+to separate this into multiple steps, however I don't need it so I'll keep it
+the way it is at the moment since it's very simple.
+
+Yay to the power of bash.

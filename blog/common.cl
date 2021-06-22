@@ -11,6 +11,7 @@
       '(*default-pathname-defaults*))
 (ql:quickload :uiop :silent t)
 
+;; What are the other lisp runtime equivalents?
 (defun command-line-arguments ()
   #+sbcl sb-ext:*posix-argv*)
 
@@ -25,6 +26,10 @@
                elt
                (concatenate 'string elt (repeat elt (1- count)))))
 
+;; This produces a linked list (not the data structure kind persay) of
+;; links. I use this for generating the blog page, but technically I can use
+;; this for general articles as well.
+;; You are expected to sort these in any order you wish before hand.
 (defun page-links (links)
   (let ((length (length links)))
       (labels ((in-bounds (index) (and (>= index 0) (< index length)))
@@ -35,3 +40,35 @@
                :current (safe-elt index)
                :previous (safe-elt (1- index)) 
                :next (safe-elt (1+ index)))))))
+
+;; From the blog format
+;; I do require space separation.
+;; M/D/Y HR:MIN AM/PM
+(defun date-string->date-month-year-triplet (date-string)
+  (map 'list #'parse-integer (uiop:split-string date-string :separator '(#\/))))
+
+(defun time-string->time-pair (time &optional antem/post.-merdium)
+  (if time
+   (destructuring-bind (hour minute) (map 'list #'parse-integer (uiop:split-string time :separator '(#\:)))
+     (when antem/post.-merdium
+       (cond
+         ((and (string= antem/post.-merdium "PM")
+               (not (= hour 12)))
+          (incf hour 12))
+         ((and (string= antem/post.-merdium "AM")
+               (= hour 12))
+          (decf hour))))
+     (list hour minute))
+   (list 0 0)))
+
+(defun create-encoded-time-from-date-string (date-string)
+  (destructuring-bind (date &optional time antem/post.-merdium) (uiop:split-string date-string :separator '(#\Space))
+    (let ((date-triplet (date-string->date-month-year-triplet date))
+          (time-pair (time-string->time-pair time antem/post.-merdium)))
+            (encode-universal-time
+             0
+             (second time-pair)
+             (first time-pair)
+             (second date-triplet)
+             (first date-triplet)
+             (third date-triplet)))))

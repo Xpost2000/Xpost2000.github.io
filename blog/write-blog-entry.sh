@@ -2,6 +2,7 @@
 
 # Unfortunately we need to set current directory first unfortunately.
 
+vcs_add_all="git add -A"
 vcs_commit="git commit"
 vcs_push_upstream="git push -u"
 make=make
@@ -49,6 +50,7 @@ printf "%s\n%s %s %s\n\n%s" "$current_blog_title" $(acceptable_date_string) "$(c
 $make blog
 
 # weird pathspec error, too lazy to debug.
+$vcs_add_all
 $vcs_commit -am "[XCMS] Blog Entry: \"$current_blog_title\""
 $vcs_push_upstream
 

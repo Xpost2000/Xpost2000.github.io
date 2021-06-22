@@ -1,0 +1,21 @@
+Basic Blog Writing CMS
+06/22/2021 12:13 PM
+
+It's kind of almost an exaggeration to call this a CMS,
+but technically it does manage content.
+
+It makes writing blogs a lot easier than before since it
+generates my files, and stuff. However it's extraordinarily
+limited.
+
+Thankfully my blogs are only text files, so I do not really
+need much else.
+
+If I need more, I can just use markdown, and maybe defer steps when
+publishing I suppose.
+
+Right now, it's a write-once -> commit/publish. It would be more flexible
+to separate this into multiple steps, however I don't need it so I'll keep it
+the way it is at the moment since it's very simple.
+
+Yay to the power of bash.

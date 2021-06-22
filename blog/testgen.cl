@@ -100,12 +100,8 @@
         collect (first item)))
 
 (defun sorted-list-of-blog-listing-links (blog-directory)
-  (sort
-   (generate-pages-and-listings
-    (page-links (directory-files-sorted-by-blog-date blog-directory)))
-   (lambda (a b)
-     (< (getf a :date)
-        (getf b :date)))))
+  (generate-pages-and-listings
+   (page-links (directory-files-sorted-by-blog-date blog-directory))))
 
 (with-open-file (*standard-output* "index.html" :direction :output :if-exists :supersede :external-format :utf-8)
   (write-string

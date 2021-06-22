@@ -1,5 +1,11 @@
 @import "light.css";
 
+@font-face {
+    font-family: GNUUnifont;
+    font-display: swap;
+    src: url('../shared-resources/unifont-13.0.04.ttf');
+}
+
 * {
     scrollbar-width: none;
     margin: 0;

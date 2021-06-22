@@ -58,8 +58,7 @@
 (defun generate-page-header (&optional (depth 1))
   (let ((backslashes (repeat "../" depth)))
     `(:head
-      ((:style ,(format nil "@font-face { font-family: GNUUnifont; src: url('~ashared-resources/unifont-13.0.04.ttf'); }" backslashes))
-       (:link ((:rel "stylesheet") (:href ,(format nil "~astyles/common/theme_selector.css" backslashes))) "")
+      ((:link ((:rel "stylesheet") (:href ,(format nil "~astyles/common/theme_selector.css" backslashes))) "")
        (:link ((:rel "shortcut icon") (:href ,(format nil "~afavicon.ico" backslashes)) (:type "image/x-icon")) "")
        (:meta ((:http-equiv "content-type") (:content "text/html; charset=utf-8")) "")
        (:meta ((:name "viewport") (:content "width=device-width, initial-scale=1")) "")

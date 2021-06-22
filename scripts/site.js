@@ -6,10 +6,8 @@ const avaliable_themes = ['default', 'light', 'plan9', 'borlandblue'];
 function paste_lots_of_tildes(event) {
     let gutter = document.getElementById("ugly-ass-gutter");
 
-    // I'm not expecting anyone with less than like a 4K monitor to hit the limit.
-    // I'd like to seriously know how to approach this since this was the fastest thing I can think of.
-    // I guess I can check against the actual screen height and add for the maximum size?
-    for (let tilde_index = 0; tilde_index < 3250; ++tilde_index) {
+    // The gutter no longer scrolls, so this is unnecessary.
+    for (let tilde_index = 0; tilde_index < 200; ++tilde_index) {
         let new_tilde = document.createElement("p");
         new_tilde.innerHTML = "~";
         gutter.appendChild(new_tilde);

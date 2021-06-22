@@ -1,0 +1,11 @@
+The date sorting is now fixed.
+
+All I do is now parse the date string within the text entries to generate
+the blog listing.
+
+For some reason the dos2unix line ending tool I used, as stated last time, breaks
+the date information on the files, which makes it very difficult to sort using the filesystem.
+
+Using the date within the file is more reliable.
+
+So yeah that works now!

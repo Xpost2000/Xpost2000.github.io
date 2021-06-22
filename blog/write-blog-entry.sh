@@ -2,6 +2,9 @@
 
 # Unfortunately we need to set current directory first unfortunately.
 
+pushd . > /dev/null
+cd $(dirname "$0")
+
 vcs_add_all="git add -A"
 vcs_commit="git commit"
 vcs_push_upstream="git push -u"
@@ -55,3 +58,5 @@ $vcs_commit -am "[XCMS] Blog Entry: \"$current_blog_title\""
 $vcs_push_upstream
 
 print "XCMS written and pushed.\n"
+pwd
+popd > /dev/null

@@ -43,12 +43,14 @@
            (:br)
            (:p "View the plantext version <a href=\"#\">here</a>")))))
 
+;; Assume a list of lines.
+(defun date-of-blog-entry (blog-lines) (elt blog-lines 1))
+(defun title-of-blog-entry (blog-lines) (elt blog-lines 0))
+
 (defun generate-blog-page (path-to-source links link)
-  (let* ((file-lines (with-open-file (file-stream path-to-source)
-                      (loop for line = (read-line file-stream nil nil)
-                            while line collect line)))
-         (title (elt file-lines 0))
-         (date-created (elt file-lines 1)))
+  (let* ((file-lines (file-lines path-to-source))
+         (title (title-of-blog-entry file-lines))
+         (date-created (date-of-blog-entry file-lines)))
     (with-open-file (*standard-output* (format nil "pages/~a.html" (pathname-name path-to-source)) :direction :output :if-exists :supersede :external-format :utf-8)
       (write-string
        (compile-html
@@ -74,13 +76,36 @@
             :link link
             :tag `(:a ((:href ,adjusted-pathname)) (:p ,(getf blog-page :title)))))))
 
+;;
+;; This technically does a double pass for reading which is slower, however
+;; this is way simpler to do.
+;; I could rearchitect this to just read all the files in memory and then sort afterwards
+;; however, that would be faster and probably simplify the code now that I think about it
+;; however this is what I have on hand as a quickfix.
+;;
+
+(defun directory-files-sorted-by-blog-date (directory)
+  (loop for item in (let ((listing-with-contents
+                            (mapcar
+                             (lambda (item)
+                               (reverse (multiple-value-list
+                                         (file-lines item))))	
+                             (relative-directory-listing directory))))
+                      (sort listing-with-contents
+                            (lambda (a b)
+                              (let ((date-of-first (date-of-blog-entry (second a)))
+                                    (date-of-second (date-of-blog-entry (second b))))
+                                (< (create-encoded-time-from-date-string date-of-first)
+                                   (create-encoded-time-from-date-string date-of-second))))))
+        collect (first item)))
+
 (defun sorted-list-of-blog-listing-links (blog-directory)
-    (sort
-     (generate-pages-and-listings
-      (page-links (map 'list #'enough-namestring (uiop:directory-files blog-directory))))
-     (lambda (a b)
-       (< (getf a :date)
-          (getf b :date)))))
+  (sort
+   (generate-pages-and-listings
+    (page-links (directory-files-sorted-by-blog-date blog-directory)))
+   (lambda (a b)
+     (< (getf a :date)
+        (getf b :date)))))
 
 (with-open-file (*standard-output* "index.html" :direction :output :if-exists :supersede :external-format :utf-8)
   (write-string

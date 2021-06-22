@@ -72,3 +72,13 @@
              (second date-triplet)
              (first date-triplet)
              (third date-triplet)))))
+
+(defun relative-directory-listing (directory)
+  (map 'list #'enough-namestring (uiop:directory-files directory)))
+
+(defun file-lines (file-path)
+  (with-open-file (file-stream file-path)
+    (values
+     (loop for line = (read-line file-stream nil nil)
+           while line collect line)
+     file-path)))

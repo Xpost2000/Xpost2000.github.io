@@ -62,37 +62,6 @@
     `(:title ,title
       :date-created ,date-created)))
 
-;; From the blog format
-;; I do require space separation.
-;; M/D/Y HR:MIN AM/PM
-(defun date-string->date-month-year-triplet (date-string)
-  (map 'list #'parse-integer (uiop:split-string date-string :separator '(#\/))))
-
-(defun time-string->time-pair (time &optional antem/post.-merdium)
-  (if time
-   (destructuring-bind (hour minute) (map 'list #'parse-integer (uiop:split-string time :separator '(#\:)))
-     (when antem/post.-merdium
-       (cond
-         ((and (string= antem/post.-merdium "PM")
-               (not (= hour 12)))
-          (incf hour 12))
-         ((and (string= antem/post.-merdium "AM")
-               (= hour 12))
-          (decf hour))))
-     (list hour minute))
-   (list 0 0)))
-
-(defun create-encoded-time-from-date-string (date-string)
-  (destructuring-bind (date &optional time antem/post.-merdium) (uiop:split-string date-string :separator '(#\Space))
-    (let ((date-triplet (date-string->date-month-year-triplet date))
-          (time-pair (time-string->time-pair time antem/post.-merdium)))
-            (encode-universal-time
-             0
-             (second time-pair)
-             (first time-pair)
-             (second date-triplet)
-             (first date-triplet)
-             (third date-triplet)))))
 
 (defun generate-pages-and-listings (links)
   (loop for link in links

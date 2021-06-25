@@ -56,7 +56,7 @@
 (defun script-tag (&optional (depth 1) (name "scripts/site.js"))
   `(:script ((:src ,(format nil "~a~a" (repeat "../" depth) name)) (:type "text/javascript")) ""))
 
-(defun generate-page-header (&optional (depth 1))
+(defun generate-page-header (&optional (depth 1) (title "Jerry Zhu / Xpost2000"))
   (let ((backslashes (repeat "../" depth)))
     `(:head
       (,(script-tag depth "scripts/site_theming.js")
@@ -64,7 +64,7 @@
        (:link ((:rel "shortcut icon") (:href ,(format nil "~afavicon.ico" backslashes)) (:type "image/x-icon")) "")
        (:meta ((:http-equiv "content-type") (:content "text/html; charset=utf-8")) "")
        (:meta ((:name "viewport") (:content "width=device-width, initial-scale=1")) "")
-       (:title "Jerry Zhu")))))
+       (:title ,title)))))
 
 (defun generate-modeline-and-minibuffer (text links &optional current-link)
   `(:div ((:class "modeline-holder"))

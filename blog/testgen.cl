@@ -60,7 +60,7 @@
       (write-string
        (compile-html
         `(:html
-          (,(generate-page-header 2)
+          (,(generate-page-header 2 (concatenate 'string title " - Jerry Zhu / Xpost2000"))
            (:body
             (,@(blog-page-content title date-created (subseq file-lines 2) path-to-source)
              (:div ((:id "ugly-ass-gutter")) "")
@@ -129,7 +129,7 @@
              (links
                (loop for item in blog-listing-and-links collect (getf item :link))))
         `(:html
-          (,(generate-page-header)
+          (,(generate-page-header 1 "Blog - Jerry Zhu / Xpost2000")
            (:body
             (
              ,@(page-content

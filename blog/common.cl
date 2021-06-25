@@ -61,6 +61,8 @@
      (list hour minute))
    (list 0 0)))
 
+(time-string->time-pair "11:06" "PM")
+
 (defun create-encoded-time-from-date-string (date-string)
   (destructuring-bind (date &optional time antem/post.-merdium) (uiop:split-string date-string :separator '(#\Space))
     (let ((date-triplet (date-string->date-month-year-triplet date))

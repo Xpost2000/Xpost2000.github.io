@@ -1,3 +1,6 @@
+Minijam 83
+06/24/2021 23:05 PM
+
 I'm probably going to be doing minijam 83.
 
 Oh joy, more game jams! I will choose to use Godot again,

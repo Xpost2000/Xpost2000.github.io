@@ -17,7 +17,7 @@ text_editor=vim
 # It's like an ad-hoc CMS for this website.
 
 function acceptable_date_string {
-    date +"%m/%d/%Y %H:%M %p"
+    date +"%m/%d/%Y %I:%M %p"
 } 
 
 blog_temporary_directory=".xcms"

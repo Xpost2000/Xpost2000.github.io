@@ -1,5 +1,5 @@
 .PHONY: all blog projects
-all: blog
+all: blog projects
 blog:
 	make -C blog/
 projects:

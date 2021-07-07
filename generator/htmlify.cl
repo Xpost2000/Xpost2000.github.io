@@ -2,8 +2,6 @@
 
 ;; I do not know of a standard way to iterate through a plist which is what I originally
 ;; wanted to do. I know I could just skip by cddr while iterating... But I'll just make it an easier format
-(load "common.cl")
-
 (defun compile-attributes (attributes)
   (with-output-to-string (stream)
     (loop for attribute-pair in attributes do
@@ -74,8 +72,7 @@
                  ,(generate-mini-buffer links current-link)
                  (:br)))
           (:div ((:class "mode-bar"))
-                "          <pre>U--- <b>index.html&lt<a href=\"../index.html\" style=\"text-decoration:none\">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre>"
-                )
+                "          <pre>U--- <b>index.html&lt<a href=\"../index.html\" style=\"text-decoration:none\">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre>")
           (:div ((:class "mini-buffer") (:id "mini-buffer-main"))
                 ;; For whatever reason, the string constants cannot take multibyte characters
                 ;; weird.
@@ -96,5 +93,5 @@
                  ,(list-element-from-link current-link :previous "./previous_entry"))
                (loop for link in links
                      collect
-                     (let ((adjusted-pathname (concatenate 'string "pages/" (%adjusted-pathname% (getf link :current)))))
+                     (let ((adjusted-pathname (concatenate 'string (%adjusted-pathname% (getf link :current)))))
                        `(:li (:a ((:href ,adjusted-pathname)) ,adjusted-pathname))))))))

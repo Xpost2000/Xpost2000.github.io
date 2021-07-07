@@ -4,7 +4,8 @@
 	This is copy and pasted from the other file with changes. Will make it use less
 	files later, or never.
 |#
-(load "htmlify.cl")
+(load "../generator/htmlify.cl")
+(load "../generator/common.cl")
 
 ;; whatever this is way faster to do lol
 (defclass project ()

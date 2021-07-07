@@ -16,37 +16,25 @@
 	Basically use a hiccup like format, and common lisp acts as a convenient template engine. At least I don't need
 	external html files. It's also easier to write than html itself...
 |#
-(load "htmlify.cl")
+
+;; grr inclusion order. ASDF would solve this but I'll just order it like this for now
+;; since it'll be fine enough.
+(load "../generator/htmlify.cl")
+(load "../generator/common.cl")
 
 ;; This is a PLIST
 ;; but it should probably be a hash-table if possible.
 (defparameter *blog-entries* '())
 
 (defun page-content (title lines &rest list-elements)
-  `((:div ((:class "body-container"))
-          ((:h1 ,title)
-           ,@(concatenate 'list
-              (map 'list
-               (lambda (x)
-                 (if (empty-stringp x) 
-                     '(:br) (list :p x)))
-               lines)
-              list-elements)))))
-
-(defun blog-page-content (title date lines source-path)
-  `((:div ((:class "body-container"))
-          ((:h1 ,title)
-           (:p ((:b "Date Published")
-                (:span ((:style "background-color: yellow; color: black;")) ,(format nil "(~a)" date))))
-           (:br)
-           ,@(map 'list
-                (lambda (x)
-                  (if (empty-stringp x)
-                      '(:br) (list :p x)))
-                lines)
-           (:br)
-           (:p
-             ,(format nil "View the plaintext version <a href=\"../~a\">here</a>" source-path))))))
+  `((:h1 ,title)
+    ,@(concatenate 'list
+                   (map 'list
+                        (lambda (x)
+                          (if (empty-stringp x) 
+                              '(:br) (list :p x)))
+                        lines)
+                   list-elements)))
 
 ;; Assume a list of lines.
 (defun date-of-blog-entry (blog-lines) (elt blog-lines 1))
@@ -59,13 +47,21 @@
     (with-open-file (*standard-output* (format nil "pages/~a.html" (pathname-name path-to-source)) :direction :output :if-exists :supersede :external-format :utf-8)
       (write-string
        (compile-html
-        `(:html
-          (,(generate-page-header 2 (concatenate 'string title " - Jerry Zhu / Xpost2000"))
-           (:body
-            (,@(blog-page-content title date-created (subseq file-lines 2) path-to-source)
-             (:div ((:id "ugly-ass-gutter")) "")
-             ,(generate-modeline-and-minibuffer "blog-page" links link)
-             ,(script-tag 2))))))))
+        (with-common-page-template
+          :depth 2
+          :page-title title
+          :body `((:h1 ,title)
+                  (:p ((:b "Date Published")
+                       (:span ((:style "background-color: yellow; color: black;")) ,(format nil "(~a)" date-created))))
+                  ,@(map 'list
+                         (lambda (x)
+                           (if (empty-stringp x)
+                               '(:br) (list :p x)))
+                         (subseq file-lines 2))
+                  (:br)
+                  (:p ,(format nil "View the plaintext version <a href=\"../~a\">here</a>" path-to-source)))
+          :modeline-text "blog-page"
+          :modeline-links links))))
     `(:title ,title
       :date-created ,date-created)))
 

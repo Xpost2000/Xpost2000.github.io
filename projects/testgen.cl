@@ -81,7 +81,7 @@
 
 (defun build () 
   (build-preamble)
-  (with-open-file (*standard-output* "index_test.html" :direction :output :if-exists :supersede :external-format :utf-8)
+  (with-open-file (*standard-output* "index.html" :direction :output :if-exists :supersede :external-format :utf-8)
     (write-string
      (compile-html
       (with-common-page-template

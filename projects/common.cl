@@ -85,12 +85,16 @@
            while line collect line)
      file-path)))
 
-(defun with-common-page-template (&key page-title body (modeline-text "welcome-to-my-website"))
+(defun with-common-page-template (&key
+                                    page-title
+                                    body
+                                    (modeline-text "welcome-to-my-website")
+                                    (modeline-links nil))
   `(:html
     (,(generate-page-header 1 (concatenate 'string page-title " - Jerry Zhu / Xpost2000"))
      (:body
       ((:div ((:class "body-container"))
              ,body) 
        (:div ((:id "ugly-ass-gutter")) "")
-       ,(generate-modeline-and-minibuffer modeline-text)
+       ,(generate-modeline-and-minibuffer modeline-text modeline-links)
        ,(script-tag))))))

@@ -15,6 +15,7 @@
 #info-container {
     display: flex;
     justify-content: center;
+    margin-bottom: 15vh;
 }
 
 #info {

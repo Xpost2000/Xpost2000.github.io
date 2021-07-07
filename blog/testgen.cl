@@ -49,6 +49,8 @@
                       (subseq file-lines 2))
                (:br)
                (:p ,(format nil "View the plaintext version <a href=\"../~a\">here</a>" path-to-source)))
+       :current-link-text (concatenate 'string (remove-file-extension-from-string (getf link :current)) ".html") 
+       :current-link link
        :modeline-text "blog-page"
        :modeline-links links))
     `(:title ,title :date-created ,date-created)))
@@ -100,6 +102,7 @@
             (loop for item in blog-listing-and-links collect (getf item :link))))
      (with-common-page-template
        :page-title "Blog"
+       :current-link-text "index.html"
        :modeline-links links
        :body
        `(,@(page-content

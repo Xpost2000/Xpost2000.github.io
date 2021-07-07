@@ -45,9 +45,11 @@
                (funcall obtain-date-string b)))))
 
 (defun repeat (elt count) ;; string repeat
-           (if (= count 1)
-               elt
-               (concatenate 'string elt (repeat elt (1- count)))))
+  (if (zerop count)
+      ""
+      (if (= count 1)
+          elt
+          (concatenate 'string elt (repeat elt (1- count))))))
 
 ;; This produces a linked list (not the data structure kind persay) of
 ;; links. I use this for generating the blog page, but technically I can use
@@ -112,16 +114,26 @@
                                     (depth 1)
                                     page-title
                                     body
+                                    header-extra
                                     (modeline-text "welcome-to-my-website")
-                                    (modeline-links nil))
+                                    modeline-links
+                                    current-link-text
+                                    current-link)
   `(:html
-    (,(generate-page-header depth (concatenate 'string page-title " - Jerry Zhu / Xpost2000"))
+    (,(generate-page-header depth (concatenate 'string page-title " - Jerry Zhu / Xpost2000") header-extra)
      (:body
       ((:div ((:class "body-container"))
              ,body) 
        (:div ((:id "ugly-ass-gutter")) "")
-       ,(generate-modeline-and-minibuffer modeline-text modeline-links)
+       ,(generate-modeline-and-minibuffer
+         modeline-text
+         (or current-link-text (getf current-link :current))
+         modeline-links
+         current-link)
        ,(script-tag depth))))))
+
+(defun remove-file-extension-from-string (string)
+  (subseq string 0 (position #\. string :from-end t)))
 
 (defun page-content (title lines &rest list-elements)
   `((:h1 ,title)

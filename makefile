@@ -1,5 +1,7 @@
-.PHONY: all blog projects
-all: blog projects
+.PHONY: all blog projects landing
+all: blog projects landing
+landing: testgen.cl
+	sbcl --script testgen.cl
 blog:
 	make -C blog/
 projects:

@@ -54,17 +54,18 @@
 (defun script-tag (&optional (depth 1) (name "scripts/site.js"))
   `(:script ((:src ,(format nil "~a~a" (repeat "../" depth) name)) (:type "text/javascript")) ""))
 
-(defun generate-page-header (&optional (depth 1) (title "Jerry Zhu / Xpost2000"))
+(defun generate-page-header (&optional (depth 1) (title "Jerry Zhu / Xpost2000") extra)
   (let ((backslashes (repeat "../" depth)))
     `(:head
       (,(script-tag depth "scripts/site_theming.js")
        (:link ((:rel "stylesheet") (:href ,(format nil "~astyles/common/theme_selector.css" backslashes))) "")
+       ,@extra
        (:link ((:rel "shortcut icon") (:href ,(format nil "~afavicon.ico" backslashes)) (:type "image/x-icon")) "")
        (:meta ((:http-equiv "content-type") (:content "text/html; charset=utf-8")) "")
        (:meta ((:name "viewport") (:content "width=device-width, initial-scale=1")) "")
        (:title ,title)))))
 
-(defun generate-modeline-and-minibuffer (text &optional links current-link)
+(defun generate-modeline-and-minibuffer (text link-name &optional links current-link)
   `(:div ((:class "modeline-holder"))
          ((:div ((:id "mini-buffer-autocompletion"))
                 ((:p "Click on a link to be taken to the page!")
@@ -72,7 +73,7 @@
                  ,(generate-mini-buffer links current-link)
                  (:br)))
           (:div ((:class "mode-bar"))
-                "          <pre>U--- <b>index.html&lt<a href=\"../index.html\" style=\"text-decoration:none\">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre>")
+                ,(format nil "          <pre>U--- <b>~a&lt<a href=\"../index.html\" style=\"text-decoration:none\">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre>" link-name))
           (:div ((:class "mini-buffer") (:id "mini-buffer-main"))
                 ;; For whatever reason, the string constants cannot take multibyte characters
                 ;; weird.

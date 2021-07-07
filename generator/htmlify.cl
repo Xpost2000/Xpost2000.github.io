@@ -79,6 +79,21 @@
                 ;; weird.
                 ((:pre ,(format nil "~a<span class=\"blinking-cursor\">~a</span>" text (code-char 9608))))))))
 
+;; dummy
+(defun generate-modeline-and-minibuffer2 (text link-name &optional links)
+  `(:div ((:class "modeline-holder"))
+         ((:div ((:id "mini-buffer-autocompletion"))
+                ((:p "Click on a link to be taken to the page!")
+                 (:br)
+                 ,(generate-mini-buffer2 links)
+                 (:br)))
+          (:div ((:class "mode-bar"))
+                ,(format nil "          <pre>U--- <b>~a&lt<a href=\"../index.html\" style=\"text-decoration:none\">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre>" link-name))
+          (:div ((:class "mini-buffer") (:id "mini-buffer-main"))
+                ;; For whatever reason, the string constants cannot take multibyte characters
+                ;; weird.
+                ((:pre ,(format nil "~a<span class=\"blinking-cursor\">~a</span>" text (code-char 9608))))))))
+
 ; this is a terrible name. Your parents must really hate you.
 (defun list-element-from-link (link entry text)
   (if (getf link entry)
@@ -96,3 +111,12 @@
                      collect
                      (let ((adjusted-pathname (concatenate 'string (%adjusted-pathname% (getf link :current)))))
                        `(:li (:a ((:href ,adjusted-pathname)) ,adjusted-pathname))))))))
+
+;; dummy
+(defun generate-mini-buffer2 (&optional links)
+  `(:ul ((:id "mini-buffer-links"))
+        ((:li (:a ((:href "#")) "./."))
+         (:li (:a ((:href "../index.html")) "./.."))
+         ,@(loop for link in links
+                 collect
+                 `(:li (:a ((:href ,link)) ,link))))))

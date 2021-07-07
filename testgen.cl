@@ -42,11 +42,14 @@
               ((:div ((:id "info"))
                      ,@(list (map 'list (lambda (s) `((:p ,s) (:br))) *info-text*)))))
         (:div ((:id "ugly-ass-gutter")) "")
-        ,(generate-modeline-and-minibuffer "welcome-to-my-website"
+        ,(generate-modeline-and-minibuffer2 "welcome-to-my-website"
                                            "index.html"
-                                           (list
-                                            "test"
-                                            ))
+                                           ;; TODO(jerry): make this not automatically append .html
+                                           ;; too lazy to do it today.
+                                            (list
+                                             "./blog/index.html"
+                                             "./projects/index.html"
+                                             "./web-projects/index.html"))
         ,(script-tag 0)))))))
 
 (build)

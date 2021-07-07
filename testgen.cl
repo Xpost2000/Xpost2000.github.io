@@ -42,7 +42,11 @@
               ((:div ((:id "info"))
                      ,@(list (map 'list (lambda (s) `((:p ,s) (:br))) *info-text*)))))
         (:div ((:id "ugly-ass-gutter")) "")
-        ,(generate-modeline-and-minibuffer "welcome-to-my-website" "index.html" nil)
+        ,(generate-modeline-and-minibuffer "welcome-to-my-website"
+                                           "index.html"
+                                           (list
+                                            "test"
+                                            ))
         ,(script-tag 0)))))))
 
 (build)

@@ -21,6 +21,29 @@
 (defun file-compare-by-write-date (a b)
   (< (file-write-date a) (file-write-date b)))
 
+;; this has an unintuitive use me thinks.
+(defun date-string< (a b)
+  (< (create-encoded-time-from-date-string a)
+     (create-encoded-time-from-date-string b)))
+(defun date-string<= (a b)
+  (<= (create-encoded-time-from-date-string a)
+     (create-encoded-time-from-date-string b)))
+(defun date-string> (a b)
+  (> (create-encoded-time-from-date-string a)
+     (create-encoded-time-from-date-string b)))
+(defun date-string>= (a b)
+  (>= (create-encoded-time-from-date-string a)
+     (create-encoded-time-from-date-string b)))
+(defun date-string= (a b)
+  (= (create-encoded-time-from-date-string a)
+     (create-encoded-time-from-date-string b)))
+(defun sort-by-date-string (obtain-date-string &optional (method '<))
+  (lambda (a b)
+    (let ((function (intern (concatenate 'string "DATE-STRING" (symbol-name method)))))
+      (funcall function
+               (funcall obtain-date-string a)
+               (funcall obtain-date-string b)))))
+
 (defun repeat (elt count) ;; string repeat
            (if (= count 1)
                elt
@@ -99,3 +122,22 @@
        (:div ((:id "ugly-ass-gutter")) "")
        ,(generate-modeline-and-minibuffer modeline-text modeline-links)
        ,(script-tag depth))))))
+
+(defun page-content (title lines &rest list-elements)
+  `((:h1 ,title)
+    ,@(concatenate 'list
+                   (map 'list
+                        (lambda (x)
+                          (if (empty-stringp x) 
+                              '(:br) (list :p x)))
+                        lines)
+                   list-elements)))
+
+(defmacro html->file (name &rest code)
+  `(with-open-file (*standard-output* ,name
+                                      :direction :output
+                                      :if-exists :supersede
+                                      :external-format :utf-8)
+     (write-string
+      (compile-html
+       ,@code))))

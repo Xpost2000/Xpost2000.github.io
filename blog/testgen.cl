@@ -26,16 +26,6 @@
 ;; but it should probably be a hash-table if possible.
 (defparameter *blog-entries* '())
 
-(defun page-content (title lines &rest list-elements)
-  `((:h1 ,title)
-    ,@(concatenate 'list
-                   (map 'list
-                        (lambda (x)
-                          (if (empty-stringp x) 
-                              '(:br) (list :p x)))
-                        lines)
-                   list-elements)))
-
 ;; Assume a list of lines.
 (defun date-of-blog-entry (blog-lines) (elt blog-lines 1))
 (defun title-of-blog-entry (blog-lines) (elt blog-lines 0))
@@ -44,26 +34,24 @@
   (let* ((file-lines (getf *blog-entries* path-to-source))
          (title (title-of-blog-entry file-lines))
          (date-created (date-of-blog-entry file-lines)))
-    (with-open-file (*standard-output* (format nil "pages/~a.html" (pathname-name path-to-source)) :direction :output :if-exists :supersede :external-format :utf-8)
-      (write-string
-       (compile-html
-        (with-common-page-template
-          :depth 2
-          :page-title title
-          :body `((:h1 ,title)
-                  (:p ((:b "Date Published")
-                       (:span ((:style "background-color: yellow; color: black;")) ,(format nil "(~a)" date-created))))
-                  ,@(map 'list
-                         (lambda (x)
-                           (if (empty-stringp x)
-                               '(:br) (list :p x)))
-                         (subseq file-lines 2))
-                  (:br)
-                  (:p ,(format nil "View the plaintext version <a href=\"../~a\">here</a>" path-to-source)))
-          :modeline-text "blog-page"
-          :modeline-links links))))
-    `(:title ,title
-      :date-created ,date-created)))
+    (html->file
+     (format nil "pages/~a.html" (pathname-name path-to-source))
+     (with-common-page-template
+       :depth 2
+       :page-title title
+       :body `((:h1 ,title)
+               (:p ((:b "Date Published")
+                    (:span ((:style "background-color: yellow; color: black;")) ,(format nil "(~a)" date-created))))
+               ,@(map 'list
+                      (lambda (x)
+                        (if (empty-stringp x)
+                            '(:br) (list :p x)))
+                      (subseq file-lines 2))
+               (:br)
+               (:p ,(format nil "View the plaintext version <a href=\"../~a\">here</a>" path-to-source)))
+       :modeline-text "blog-page"
+       :modeline-links links))
+    `(:title ,title :date-created ,date-created)))
 
 
 (defun generate-pages-and-listings (links)
@@ -76,29 +64,16 @@
             :link link
             :tag `(:a ((:href ,adjusted-pathname)) (:p ,(getf blog-page :title)))))))
 
-;;
-;; This technically does a double pass for reading which is slower, however
-;; this is way simpler to do.
-;; I could rearchitect this to just read all the files in memory and then sort afterwards
-;; however, that would be faster and probably simplify the code now that I think about it
-;; however this is what I have on hand as a quickfix.
-;;
-
 (defun directory-files-sorted-by-blog-date (directory)
   (loop for item in
                  (let* ((listing-with-contents
                           (mapcar
                            (lambda (item)
-                             (reverse (multiple-value-list
-                                       (file-lines item))))	
+                             (reverse (multiple-value-list (file-lines item))))	
                            (relative-directory-listing directory)))
                         (sorted-listing
                           (sort listing-with-contents
-                                (lambda (a b)
-                                  (let ((date-of-first (date-of-blog-entry (second a)))
-                                        (date-of-second (date-of-blog-entry (second b))))
-                                    (< (create-encoded-time-from-date-string date-of-first)
-                                       (create-encoded-time-from-date-string date-of-second)))))))
+                                (sort-by-date-string (lambda (x) (date-of-blog-entry (second x)))))))
                    (setf *blog-entries*
                          (reduce
                           (lambda (accumulator next-item)
@@ -115,31 +90,29 @@
    (page-links (directory-files-sorted-by-blog-date blog-directory))))
 
 (defun build ()
-  (with-open-file (*standard-output* "index.html" :direction :output :if-exists :supersede :external-format :utf-8)
-    (write-string
-     (compile-html
-      (let* ((blog-listing-and-links
-               (sorted-list-of-blog-listing-links "./text/"))
-             (listing-tags
-               (loop for item in blog-listing-and-links collect (getf item :tag)))
-             (links
-               (loop for item in blog-listing-and-links collect (getf item :link))))
-        (with-common-page-template
-          :page-title "Blog"
-          :modeline-links links
-          :body
-          `(,@(page-content
-               "Jerry's Blog"
-               (list "Welcome to the blog"
-                     ""
-                     "Whenever this gets updated, there's going to be some new content here."
-                     "This blog listing should be generated by a Common Lisp program in the repository,"
-                     "I'm probably going to just talk about whatever I find interesting."
-                     ""
-                     "Feel free to use the modeline as an alternate form of navigation."
-                     )
-               '(:p (:b "Listing: "))
-               '(:br)
-               listing-tags))))))))
-
+  (html->file
+   "index.html"
+   (let* ((blog-listing-and-links
+            (sorted-list-of-blog-listing-links "./text/"))
+          (listing-tags
+            (loop for item in blog-listing-and-links collect (getf item :tag)))
+          (links
+            (loop for item in blog-listing-and-links collect (getf item :link))))
+     (with-common-page-template
+       :page-title "Blog"
+       :modeline-links links
+       :body
+       `(,@(page-content
+            "Jerry's Blog"
+            (list "Welcome to the blog"
+                  ""
+                  "Whenever this gets updated, there's going to be some new content here."
+                  "This blog listing should be generated by a Common Lisp program in the repository,"
+                  "I'm probably going to just talk about whatever I find interesting."
+                  ""
+                  "Feel free to use the modeline as an alternate form of navigation."
+                  )
+            '(:p (:b "Listing: "))
+            '(:br)
+            listing-tags))))))
 (build)

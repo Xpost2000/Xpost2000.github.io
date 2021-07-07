@@ -28,7 +28,7 @@
 
 (defun build () 
   (html->file
-   "generated_landing.html"
+   "index.html"
    `(:html
      (,(generate-page-header 0 "Home - Jerry Zhu / Xpost2000" '((:link ((:type "text/css") (:rel "stylesheet") (:href "style.css")) "")))
       (:body

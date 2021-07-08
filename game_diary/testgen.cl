@@ -8,6 +8,7 @@
 (load "../generator/htmlify.cl")
 (load "../generator/common.cl")
 
+(load "../generator/blog-bro.cl")
 ;; I can't be arsed to write a json parser today
 (load "external/json.asd")
 (asdf:load-system 'JSON)
@@ -98,75 +99,6 @@
   (setf (jerry-comments (game-database-add appid))
         comment))
 
-;; make game cards based off my directory.
-
-(defparameter *blog-entries* '())
-
-;; Assume a list of lines.
-(defun date-of-blog-entry (blog-lines) (elt blog-lines 1))
-(defun title-of-blog-entry (blog-lines) (elt blog-lines 0))
-
-(defun generate-blog-page (path-to-source links link)
-  (let* ((file-lines (getf *blog-entries* path-to-source))
-         (title (title-of-blog-entry file-lines))
-         (date-created (date-of-blog-entry file-lines)))
-    (html->file
-     (format nil "pages/~a.html" (pathname-name path-to-source))
-     (with-common-page-template
-       :depth 2
-       :page-title title
-       :body `((:h1 ,title)
-               (:p ((:b "Date Published")
-                    (:span ((:style "background-color: yellow; color: black;")) ,(format nil "(~a)" date-created))))
-               ,@(map 'list
-                      (lambda (x)
-                        (if (empty-stringp x)
-                            '(:br) (list :p x)))
-                      (subseq file-lines 2))
-               (:br)
-               (:p ,(format nil "View the plaintext version <a href=\"../~a\">here</a>" path-to-source)))
-       :current-link-text (concatenate 'string (remove-file-extension-from-string (getf link :current)) ".html") 
-       :current-link link
-       :modeline-text "blog-page"
-       :modeline-links links))
-    `(:title ,title :date-created ,date-created)))
-
-
-(defun generate-pages-and-listings (links)
-  (loop for link in links
-         collect
-         (let* ((current-link (getf link :current))
-                (adjusted-pathname (concatenate 'string "pages/" (%adjusted-pathname% current-link)))
-                (blog-page (generate-blog-page current-link links link)))
-           (list
-            :link link
-            :tag `(:a ((:href ,adjusted-pathname)) (:p ,(getf blog-page :title)))))))
-
-(defun directory-files-sorted-by-blog-date (directory)
-  (loop for item in
-                 (let* ((listing-with-contents
-                          (mapcar
-                           (lambda (item)
-                             (reverse (multiple-value-list (file-lines item))))	
-                           (relative-directory-listing directory)))
-                        (sorted-listing
-                          (sort listing-with-contents
-                                (sort-by-date-string (lambda (x) (date-of-blog-entry (second x)))))))
-                   (setf *blog-entries*
-                         (reduce
-                          (lambda (accumulator next-item)
-                            (append accumulator
-                                    (list (first next-item))
-                                    (list (second next-item))))
-                          sorted-listing
-                          :initial-value '()))
-                   sorted-listing)
-        collect (first item)))
-
-(defun sorted-list-of-blog-listing-links (blog-directory)
-  (generate-pages-and-listings
-   (page-links (directory-files-sorted-by-blog-date blog-directory))))
-
 (defun get-game-directories (&optional (root-where "./."))
   (remove-if-not
    (lambda (item)
@@ -214,32 +146,39 @@
 
 ;; TODO(jerry): may have to special case certain entries.
 ;; or change the way the page is formatted!
-(defun generate-game-landing-page (directory id)
-  (let ((comments           ; whoops, remember to concatenate this all later
-          (handler-case (file-lines (concatenate 'string directory "comment.txt"))
-            (file-does-not-exist (condition)
-              ""))))
+(defparameter *no-comments*
+  '("I have either not played this yet, or I have no comments yet.
+     Stay tuned though if you want!"
+    ""))
+(defun generate-game-page (directory id)
+  (let* ((comments (file-lines (concatenate 'string directory "comment.txt")))
+         (blog-listing-and-links (install-blog
+                                  :depth 3
+                                  :text-directory (format nil "~a/text/" directory)
+                                  :out-directory (format nil "~a/pages/" directory)))
+         (listing-tags (generate-page-links blog-listing-and-links))
+         (links (map 'list #'text-link->page-link
+                     (loop for item in blog-listing-and-links collect (getf item :link)))))
     (game-database-add-comment-to id comments)
     (html->file
      (format nil "~a/index.html" directory)
      (with-common-page-template
        :depth 2
        :page-title (name (game-database-add id))
+       :modeline-links links
        :body `(
                (,@(page-content
                    (name (game-database-add id))
-                   (or comments "I have either not played this yet, or I have no comments yet.")
+                   (or comments *no-comments*)
                    '(:p (:b "Listing: "))
-                   '(:script ((:src "page.js")) "")
                    '(:br)
-                   ;; listing-tags
-                   )))
+                   listing-tags)))
        :modeline-text "game-dungeon"))))
 
 (defun generate-pages-for (mapping)
   (let* ((id (getf mapping :id))
          (directory (getf mapping :directory)))
-	(generate-game-landing-page directory id)))
+	(generate-game-page directory id)))
 
 (defun mappings->links (mappings)
   (map 'list
@@ -254,38 +193,32 @@
 
   (html->file
    "index.html"
-   (let* (;; (blog-listing-and-links
-          ;;   (sorted-list-of-blog-listing-links "./text/"))
-          (modeline-links (mappings->links (game-directory&id-mappings "./.")))
-          ;; (links
-          ;;   (loop for item in blog-listing-and-links collect (getf item :link)))
-          )
-     (with-common-page-template
-       :page-title "Game Diary"
-       :current-link-text "index.html"
-       :modeline-links modeline-links
-       :body
-       `(,@(page-content
-            "Jerry's Game Diary"
-            (list "Welcome to the Game Diary"
-                  ""
-                  "Remember when I said I love playing video games?"
-                  "This is a secondary blog that is categorized by games I've played. Some I've finished"
-                  "and simply replaying them again. Or some are completely fresh that I'm playing fresh."
-                  "This is kind of going to be like those old school RPG game journal things, but with just random"
-                  "games, since I recording let's plays is hard, and this is much more easier."
-                  ""
-                  "Since I will write down whatever happens. It is likely I will start the diary with games in the middle of playthroughs"
-                  "because for obvious reasons I'm not going to replay the game just to get a more honest overview."
-                  ""
-                  "Click on any of the games to be taken to their respective diary pages if they exist!"
-                  "NOTE: these are obviously going to be lots of reading, so try to not read multiple of them. I may not be able to write"
-                  "fanfictions, but this is as close as I can get."
-                  ""
-                  )
-            '(:p (:b "Listing: "))
-            (generate-game-cards)
-            '(:script ((:src "page.js")) "")
-            '(:br)))))))
+   (with-common-page-template
+     :page-title "Game Diary"
+     :current-link-text "index.html"
+     :modeline-links (mappings->links (game-directory&id-mappings "./."))
+     :body
+     `(,@(page-content
+          "Jerry's Game Diary"
+          (list "Welcome to the Game Diary"
+                ""
+                "Remember when I said I love playing video games?"
+                "This is a secondary blog that is categorized by games I've played. Some I've finished"
+                "and simply replaying them again. Or some are completely fresh that I'm playing fresh."
+                "This is kind of going to be like those old school RPG game journal things, but with just random"
+                "games, since I recording let's plays is hard, and this is much more easier."
+                ""
+                "Since I will write down whatever happens. It is likely I will start the diary with games in the middle of playthroughs"
+                "because for obvious reasons I'm not going to replay the game just to get a more honest overview."
+                ""
+                "Click on any of the games to be taken to their respective diary pages if they exist!"
+                "NOTE: these are obviously going to be lots of reading, so try to not read multiple of them. I may not be able to write"
+                "fanfictions, but this is as close as I can get."
+                ""
+                )
+          '(:p (:b "Listing: "))
+          (generate-game-cards)
+          '(:script ((:src "page.js")) "")
+          '(:br))))))
 (game-database-clear)
 (build)

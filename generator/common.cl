@@ -103,12 +103,16 @@
 (defun relative-directory-listing (directory)
   (map 'list #'enough-namestring (uiop:directory-files directory)))
 
+;; This will simply return a list of empty lines
+;; if it fails.
 (defun file-lines (file-path)
-  (with-open-file (file-stream file-path)
-    (values
-     (loop for line = (read-line file-stream nil nil)
-           while line collect line)
-     file-path)))
+  (handler-case (with-open-file (file-stream file-path)
+                  (values
+                   (loop for line = (read-line file-stream nil nil)
+                         while line collect line)
+                   file-path))
+    (file-does-not-exist (condition)
+      nil)))
 
 (defun with-common-page-template (&key
                                     (depth 1)

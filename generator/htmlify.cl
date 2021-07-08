@@ -47,12 +47,6 @@
            (loop for child-item in root do
              (format stream "~a~%" (compile-html child-item))))))))
 
-(defun %adjusted-pathname% (pathname)
-  (format nil "~a/~a.html"
-          ;; hope this is always relative.
-          (second (pathname-directory pathname))
-          (pathname-name pathname)))
-
 ;; lazy
 (defun script-tag (&optional (depth 1) (name "scripts/site.js"))
   `(:script ((:src ,(format nil "~a~a" (repeat "../" depth) name)) (:type "text/javascript")) ""))
@@ -97,10 +91,19 @@
                 ;; weird.
                 ((:pre ,(format nil "~a<span class=\"blinking-cursor\">~a</span>" text (code-char 9608))))))))
 
+
+
+;; needs to be able to properly reconstruct from a full relative path.
+;; so we need to adjust this.
+(defun %adjusted-pathname% (pathname &optional from)
+  (format nil "~a.html"
+          ;; hope this is always relative.
+          (pathname-name pathname)))
 ; this is a terrible name. Your parents must really hate you.
+;; this is stupid as hell.
 (defun list-element-from-link (link entry text)
   (if (getf link entry)
-      `(:li (:a ((:href ,(%adjusted-pathname% (getf link entry)))) ,text))))
+      `(:li (:a ((:href ,(getf link entry))) ,text))))
 
 ;; this is technically blog only.
 (defun generate-mini-buffer (&optional links current-link)
@@ -112,7 +115,7 @@
                  ,(list-element-from-link current-link :previous "./previous_entry"))
                (loop for link in links
                      collect
-                     (let ((adjusted-pathname (%adjusted-pathname% (getf link :current))))
+                     (let ((adjusted-pathname (getf link :current)))
                        `(:li (:a ((:href ,adjusted-pathname)) ,adjusted-pathname))))))))
 
 ;; dummy

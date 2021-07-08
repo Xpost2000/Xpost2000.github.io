@@ -1,4 +1,7 @@
-@import "light.css";
+/*
+  This could use a refactor.
+*/
+@import "default.css";
 
 @font-face {
     font-family: GNUUnifont;
@@ -23,6 +26,7 @@ ol, ul {
     margin-left: 2em;
     padding: 0.5rem;
 }
+
 ul {
     list-style-type: square;
 }
@@ -39,6 +43,11 @@ body {
     margin-left: 1.2em;
     line-height: 1.2em;
     width: 75%;
+}
+
+.body-container img {
+    width: 45%;
+    margin: 1.5em;
 }
 
 @media(max-width: 650px) {
@@ -170,7 +179,7 @@ body {
     color: var(--project-title-face);
 }
 
-.project-thumb {
+.body-container .project-thumb {
     width: 150px;
     float: left;
     padding: 0.5em; 
@@ -215,11 +224,11 @@ body {
     flex: 1 1 400px;
 }
 
-.game-title {
+.game-title, .game-development-information {
     color: var(--project-title-face);
 }
 
-.game-thumb {
+.body-container .game-thumb {
     width: 150px;
     float: left;
     padding: 0.5em; 
@@ -227,7 +236,6 @@ body {
 }
 
 .game-development-information {
-    color: yellow;
     margin-right: 0.7em;
     margin-bottom: 0.7em;
     text-align: right;

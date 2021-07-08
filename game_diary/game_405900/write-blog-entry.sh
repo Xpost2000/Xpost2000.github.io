@@ -50,7 +50,7 @@ printf "writing blog entry: %s\n" $blog_file
 
 # I should probably use cat, since it's technically faster and simpler... But whatever.
 printf "%s\n%s %s %s\n\n%s" "$current_blog_title" $(acceptable_date_string) "$(cat $blog_temporary_directory/CURRENT_BLOG_CONTENTS)" > $(blog_file_location)
-$make -C ../ blog
+$make -C ../
 
 # weird pathspec error, too lazy to debug.
 $vcs_add_all

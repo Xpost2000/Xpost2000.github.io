@@ -1,3 +1,6 @@
+Yay more CMS-ish things
+07/08/2021 04:13 PM
+
 So anyways as stated in a previous entry here. I hacked up a bunch of shell scripts and
 page generators to assemble the world's jankiest little Content Management System, if you dare
 to call it that.

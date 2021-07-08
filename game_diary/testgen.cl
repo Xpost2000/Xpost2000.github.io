@@ -95,7 +95,7 @@
             (steam-game-info-of appid))))
 
 (defun game-database-add-comment-to (appid comment)
-  (setf (comment (game-database-add appid))
+  (setf (jerry-comments (game-database-add appid))
         comment))
 
 (game-database-clear)
@@ -203,11 +203,46 @@
                                            (publishers game)))))
                        (:p ,(description game))))))))))
 
-(generate-game-cards)
+;; TODO(jerry): may have to special case certain entries.
+;; or change the way the page is formatted!
+(defun generate-game-landing-page (directory id)
+  (let ((comments           ; whoops, remember to concatenate this all later
+          (handler-case (file-lines (concatenate 'string directory "comment.txt"))
+            (file-does-not-exist (condition)
+              ""))))
+    (game-database-add-comment-to id comments)
+    (html->file
+     (format nil "~a/index.html" directory)
+     (with-common-page-template
+       :depth 3
+       :page-title (name (game-database-add id))
+       :body `(
+               (,@(page-content
+                   (name (game-database-add id))
+                   (or comments "I have either not played this yet, or I have no comments yet.")
+                   '(:p (:b "Listing: "))
+                   #|
+                   Considering all I use the API key for is, is simply to just query basic game information
+                   since scraping Steam is difficult (and probably not allowed anyhow...)
+                   
+                   I'm not extremely concerned with losing it since there's very little harm it can do, considering
+                   how easy it is to obtain one.
+                   |#
+                   '(:script ((:src "page.js")) "")
+                   '(:br)
+                   ;; listing-tags
+                   )))
+       :modeline-text "game-dungeon"))))
+
+(defun generate-pages-for (mapping)
+  (let* ((id (getf mapping :id))
+         (directory (getf mapping :directory)))
+	(generate-game-landing-page directory id)))
 
 (defun build ()
   (loop for mapping in (game-directory&id-mappings "games/") do
-    (game-database-add (getf mapping :id)))
+    (game-database-add (getf mapping :id))
+    (generate-pages-for mapping))
 
   (html->file
    "index.html"

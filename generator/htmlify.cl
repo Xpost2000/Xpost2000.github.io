@@ -48,7 +48,10 @@
              (format stream "~a~%" (compile-html child-item))))))))
 
 (defun %adjusted-pathname% (pathname)
-  (format nil "~a.html" (pathname-name pathname)))
+  (format nil "~a/~a.html"
+          ;; hope this is always relative.
+          (second (pathname-directory pathname))
+          (pathname-name pathname)))
 
 ;; lazy
 (defun script-tag (&optional (depth 1) (name "scripts/site.js"))
@@ -109,7 +112,7 @@
                  ,(list-element-from-link current-link :previous "./previous_entry"))
                (loop for link in links
                      collect
-                     (let ((adjusted-pathname (concatenate 'string (%adjusted-pathname% (getf link :current)))))
+                     (let ((adjusted-pathname (%adjusted-pathname% (getf link :current))))
                        `(:li (:a ((:href ,adjusted-pathname)) ,adjusted-pathname))))))))
 
 ;; dummy

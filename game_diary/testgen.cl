@@ -98,8 +98,6 @@
   (setf (jerry-comments (game-database-add appid))
         comment))
 
-(game-database-clear)
-
 ;; make game cards based off my directory.
 
 (defparameter *blog-entries* '())
@@ -169,14 +167,24 @@
   (generate-pages-and-listings
    (page-links (directory-files-sorted-by-blog-date blog-directory))))
 
+(defun get-game-directories (&optional (root-where "./."))
+  (remove-if-not
+   (lambda (item)
+     (search "game_" item))
+   (map 'list #'enough-namestring (uiop:subdirectories root-where))))
+
+(defun extract-id-from-game-directory (directory-string)
+  (handler-case (parse-integer
+                 (subseq directory-string
+                         (+ (length "game_")
+                            (search "game_" directory-string))
+                         (1- (length directory-string))))
+    ;; This is SBCL specific I suppose.
+    (sb-int:simple-parse-error nil)))
+
 (defun game-directory&id-mappings (directory)
-  (loop for sub-directory in (map 'list #'enough-namestring (uiop:subdirectories directory))
-        collect
-        `(:id ,(parse-integer (subseq (subseq sub-directory 0 ; Frankly this is unsafe,
-                                            (1- (length sub-directory))) ; but thankfully it's well defined to have invalid subsequences apparently.
-                                    (1+ (position #\/ sub-directory ; I can fix this later though I guess.
-                                                  :from-end t
-                                                  :end (1- (length sub-directory))))))
+  (loop for sub-directory in (get-game-directories directory) collect
+        `(:id ,(extract-id-from-game-directory sub-directory)
           :directory ,sub-directory)))
 
 (defun generate-game-cards ()
@@ -214,7 +222,7 @@
     (html->file
      (format nil "~a/index.html" directory)
      (with-common-page-template
-       :depth 3
+       :depth 2
        :page-title (name (game-database-add id))
        :body `(
                (,@(page-content
@@ -239,8 +247,14 @@
          (directory (getf mapping :directory)))
 	(generate-game-landing-page directory id)))
 
+(defun mappings->links (mappings)
+  (map 'list
+       (lambda (item)
+         `(:current ,(concatenate 'string (getf item :directory) "index.html")))
+       mappings))
+
 (defun build ()
-  (loop for mapping in (game-directory&id-mappings "games/") do
+  (loop for mapping in (game-directory&id-mappings "./.") do
     (game-database-add (getf mapping :id))
     (generate-pages-for mapping))
 
@@ -248,7 +262,7 @@
    "index.html"
    (let* (;; (blog-listing-and-links
           ;;   (sorted-list-of-blog-listing-links "./text/"))
-          (dum 0)
+          (modeline-links (mappings->links (game-directory&id-mappings "./.")))
           ;; (listing-tags
           ;;   (loop for item in blog-listing-and-links collect (getf item :tag)))
           ;; (links
@@ -257,7 +271,7 @@
      (with-common-page-template
        :page-title "Game Diary"
        :current-link-text "index.html"
-       ;; :modeline-links links
+       :modeline-links modeline-links
        :body
        `(,@(page-content
             "Jerry's Game Diary"

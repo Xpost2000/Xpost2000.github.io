@@ -62,9 +62,8 @@
          (let* ((current-link (getf link :current))
                 (adjusted-pathname (concatenate 'string "pages/" (%adjusted-pathname% current-link)))
                 (blog-page (generate-blog-page current-link links link)))
-           (list
-            :link link
-            :tag `(:a ((:href ,adjusted-pathname)) (:p ,(getf blog-page :title)))))))
+           (list :link link
+                 :page blog-page))))
 
 (defun directory-files-sorted-by-blog-date (directory)
   (loop for item in
@@ -87,9 +86,19 @@
                    sorted-listing)
         collect (first item)))
 
+;; Do note this does more work than it says it does!
+;; this is not usual for me to write! So whoops!
 (defun sorted-list-of-blog-listing-links (blog-directory)
   (generate-pages-and-listings
    (page-links (directory-files-sorted-by-blog-date blog-directory))))
+
+(defun text-link->page-link (original-link)
+  (labels ((convert-path (original-path)
+             (when original-path
+               (format nil "pages/~a.html" (pathname-name original-path)))))
+    `(:current ,(convert-path (getf original-link :current))
+      :previous  ,(convert-path (getf original-link :previous))
+      :next ,(convert-path (getf original-link :next)))))
 
 (defun build ()
   (html->file
@@ -97,9 +106,16 @@
    (let* ((blog-listing-and-links
             (sorted-list-of-blog-listing-links "./text/"))
           (listing-tags
-            (loop for item in blog-listing-and-links collect (getf item :tag)))
+            (loop for item in blog-listing-and-links
+                  collect
+                  (let* ((adjusted-path (text-link->page-link (getf item :link)))
+                         (page (getf item :page))
+                         (page-title (getf page :title)))
+                    `(:a ((:href ,(getf adjusted-path :current)))
+                         (:p ,page-title)))))
           (links
-            (loop for item in blog-listing-and-links collect (getf item :link))))
+            (map 'list #'text-link->page-link
+                 (loop for item in blog-listing-and-links collect (getf item :link)))))
      (with-common-page-template
        :page-title "Blog"
        :current-link-text "index.html"

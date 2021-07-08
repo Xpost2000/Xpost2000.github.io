@@ -31,6 +31,9 @@
    (short-description
     :accessor description
     :initarg :description)
+   (jerry-comments
+    :accessor jerry-comments
+    :initarg :comments)
    (thumbnail
     :accessor thumbnail
     :initarg :thumbnail)
@@ -90,6 +93,11 @@
   (or (gethash appid *game-database*)
       (setf (gethash appid *game-database*)
             (steam-game-info-of appid))))
+
+(defun game-database-add-comment-to (appid comment)
+  (setf (comment (game-database-add appid))
+        comment))
+
 (game-database-clear)
 
 ;; make game cards based off my directory.
@@ -171,16 +179,35 @@
                                                   :end (1- (length sub-directory))))))
           :directory ,sub-directory)))
 
-;; build game database
-(loop for mapping in (game-directory&id-mappings "games/") do
-  (game-database-add (getf mapping :id)))
+(defun generate-game-cards ()
+  `(:ul
+    ((:id "project-listing"))
+    ,(loop for key being the hash-keys of *game-database*
+          collect
+          (let ((game (game-database-add key)))
+            `(:li
+              ((:p ((:class "project-title")) ,(name game))
+               (:div ((:class "project-description"))
+                     ((:img ((:class "project-thumb")
+                             (:src ,(thumbnail game))) "")
+                      (:h2 "Release Date:")
+                      (:p ,(release-date game))
+                      (:h2 "Developed By: ")
+                      (:p ,(reduce (lambda (accumulator string)
+                                     (concatenate 'string accumulator " " string))
+                                   (developers game)))
+                      (:h2 "Published By: ")
+                      (:p ,(reduce (lambda (accumulator string)
+                                     (concatenate 'string accumulator " " string))
+                                   (publishers game)))
+                      (:p ,(description game))))))))))
 
-(loop for key being the hash-keys of *game-database* do
-  (print (game-database-add key))
-  (print key))
+(generate-game-cards)
 
 (defun build ()
-  (game-database-clear)
+  (loop for mapping in (game-directory&id-mappings "games/") do
+    (game-database-add (getf mapping :id)))
+
   (html->file
    "index.html"
    (let* (;; (blog-listing-and-links
@@ -208,8 +235,14 @@
                   ""
                   "Since I will write down whatever happens. It is likely I will start the diary with games in the middle of playthroughs"
                   "because for obvious reasons I'm not going to replay the game just to get a more honest overview."
+                  ""
+                  "Click on any of the games to be taken to their respective diary pages if they exist!"
+                  "NOTE: these are obviously going to be lots of reading, so try to not read multiple of them. I may not be able to write"
+                  "fanfictions, but this is as close as I can get."
+                  ""
                   )
             '(:p (:b "Listing: "))
+            (generate-game-cards)
             #|
             	Considering all I use the API key for is, is simply to just query basic game information
 		since scraping Steam is difficult (and probably not allowed anyhow...)
@@ -221,4 +254,6 @@
             '(:br)
             ;; listing-tags
             ))))))
+(game-database-clear)
 (build)
+"

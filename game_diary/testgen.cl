@@ -196,8 +196,9 @@
             `(:div  ((:class "game-card"))
                ((:p ((:class "game-title")) ,(name game))
                 (:div ((:class "game-description"))
-                      ((:img ((:class "game-thumb")
-                              (:src ,(thumbnail game))) "")
+                      ((:a ((:href ,(format nil "game_~a/index.html" key)))
+                           ((:img ((:class "game-thumb")
+                                   (:src ,(thumbnail game))) "")))
                        (:div ((:class "game-development-information"))
                              ((:h2 "Release Date:")
                               (:p ,(release-date game))
@@ -229,13 +230,6 @@
                    (name (game-database-add id))
                    (or comments "I have either not played this yet, or I have no comments yet.")
                    '(:p (:b "Listing: "))
-                   #|
-                   Considering all I use the API key for is, is simply to just query basic game information
-                   since scraping Steam is difficult (and probably not allowed anyhow...)
-                   
-                   I'm not extremely concerned with losing it since there's very little harm it can do, considering
-                   how easy it is to obtain one.
-                   |#
                    '(:script ((:src "page.js")) "")
                    '(:br)
                    ;; listing-tags
@@ -263,8 +257,6 @@
    (let* (;; (blog-listing-and-links
           ;;   (sorted-list-of-blog-listing-links "./text/"))
           (modeline-links (mappings->links (game-directory&id-mappings "./.")))
-          ;; (listing-tags
-          ;;   (loop for item in blog-listing-and-links collect (getf item :tag)))
           ;; (links
           ;;   (loop for item in blog-listing-and-links collect (getf item :link)))
           )
@@ -293,16 +285,7 @@
                   )
             '(:p (:b "Listing: "))
             (generate-game-cards)
-            #|
-            	Considering all I use the API key for is, is simply to just query basic game information
-		since scraping Steam is difficult (and probably not allowed anyhow...)
-            
-		I'm not extremely concerned with losing it since there's very little harm it can do, considering
-		how easy it is to obtain one.
-            |#
             '(:script ((:src "page.js")) "")
-            '(:br)
-            ;; listing-tags
-            ))))))
+            '(:br)))))))
 (game-database-clear)
 (build)

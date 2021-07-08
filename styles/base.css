@@ -11,7 +11,7 @@
     margin: 0;
     padding: 0;
     font-size: 16px;
-	font-family: GNUUnifont;
+    font-family: GNUUnifont;
 }
 
 ::selection {
@@ -38,12 +38,12 @@ body {
     margin-bottom: 20vh;
     margin-left: 1.2em;
     line-height: 1.2em;
-    width: 65%;
+    width: 75%;
 }
 
 @media(max-width: 650px) {
     .body-container {
-        width: 80%;
+        width: 90%;
     }
 }
 
@@ -155,6 +155,9 @@ body {
     color: var(--title-major-color);
 }
 
+/*
+  PROJECTS PAGE
+*/
 #project-listing {
     display: flex;
     flex-flow: column;
@@ -195,6 +198,71 @@ body {
     }
 }
 
+/*
+  Game diary stuff
+
+  Grr, this one's going to be difficult for me to get right...
+  This looks okay unless it's an iPad basically.
+*/
+#game-listing {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.game-card {
+    max-width: 500px;
+    margin-right: 4em;
+    flex: 1 1 400px;
+}
+
+.game-title {
+    color: var(--project-title-face);
+}
+
+.game-thumb {
+    width: 150px;
+    float: left;
+    padding: 0.5em; 
+    margin: 0.5em;
+}
+
+.game-development-information {
+    color: yellow;
+    margin-right: 0.7em;
+    margin-bottom: 0.7em;
+    text-align: right;
+}
+
+.game-description {
+    display: flow-root;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--primary-face);
+    
+    width: 100%;
+    max-width: 700px;
+}
+
+@media(max-width: 550px) {
+    #game-listing {
+        width: 120%;
+    }
+    .game-development-information h2 {
+        font-size: 0.8em;
+    }
+    .game-thumb {
+        width: 130px;
+        margin: 0.5em;
+        padding: 0.5em;
+    }
+
+    .game-description p {
+        font-size: 0.9rem;
+    }
+}
+/*
+  links lmao
+*/
 a:link {color: var(--link-color);}
 a:visited{color: var(--link-visited-color);}
 a:hover, a:active{color: var(--link-active-color);}

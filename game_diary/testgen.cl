@@ -180,27 +180,28 @@
           :directory ,sub-directory)))
 
 (defun generate-game-cards ()
-  `(:ul
-    ((:id "project-listing"))
+  `(:div
+    ((:id "game-listing"))
     ,(loop for key being the hash-keys of *game-database*
           collect
           (let ((game (game-database-add key)))
-            `(:li
-              ((:p ((:class "project-title")) ,(name game))
-               (:div ((:class "project-description"))
-                     ((:img ((:class "project-thumb")
-                             (:src ,(thumbnail game))) "")
-                      (:h2 "Release Date:")
-                      (:p ,(release-date game))
-                      (:h2 "Developed By: ")
-                      (:p ,(reduce (lambda (accumulator string)
-                                     (concatenate 'string accumulator " " string))
-                                   (developers game)))
-                      (:h2 "Published By: ")
-                      (:p ,(reduce (lambda (accumulator string)
-                                     (concatenate 'string accumulator " " string))
-                                   (publishers game)))
-                      (:p ,(description game))))))))))
+            `(:div  ((:class "game-card"))
+               ((:p ((:class "game-title")) ,(name game))
+                (:div ((:class "game-description"))
+                      ((:img ((:class "game-thumb")
+                              (:src ,(thumbnail game))) "")
+                       (:div ((:class "game-development-information"))
+                             ((:h2 "Release Date:")
+                              (:p ,(release-date game))
+                              (:h2 "Developed By: ")
+                              (:p ,(reduce (lambda (accumulator string)
+                                             (concatenate 'string accumulator " " string))
+                                           (developers game)))
+                              (:h2 "Published By: ")
+                              (:p ,(reduce (lambda (accumulator string)
+                                             (concatenate 'string accumulator " " string))
+                                           (publishers game)))))
+                       (:p ,(description game))))))))))
 
 (generate-game-cards)
 
@@ -256,4 +257,3 @@
             ))))))
 (game-database-clear)
 (build)
-"

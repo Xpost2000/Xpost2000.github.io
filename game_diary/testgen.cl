@@ -223,11 +223,13 @@
        mappings))
 
 (defun build ()
-  (game-database-load-from-disk "game-cache.cl")
+  ;; Unfortunately lisp seems to have weird issues when reprinting out the website text...
+  ;; cache has been disabled until I decide to fix this since it's still fast enough for what I care about.
+  ;; (game-database-load-from-disk "game-cache.cl")
   (loop for mapping in (game-directory&id-mappings "./.") do
     (game-database-add (getf mapping :id))
     (generate-pages-for mapping))
-  (game-database-cache-to-disk "game-cache.cl")
+  ;; (game-database-cache-to-disk "game-cache.cl")
 
   (html->file
    "index.html"

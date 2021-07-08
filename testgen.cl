@@ -48,6 +48,7 @@
                                            ;; too lazy to do it today.
                                             (list
                                              "./blog/index.html"
+                                             "./game_diary/index.html"
                                              "./projects/index.html"
                                              "./web-projects/index.html"))
         ,(script-tag 0)))))))

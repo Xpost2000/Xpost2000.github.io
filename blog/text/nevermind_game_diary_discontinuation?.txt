@@ -18,7 +18,6 @@ just doing a basic
  ALSO TODO: get highlight.js or something. I kind of wish it would do AST based highlighting instead
  of regex highlighting though, since AST can be more accurate. Oh well.)
 
-<pre><code class="language-lisp">
 (let ((blog (install-blog "./text/"))
       (listings (generate-page-links blog))
       (links (map 'list #'text-link->page-link (loop for item in blog collect (getf item :link)))))
@@ -30,12 +29,10 @@ just doing a basic
          ;; although this is meant to store a pgae index.
          ;; GENERATE-PAGE-LINKS, generates all the pages as well. I should probably separate that out.
          ))
-</code></pre>
 
 So outside of maybe naming reasons, it's pretty usable. I could probably compact installing blog instances into a full function to
 just instantiate blogs through this. And setup some stuff so like
 
-<pre><code class="language-lisp">
 ;; This would install my full blog instance plus batch script CMS
 ;; so it would create copies of my scripts to write-blog-entry and just source
 ;; them into my .bashrc so I could just invoke them anywhere... This seems to actually
@@ -44,4 +41,3 @@ just instantiate blogs through this. And setup some stuff so like
 
 ;; Even better, since this uses vim I could ssh and write blog entries too, so that's cool.
 (install-blog-instance "text-location" "output-location")
-</code></pre>

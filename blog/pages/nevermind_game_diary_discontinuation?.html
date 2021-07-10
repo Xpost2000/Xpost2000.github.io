@@ -1,0 +1,283 @@
+<HTML>
+<HEAD>
+<SCRIPT src = "../../scripts/site_theming.js" type = "text/javascript" >
+</SCRIPT>
+
+
+<LINK rel = "stylesheet" href = "../../styles/common/theme_selector.css" >
+</LINK>
+
+
+<LINK rel = "shortcut icon" href = "../../favicon.ico" type = "image/x-icon" >
+</LINK>
+
+
+<META http-equiv = "content-type" content = "text/html; charset=utf-8" >
+</META>
+
+
+<META name = "viewport" content = "width=device-width, initial-scale=1" >
+</META>
+
+
+<TITLE>
+Nevermind Game Diary Discontinuation? - Jerry Zhu / Xpost2000</TITLE>
+
+
+</HEAD>
+
+
+<BODY>
+<DIV class = "body-container" >
+<H1>
+Nevermind Game Diary Discontinuation?</H1>
+
+
+<P>
+<B>
+Date Published</B>
+
+
+<SPAN style = "background-color: yellow; color: black;" >
+(07/10/2021 01:01 PM)</SPAN>
+
+
+</P>
+
+
+<BR/>
+
+<P>
+For obvious reasons it's probably too cumbersome to record what is essentially a playthrough</P>
+
+
+<P>
+using just text.</P>
+
+
+<BR/>
+
+<P>
+So I'll probably just use it to store some interesting or noteworthy moments from those games.</P>
+
+
+<BR/>
+
+<P>
+Instead of a fullplaythrough-isque thing like I thought I was going to do. Somehow it takes a few hours</P>
+
+
+<P>
+to get a mediocre piece of text to describe an hour of text.</P>
+
+
+<BR/>
+
+<P>
+Writing is hard, who knew?</P>
+
+
+<BR/>
+
+<P>
+Anyways at least it got me to refactor the blog generation code to be much easier since now it's basically</P>
+
+
+<P>
+just doing a basic</P>
+
+
+<BR/>
+
+<P>
+(Please work correctly. I have no idea how this might show up</P>
+
+
+<P>
+ ALSO TODO: get highlight.js or something. I kind of wish it would do AST based highlighting instead</P>
+
+
+<P>
+ of regex highlighting though, since AST can be more accurate. Oh well.)</P>
+
+
+<BR/>
+
+<P>
+<pre><code class="language-lisp"></P>
+
+
+<P>
+(let ((blog (install-blog "./text/"))</P>
+
+
+<P>
+      (listings (generate-page-links blog))</P>
+
+
+<P>
+      (links (map 'list #'text-link->page-link (loop for item in blog collect (getf item :link)))))</P>
+
+
+<P>
+    (with-common-page-template</P>
+
+
+<P>
+        :page-title "title here"</P>
+
+
+<P>
+        :current-link-text "minibuffer-text"</P>
+
+
+<P>
+        :body </P>
+
+
+<P>
+         ;; some list that represents HTML, which I can get from the blog files.</P>
+
+
+<P>
+         ;; although this is meant to store a pgae index.</P>
+
+
+<P>
+         ;; GENERATE-PAGE-LINKS, generates all the pages as well. I should probably separate that out.</P>
+
+
+<P>
+         ))</P>
+
+
+<P>
+</code></pre></P>
+
+
+<BR/>
+
+<P>
+So outside of maybe naming reasons, it's pretty usable. I could probably compact installing blog instances into a full function to</P>
+
+
+<P>
+just instantiate blogs through this. And setup some stuff so like</P>
+
+
+<BR/>
+
+<P>
+<pre><code class="language-lisp"></P>
+
+
+<P>
+;; This would install my full blog instance plus batch script CMS</P>
+
+
+<P>
+;; so it would create copies of my scripts to write-blog-entry and just source</P>
+
+
+<P>
+;; them into my .bashrc so I could just invoke them anywhere... This seems to actually</P>
+
+
+<P>
+;; provide a neat way of producing blog entries, since it hasn't bothered me yet, and seems</P>
+
+
+<P>
+;; pretty fast and easy to do.</P>
+
+
+<BR/>
+
+<P>
+;; Even better, since this uses vim I could ssh and write blog entries too, so that's cool.</P>
+
+
+<P>
+(install-blog-instance "text-location" "output-location")</P>
+
+
+<P>
+</code></pre></P>
+
+
+<BR/>
+
+<P>
+View the plaintext version <a href="../text/nevermind_game_diary_discontinuation.txt">here</a></P>
+
+
+</DIV>
+
+
+<DIV id = "ugly-ass-gutter" >
+</DIV>
+
+
+<DIV class = "modeline-holder" >
+<DIV id = "mini-buffer-autocompletion" >
+<P>
+Click on a link to be taken to the page!</P>
+
+
+<BR/>
+
+<UL id = "mini-buffer-links" >
+<LI>
+<A href = "#" >
+./.</A>
+
+</LI>
+
+
+<LI>
+<A href = "../index.html" >
+./..</A>
+
+</LI>
+
+
+
+<LI>
+<A href = "yay_more_cms-ish_things.html" >
+./previous_entry</A>
+
+</LI>
+
+
+</UL>
+
+
+<BR/>
+
+</DIV>
+
+
+<DIV class = "mode-bar" >
+          <pre>U--- <b>nevermind_game_diary_discontinuation.html&lt<a href="../index.html" style="text-decoration:none">xpost2000.github.io</a>&gt</b> All (0, 0) [NORMAL] (HTML+)</pre></DIV>
+
+
+<DIV class = "mini-buffer" id = "mini-buffer-main" >
+<PRE>
+blog-page<span class="blinking-cursor">█</span></PRE>
+
+
+</DIV>
+
+
+</DIV>
+
+
+<SCRIPT src = "../../scripts/site.js" type = "text/javascript" >
+</SCRIPT>
+
+
+</BODY>
+
+
+</HTML>
+

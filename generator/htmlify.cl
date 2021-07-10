@@ -55,6 +55,9 @@
   (let ((backslashes (repeat "../" depth)))
     `(:head
       (,(script-tag depth "scripts/site_theming.js")
+       ;; TODO load base and default.css here.
+       ;; this should be the bare minimum to allow no javascript.
+       ;; the modeline also needs to be changed very slightly to allow noscript.
        (:link ((:rel "stylesheet") (:href ,(format nil "~astyles/common/theme_selector.css" backslashes))) "")
        ,@extra
        (:link ((:rel "shortcut icon") (:href ,(format nil "~afavicon.ico" backslashes)) (:type "image/x-icon")) "")

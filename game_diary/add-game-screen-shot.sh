@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 # This one will not commit like the other XCMS stuff.
 # this is meant to be used while writing or something like
 # that.

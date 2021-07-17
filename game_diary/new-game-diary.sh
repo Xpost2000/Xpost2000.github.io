@@ -1,4 +1,4 @@
-
+#!/usr/bin/bash
 # I may replace xcms with a real programming language instead of bash
 # since I suck at writing bash scripts, but sbcl might take too long to run.
 # using C might be even faster lol.

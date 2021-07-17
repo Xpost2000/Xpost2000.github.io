@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/bash
 
 # Unfortunately we need to set current directory first unfortunately.
 

@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 echo "Game Id(steamid)[ CTRL-C to leave ]"
 read setup_entry_name
 

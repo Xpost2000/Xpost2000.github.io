@@ -1,0 +1,43 @@
+Nevermind Game Diary Discontinuation?
+07/10/2021 01:01 PM
+
+For obvious reasons it's probably too cumbersome to record what is essentially a playthrough
+using just text.
+
+So I'll probably just use it to store some interesting or noteworthy moments from those games.
+
+Instead of a fullplaythrough-isque thing like I thought I was going to do. Somehow it takes a few hours
+to get a mediocre piece of text to describe an hour of text.
+
+Writing is hard, who knew?
+
+Anyways at least it got me to refactor the blog generation code to be much easier since now it's basically
+just doing a basic
+
+(Please work correctly. I have no idea how this might show up
+ ALSO TODO: get highlight.js or something. I kind of wish it would do AST based highlighting instead
+ of regex highlighting though, since AST can be more accurate. Oh well.)
+
+(let ((blog (install-blog "./text/"))
+      (listings (generate-page-links blog))
+      (links (map 'list #'text-link->page-link (loop for item in blog collect (getf item :link)))))
+    (with-common-page-template
+        :page-title "title here"
+        :current-link-text "minibuffer-text"
+        :body 
+         ;; some list that represents HTML, which I can get from the blog files.
+         ;; although this is meant to store a pgae index.
+         ;; GENERATE-PAGE-LINKS, generates all the pages as well. I should probably separate that out.
+         ))
+
+So outside of maybe naming reasons, it's pretty usable. I could probably compact installing blog instances into a full function to
+just instantiate blogs through this. And setup some stuff so like
+
+;; This would install my full blog instance plus batch script CMS
+;; so it would create copies of my scripts to write-blog-entry and just source
+;; them into my .bashrc so I could just invoke them anywhere... This seems to actually
+;; provide a neat way of producing blog entries, since it hasn't bothered me yet, and seems
+;; pretty fast and easy to do.
+
+;; Even better, since this uses vim I could ssh and write blog entries too, so that's cool.
+(install-blog-instance "text-location" "output-location")

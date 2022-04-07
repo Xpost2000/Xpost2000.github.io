@@ -50,7 +50,9 @@
                                              "./blog/index.html"
                                              "./game_diary/index.html"
                                              "./projects/index.html"
-                                             "./web-projects/index.html"))
+                                             ;; NOTE(jerry): un-updated link
+                                             ;; "./web-projects/index.html"
+                                             ))
         ,(script-tag 0)))))))
 
 (build)

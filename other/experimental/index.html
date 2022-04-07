@@ -1,0 +1,361 @@
+<!-- TODO(jerry): replace all custom attributes with data- prefix! -->
+<!-- For some reason the school computers don't actually like the glitch CDN. So I'm just going to inconspicuously add this to my
+actual github website, and redirect all the links to point to github... Since that is always okay... LOL -->
+<!--
+     This is going to be a single page website.
+
+     (REQUIRES QUIRKS MODE, THIS IS MEANT TO BE EXTREMELY UNIQUE.)
+
+     Mostly cause it fits the aesthetic that I want.
+
+     This means it *requires* javascript, otherwise it would not be possible
+     to view this website.
+
+     Much like my slideshow website setup, this works by using multiple
+     divs since it would be absolutely insane to work this out using javascript
+     generation.
+
+     I abuse class querying and the fact that HTML is not a strict standard (ergo I can
+     feel free to use custom attributes that theoretically do nothing).
+
+     I can abuse this with custom tags, however I would have to basically "sub replace elements",
+     and that would just be a pain in the ass.
+
+     I should've thought of a better DSL but this is good enough.
+-->
+<html>
+  <head>
+    <script>
+     /* alert("For the full experience. Please go in fullscreen!"); */
+    </script>
+
+    <script src="robco.js"></script>
+    <link rel="stylesheet" href="robco.css" />
+  </head>
+  <body>
+    <!--
+         The "login" Robco page, is strictly animated once, and is why this is a single page.
+         You can use this as a clever template for how this entire thing is constructed.
+    -->
+    <div class="page" id="intro-boot-up">
+      <p id="1intro1a" initial-delay="2" type-speed="0.19">BOOTING UP....</p>
+      <br>
+    </div>
+
+    <div class="page" id="intro-login">
+      <p id="intro1" initial-delay="1.2" type-speed="0.05">ROBCO INDUSTRIES UNIFIED OPERATING SYSTEM</p>
+      <p id="intro2" waitfor="intro1" type-speed="0.05">COPYRIGHT 2075-2077 ROBCO INDUSTRIES</p>
+      <br>
+      <br>
+      <br>
+      <br>
+      <p id="intro3" hack-override-human waitfor="intro2" initial-delay="0.4" type-speed="0.05">LOGIN: admin</p>
+      <p id="intro4" hack-override-human waitfor="intro3" initial-delay="0.0" type-speed="0.1">PSWRD: ***********</p>
+      <!-- *be hilarious if there was a way to annotate my html and have my js read the comments to do things lol* PLAY_SOUND("") -->
+      <br>
+      <p id="intro5" waitfor="intro4" initial-delay="0.2" type-speed="0.2">LOGGING IN</p>
+      <p id="intro6" waitfor="intro5" initial-delay="0.1" type-speed="0.3">......</p>
+      <p id="intro7" waitfor="intro6" type-speed="0.2">......</p>
+      <p id="intro8" waitfor="intro7" type-speed="0.1">......</p>
+      <p id="intro9" waitfor="intro8" type-speed="0.05">......</p>
+      <pre id="vtclogo" waitfor="intro9" type-speed="0.003">
+                      ██████████████
+                  ██████          ██████
+        ████████████      ██████      ████████████
+      ██              ██████████████              ██
+    ██              ██████      ██████              ██
+  ██████████████    ████          ████    ██████████████
+██                ████              ████                ██
+██                ████              ████                ██
+  ██████████████    ████          ████    ██████████████
+    ██              ██████      ██████              ██
+      ██              ██████████████              ██
+        ████████████      ██████      ████████████
+                  ██████          ██████
+                      ██████████████
+     _   _   ___   _   _  _    _____  _____  _____  _____ 
+    | | | | / _ \ | | | || |  |_   _||_   _||  ___|/  __ \
+    | | | |/ /_\ \| | | || |    | |    | |  | |__  | /  \/
+    | | | ||  _  || | | || |    | |    | |  |  __| | |    
+    \ \_/ /| | | || |_| || |____| |    | |  | |___ | \__/\
+     \___/ \_| |_/ \___/ \_____/\_/    \_/  \____/  \____/
+       Revolutionizing safety for an uncertain future
+      </pre>
+      <p waitfor="vtclogo" type-speed="0.15" initial-delay="2">PLEASE WAIT....</p>
+    </div>
+
+    <div class="page" id="main-menu">
+      <img src="vby.png" width="10%"></img>
+      <p id="headbar" type-speed="0.07">WELCOME OVERSEER!</p>
+      <p id="menu-random-quote" type-speed="0.03">*insert random quote*</p>
+      <p waitfor="headbar menu-random-quote" type-speed="0.01">==================================================</p>
+      <p waitfor="menu-random-quote" type-speed="0.03"><a href="javascript:enter_page('about-site');">ABOUT THIS SITE (BEHIND THE SCENES)</a></p>
+      <p waitfor="menu-random-quote" type-speed="0.03"><a href="javascript:enter_page('about-me');">ABOUT ME</a></p>
+      <p waitfor="menu-random-quote" type-speed="0.03"><a href="javascript:enter_page('games');">GAMES</a></p>
+      <p waitfor="menu-random-quote" type-speed="0.03"><a href="javascript:enter_page('rp2');">OVERSEER S.P.E.C.I.A.L. BRIEFINGS</a></p>
+      <p waitfor="menu-random-quote" type-speed="0.03"><a href="javascript:enter_page('terminal');">ADMINISTRATION TERMINAL PROMPT</a></p>
+      <p waitfor="menu-random-quote" type-speed="0.03"><a href="javascript:enter_page('colorpick');">(ONLY HERE)COLOR SETTINGS</a></p>
+    </div>
+
+    <div class="page" id="404errorpageohnononononononononono">
+      <p id="4041" initial-delay="0.3" type-speed="0.05">
+        Error... Corrupted system file?
+      </p>
+      <p waitfor="4041" initial-delay="0.2" type-speed="0.03">
+        Please return to the main file system.
+        <br> <br>
+        <a href="javascript:enter_page('main-menu');">OKAY</a>
+      </p>
+    </div>
+
+    <!-- Actual pages. Which for now are copied and pasted constantly. -->
+    <div class="page" id="colorpick">
+      <nav type-speed="0.04">
+        <li><a href="javascript:enter_page('main-menu')">MAIN</a></li>
+        <li><a href="javascript:enter_page('about-me')">ABOUT</a></li>
+        <li><a href="javascript:enter_page('about-site')">B.T.S.</a></li>
+        <li><a href="javascript:enter_page('games')">GAMES</a></li>
+        <li><a href="javascript:enter_page('rp2')">S.P.E.C.I.A.L</a></li>
+        <li><a href="javascript:enter_page('terminal')">TERM</a></li>
+      </nav>
+      <br>
+      <br>
+      <p id="12345" type-speed="0.1">Here you can pick some colorschemes for your RobCo Personal Computer. These are based off of colors from Fallout 3.</p>
+      <p id="123456" waitfor="12345" type-speed="0.1">You can feel free to change them anytime. They will persist across reloads.</p>
+      <br><br>
+      <ul waitfor="123456" type-speed="0.04">
+        <li><a href="javascript:set_color_preference('fo3green')">CAPITAL WASTELAND GREEN</a></li>
+        <li><a href="javascript:set_color_preference('fonvamber')">NEW VEGAS AMBER</a></li>
+        <li><a href="javascript:set_color_preference('fo3blue')">PHOSPHOR BLUE</a></li>
+        <li><a href="javascript:set_color_preference('fo3white')">ANCHORAGE WHITE</a></li>
+      </ul>
+    </div>
+
+    <div class="page" id="about-site">
+      <nav type-speed="0.04">
+        <li><a href="javascript:enter_page('main-menu')">MAIN</a></li>
+        <li><a href="javascript:enter_page('about-me')">ABOUT</a></li>
+        <li><a href="javascript:enter_page('about-site')">B.T.S.</a></li>
+        <li><a href="javascript:enter_page('games')">GAMES</a></li>
+        <li><a href="javascript:enter_page('rp2')">S.P.E.C.I.A.L</a></li>
+        <li><a href="javascript:enter_page('terminal')">TERM</a></li>
+      </nav>
+      <br>
+      <br>
+      <p type-speed="0.05">
+        This website isn't particularly interesting in terms of code, though for being produced with nothing but standard JS, HTML, and CSS it may be impressive in that front.
+        <br>
+        <br>
+        It's designed with a pretty standard hash-router setup for an SPA. The animation is done the exact same way I would've done so with a game, with slight accomodations made to account for
+        the retained UI paradigm that's on the web. The rest is done through CSS, which is actually really minimal. Most of the effects come from a looping video in the background as well as a screen-size
+        tinting rectangle.
+        <br>
+        <br>
+        Like my actual website, care was taken to make pages only take one screenful, so as to avoid breaking immersion.
+      </p>
+    </div>
+    <div class="page" id="rp2">
+      <nav type-speed="0.04">
+        <li><a href="javascript:enter_page('main-menu')">MAIN</a></li>
+        <li><a href="javascript:enter_page('about-me')">ABOUT</a></li>
+        <li><a href="javascript:enter_page('about-site')">B.T.S.</a></li>
+        <li><a href="javascript:enter_page('games')">GAMES</a></li>
+        <li><a href="javascript:enter_page('rp2')">S.P.E.C.I.A.L</a></li>
+        <li><a href="javascript:enter_page('terminal')">TERM</a></li>
+      </nav>
+      <br>
+      <br>
+      <p id="exposition1a" type-speed="0.1">These are a list of important videos that should be shown to Vault Dwellers. Select each video from the list individually.</p>
+      <ul type-speed="0.1" waitfor="exposition1a">
+        <li><a href=javascript:enter_page('special-strength');>STRENGTH</a></li>
+        <li><a href=javascript:enter_page('special-perception');>PERCEPTION</a></li>
+        <li><a href=javascript:enter_page('special-endurance');>ENDURANCE</a></li>
+        <li><a href=javascript:enter_page('special-charisma');>CHARISMA</a></li>
+        <li><a href=javascript:enter_page('special-intelligence');>INTELLIGENCE</a></li>
+        <li><a href=javascript:enter_page('special-agility');>AGILITY</a></li>
+        <li><a href=javascript:enter_page('special-luck');>LUCK</a></li>
+      </ul>
+    </div>
+
+    <!-- I'm a bit tired to make the nav bar generate on all pages so I'm actually just copy and pasting it. It might even
+    still be copied and pasted by the time I present this. -->
+    <div class="page" id="special-strength">
+      <nav type-speed="0.04">
+        <li><a href="javascript:enter_page('main-menu')">MAIN</a></li>
+        <li><a href="javascript:enter_page('about-me')">ABOUT</a></li>
+        <li><a href="javascript:enter_page('about-site')">B.T.S.</a></li>
+        <li><a href="javascript:enter_page('games')">GAMES</a></li>
+        <li><a href="javascript:enter_page('rp2')">S.P.E.C.I.A.L</a></li>
+        <li><a href="javascript:enter_page('terminal')">TERM</a></li>
+      </nav>
+      <br>
+      <br>
+      <iframe width="90%" height="89%" src="https://www.youtube-nocookie.com/embed/Yuo7AuDGNN8?controls=0" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media;"></iframe>
+    </div>
+    <div class="page" id="special-perception">
+      <nav type-speed="0.04">
+        <li><a href="javascript:enter_page('main-menu')">MAIN</a></li>
+        <li><a href="javascript:enter_page('about-me')">ABOUT</a></li>
+        <li><a href="javascript:enter_page('about-site')">B.T.S.</a></li>
+        <li><a href="javascript:enter_page('games')">GAMES</a></li>
+        <li><a href="javascript:enter_page('rp2')">S.P.E.C.I.A.L</a></li>
+        <li><a href="javascript:enter_page('terminal')">TERM</a></li>
+      </nav>
+      <br>
+      <iframe width="90%" height="89%" src="https://www.youtube-nocookie.com/embed/Vw21X2jKwCM?controls=0" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media;"></iframe>
+    </div>
+    <div class="page" id="special-endurance">
+      <nav type-speed="0.04">
+        <li><a href="javascript:enter_page('main-menu')">MAIN</a></li>
+        <li><a href="javascript:enter_page('about-me')">ABOUT</a></li>
+        <li><a href="javascript:enter_page('about-site')">B.T.S.</a></li>
+        <li><a href="javascript:enter_page('games')">GAMES</a></li>
+        <li><a href="javascript:enter_page('rp2')">S.P.E.C.I.A.L</a></li>
+        <li><a href="javascript:enter_page('terminal')">TERM</a></li>
+        <iframe width="90%" height="89%" src="https://www.youtube-nocookie.com/embed/paYU1neP3xM?controls=0" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media;"></iframe>
+      </nav>
+      <br>
+      <br>
+      
+    </div>
+    <div class="page" id="special-charisma">
+      <nav type-speed="0.04">
+        <li><a href="javascript:enter_page('main-menu')">MAIN</a></li>
+        <li><a href="javascript:enter_page('about-me')">ABOUT</a></li>
+        <li><a href="javascript:enter_page('about-site')">B.T.S.</a></li>
+        <li><a href="javascript:enter_page('games')">GAMES</a></li>
+        <li><a href="javascript:enter_page('rp2')">S.P.E.C.I.A.L</a></li>
+        <li><a href="javascript:enter_page('terminal')">TERM</a></li>
+      </nav>
+      <br>
+      <br>
+      <iframe width="90%" height="89%" src="https://www.youtube-nocookie.com/embed/X95lZ56ddj4?controls=0" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media;"></iframe>
+    </div>
+    <div class="page" id="special-intelligence">
+      <nav type-speed="0.04">
+        <li><a href="javascript:enter_page('main-menu')">MAIN</a></li>
+        <li><a href="javascript:enter_page('about-me')">ABOUT</a></li>
+        <li><a href="javascript:enter_page('about-site')">B.T.S.</a></li>
+        <li><a href="javascript:enter_page('games')">GAMES</a></li>
+        <li><a href="javascript:enter_page('rp2')">S.P.E.C.I.A.L</a></li>
+        <li><a href="javascript:enter_page('terminal')">TERM</a></li>
+      </nav>
+      <br>
+      <br>
+      <iframe width="90%" height="89%" src="https://www.youtube-nocookie.com/embed/H6yt-43Vp1M?controls=0" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media;"></iframe>     
+    </div>
+    <div class="page" id="special-agility">
+      <nav type-speed="0.04">
+        <li><a href="javascript:enter_page('main-menu')">MAIN</a></li>
+        <li><a href="javascript:enter_page('about-me')">ABOUT</a></li>
+        <li><a href="javascript:enter_page('about-site')">B.T.S.</a></li>
+        <li><a href="javascript:enter_page('games')">GAMES</a></li>
+        <li><a href="javascript:enter_page('rp2')">S.P.E.C.I.A.L</a></li>
+        <li><a href="javascript:enter_page('terminal')">TERM</a></li>
+      </nav>
+      <br>
+      <br>
+      <iframe width="90%" height="89%" src="https://www.youtube-nocookie.com/embed/bQ_okO2tLN0?controls=0" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media;"></iframe>
+    </div>
+    <div class="page" id="special-luck">
+      <nav type-speed="0.04">
+        <li><a href="javascript:enter_page('main-menu')">MAIN</a></li>
+        <li><a href="javascript:enter_page('about-me')">ABOUT</a></li>
+        <li><a href="javascript:enter_page('about-site')">B.T.S.</a></li>
+        <li><a href="javascript:enter_page('games')">GAMES</a></li>
+        <li><a href="javascript:enter_page('rp2')">S.P.E.C.I.A.L</a></li>
+        <li><a href="javascript:enter_page('terminal')">TERM</a></li>
+      </nav>
+      <br>
+      <br>
+      <iframe width="90%" height="89%" src="https://www.youtube-nocookie.com/embed/Bke9wvob8Ls?controls=0" title="YouTube video player" frameborder="0" allow="autoplay; encrypted-media;"></iframe>
+    </div>
+
+    <div class="page" id="about-me">
+      <nav type-speed="0.04">
+        <li><a href="javascript:enter_page('main-menu')">MAIN</a></li>
+        <li><a href="javascript:enter_page('about-me')">ABOUT</a></li>
+        <li><a href="javascript:enter_page('about-site')">B.T.S.</a></li>
+        <li><a href="javascript:enter_page('games')">GAMES</a></li>
+        <li><a href="javascript:enter_page('rp2')">S.P.E.C.I.A.L</a></li>
+        <li><a href="javascript:enter_page('terminal')">TERM</a></li>
+      </nav>
+      <br>
+      <br>
+      <p id="me1" hack-override-human type-speed="0.1">Jerry Zhu</p>
+      <p id="me2" waitfor="me1" hack-override-human type-speed="0.1">Xpost2000</p>
+      <p id="me3" waitfor="me2" hack-override-human type-speed="0.1">Amateur Hour Game Programming</p>
+      <br>
+      <br>
+      <p id="me4" waitfor="me3" type-speed="0.05">
+        I kind of make video games (it's really more like engine programming at this point.) in C. I primarily program
+        with C, Common Lisp, or whenever I actually have to, use javascript or Python. While I have moderately interesting tech demos,
+        I don't have many *actual* completed games.
+      </p>
+      <br>
+      <p id="me5" waitfor="me4" initial-delay="0.3" type-speed="0.05">
+        As is obvious by this design, I don't like doing typical things or in a typical way even. My actual personal website
+        is much the same...
+      </p>
+      <br>
+      <p id="me6" waitfor="me5" initial-delay="0.1" type-speed="0.05">
+        Anyways, I love playing video games. In fact it's the reason I learned how to code, and I was inspired by the Dark Souls
+        franchise back when it first came out on Windows. I have a hankering for JRPGs right now, and old CRPGs. Once upon I time I
+        completed various challenge runs (informally) for Dark Souls 1 - 3, and Sekiro. I've completed the original God of War trilogy on
+        hard difficulty, and I beat Portal within 2 hours of purchase (which I couldn't refund because I bought the Orange Box.)
+      </p>
+      <br>
+      <p type-speed="0.1">Links!</p>
+      <ul type-speed="0.1">
+        <li><a href="http://xpost2000.github.io/">my actual website</a></li>
+        <li><a href="https://github.com/Xpost2000">my github account</a></li>
+        <li><a href="https://steamcommunity.com/id/1009235/">my steam account</a></li>
+      </ul>
+    </div>
+
+    
+    <!-- Semantic separation  -->
+    <div class="overlay-object" id="color-tinter">
+      <!-- This is a dummy rectangle for screen tinting -->
+    </div>
+    <div class="overlay-object" id="vfx-overlay">
+      <video loop autoplay muted>
+        <source src="loop.mp4">
+      </video>
+    </div>
+    <!-- This is the necessary website initialization code that I'm just keeping here so it's not related to "implementation" details -->
+    <script>
+     preload_assets();
+     setup_driver_page();
+     /* enter_page("intro-boot-up") */
+
+     /*
+        Basic website hashing here...
+      */
+     function unhash_location() {
+       return location.hash.substring(1);
+     }
+
+     /* 
+        stupid hack for initial routing. There's charm in an SPA, but this would be simplier if it were multiple
+        pages... Oh well. 
+     */
+     if (localStorage.getItem("colorpref")) {
+       set_color_preference(localStorage.getItem("colorpref"));
+     } else {
+       alert("no color pref");
+       set_color_preference("fo3green");
+     }
+
+     if (unhash_location() === "") {
+       enter_page("intro-boot-up");
+     } else {
+       enter_page(unhash_location());
+     }
+
+     window.addEventListener("hashchange", function (event) {
+       _enter_page(unhash_location());
+     });
+    </script>
+  </body>
+</html>

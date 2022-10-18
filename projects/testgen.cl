@@ -40,19 +40,14 @@
 ;; a meta program to meta program a website.
 ;; this is only wrapped in a progn to "scope"
 (defun build-preamble ()
-    (with-open-file (*standard-output* "projects-list1.cl"
-                                       :direction :output
-                                       :if-exists :supersede
-                                       :external-format :utf-8)
-      (print `(add-projects ,@(directory-file-structure->lisp-file))))
-  (load "projects-list.cl")
-  (load "projects-list1.cl"))
+  (load "projects-list.cl"))
 
 (defun build () 
   (build-preamble)
   (html->file
    "index.html"
    (with-common-page-template
+     :current-link-text "projects.html"
      :page-title "Projects"
      :body
      `((:h1 "My Projects")

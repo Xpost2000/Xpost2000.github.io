@@ -34,7 +34,7 @@
                  (loop for item in blog-listing-and-links collect (getf item :link)))))
      (with-common-page-template
        :page-title "Blog"
-       :current-link-text "index.html"
+       :current-link-text "blog.html"
        :modeline-links links
        :body
        `(,@(page-content

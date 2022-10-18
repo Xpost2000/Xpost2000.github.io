@@ -34,7 +34,7 @@
       (:body
        ((:div ((:id "head-container"))
               ((:h1 ((:id "header-title-id")) "Xpost2000")
-               (:h1 ((:id "sub-header-title-id")) "Jerry Zhu")
+               (:h1 ((:id "sub-header-title-id")) "Jerry Zhu<br><a href=\"https://www.github.com/Xpost2000\">github</a> <a href=\"https://xpost2000.itch.io/\">itch.io</a> <a href=\"https://www.linkedin.com/in/jerry-zhu-220133215/\">linkedin (not active)</a>")
                (:br)
                (:div ((:id "displays"))
                      ,(list (map 'list (lambda (s) `(:p ((:id "display")) (:b ,s))) *display-list*)))))

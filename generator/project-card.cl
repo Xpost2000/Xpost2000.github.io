@@ -21,18 +21,23 @@
    (thumbnail-source
     :initarg :thumbnail
     :accessor project-thumbnail-location
-    :initform (error "Please give me a thumbnail sirrah!"))))
+    :initform (error "Please give me a thumbnail sirrah!"))
+(link-source
+:initarg :link
+:accessor project-link-location
+:initform nil)))
 
 (defmethod print-object ((object project) stream)
   (print `(project :title ,(project-title object)
                    :description ,(project-description object)
                    :thumbnail ,(project-thumbnail-location object))
          stream))
-(defun project (&key title description thumbnail)
+(defun project (&key title description thumbnail link)
   (make-instance 'project
                  :title title
                  :description description
-                 :thumbnail thumbnail))
+                 :thumbnail thumbnail
+:link link))
 
 (defparameter *projects* '())
 (defun clear-projects ()

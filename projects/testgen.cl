@@ -30,7 +30,11 @@
   (map 'list
        (lambda (project)
          `(:li
-           ((:p ((:class "project-title")) ,(project-title project))
+           (
+            ,(if (project-link-location project)
+`(:a ((:href ,(project-link-location project)) (:class "project-title")) ,(project-title project))
+`(:p ((:class "project-title")) ,(project-title project)))
+
             (:div ((:class "project-description"))
              ((:img ((:class "project-thumb")
                      (:src ,(project-thumbnail-location project))) "")

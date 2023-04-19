@@ -46,6 +46,7 @@
                   "I'm probably going to just talk about whatever I find interesting."
                   "This is not a professional part of the website, this is literally just me typing anything at that current moment."
                   ""
+                  "As such my language is not entirely professional here, it's really more of a public diary if anything."
                   "Feel free to use the modeline as an alternate form of navigation."
                   )
             '(:p (:b "Listing: "))

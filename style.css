@@ -19,7 +19,12 @@
 #info-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 15vh;
+    margin-bottom: 2vh;
+}
+#quicklink-container {
+    display: flex;
+    justify-content: center;
+    height: 40vh;
 }
 
 #info {

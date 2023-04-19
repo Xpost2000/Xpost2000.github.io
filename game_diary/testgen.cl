@@ -254,9 +254,13 @@
                 "Also I might even forget to update, since I would like to enjoy myself playing these games. I do like sharing the experiences"
                 "but it might take longer to write these than it does for me to play a session lol. (The Mount and Blade was 1 hour of playtime and that
         	 took like 2 hours to write I think... Maybe a bit less or more.)"
+                ""
                 "Click on any of the games to be taken to their respective diary pages if they exist!"
+                ""
                 "NOTE: these are obviously going to be lots of reading, so try to not read multiple of them. I may not be able to write"
                 "fanfictions, but this is as close as I can get."
+                ""
+                "I have personally only written entries on Mount & Blade: Warband, so you can also consider this a \"favorites\" list."
                 ""
                 )
           '(:p (:b "Listing: "))

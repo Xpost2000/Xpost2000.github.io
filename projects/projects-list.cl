@@ -31,7 +31,7 @@
 :LINK "https://github.com/Xpost2000/wanderer-errata"
          :THUMBNAIL "projects/wanderer-rpg//wanderer.png") 
 
-(PROJECT :TITLE "stupid-slideshow" :DESCRIPTION
+(PROJECT :TITLE "slideshow-rs" :DESCRIPTION
          "This is a slideshow program written in Rust. It is resolution and aspect ratio independent, and utilizes a custom text based format vaguely inspired by MarkDown."
          ;; "This is a stupid slideshow program written in Rust. It is resolution and aspect ratio independent. It uses a text based format, as those are the most flexible format (just write a program to interpret them) as well as being extremely easy to share and transfer. It supports slide transitions and images, as well as basic layout. There is hot-reloading which alleviates that issue. The filebrowser included is primitive, and prone to breaking however the slideshow portion itself is fine. Some called it `jerry-slides`. I do not have many opportunities to use this as many presentations are often in group-work environments(as a student)."
 :LINK "https://github.com/Xpost2000/slideshow"

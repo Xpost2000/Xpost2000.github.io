@@ -170,18 +170,24 @@ body {
 #project-listing {
     display: flex;
     flex-flow: column;
+    /* flex-wrap: wrap; */
+    /* flex-flow: row-wrap; */
 }
 #project-listing li {
-    flex-grow: 1;
+    margin: 1.0em;
 }
 
 .project-title {
     color: var(--project-title-face);
+    padding: 0.5em;
+    font-size: 1.5em;
 }
 
+.body-container {
+    max-width: 600px;
+}
 .body-container .project-thumb {
-    width: 150px;
-    float: left;
+    width: 200px;
     padding: 0.5em; 
     margin: 0.5em;
 }
@@ -192,8 +198,8 @@ body {
     border-width: 1px;
     border-color: var(--primary-face);
     
-    width: 110%;
-    max-width: 700px;
+    width: 120%;
+    max-width: 800px;
 }
 
 @media(max-width: 550px) {

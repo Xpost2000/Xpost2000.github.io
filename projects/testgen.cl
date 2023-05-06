@@ -29,16 +29,23 @@
 (defun generate-project-cards (projects)
   (map 'list
        (lambda (project)
-         `(:li
-           (
-            ,(if (project-link-location project)
-`(:a ((:href ,(project-link-location project)) (:class "project-title")) ,(project-title project))
-`(:p ((:class "project-title")) ,(project-title project)))
-
+           `(
             (:div ((:class "project-description"))
-             ((:img ((:class "project-thumb")
-                     (:src ,(project-thumbnail-location project))) "")
-              (:p ,(project-description project)))))))
+                  (
+                   ,(if (project-link-location project)
+                        `(:b (:a ((:href ,(project-link-location project)) (:class "project-title")) ,(project-title project)))
+                      `(:b (:p ((:class "project-title")) ,(project-title project))))
+                   (:div 
+                    (
+                     (:a ((:href ,(project-link-location project)))
+                         (:img ((:class "project-thumb")
+                                (:src ,(project-thumbnail-location project))) ""))
+                     (:p ,(project-description project))))
+                   (:br)
+                   (:b (:p ,(concatenate 'string "Technologies Used: " (technologies project))))
+                   (:b (:p ,(concatenate 'string "Duration: " (duration project))))
+                   (:b (:p ,(concatenate 'string "Status: " (status project))))
+                   (:br)))))
        projects))
 
 ;; a meta program to meta program a website.
@@ -54,10 +61,17 @@
      :current-link-text "projects.html"
      :page-title "Projects"
      :body
-     `((:h1 "My Projects")
+     `((:h1 "My Projects / Portfolio")
        (:br)
-       (:p "Here is a card listing of my projects whether they be games or general software, they are summarized briefly on this page with a thumbnail.<br>Feel free to click on the card titles to learn more!")
-       (:p "Do note that this is not a comprehensive or complete list! A more accurate listing can be found just by sifting through my GitHub, as I update this website periodically!")
+       (:p "On this page you can find a brief summary of my projects, in varying states of completion.")
+       (:br)
+       (:p "This is primarily for my technical projects as opposed to my itch.io page which includes my complete public projects.")
+       (:br)
+       (:p
+        ("You can find my itch.io here: "
+         (:a ((:href "http://xpost2000.itch.io")) "itch.io")))
+       (:br)
+       (:p "Click on the titles or thumbnails for each card to be taken to a relevant page (either GitHub or itch.io) for a more comprehensive breakdown through a README.md for a write-up or a gameplay demo.")
        (:br)
        (:ul
         ((:id "project-listing"))

@@ -18,6 +18,18 @@
     :initarg :description
     :accessor project-description
     :initform (error "Please give me a description sirrah!"))
+   (technologies
+    :initarg :technologies
+    :accessor technologies
+    :initform (error "Please give me a list of technologies used sirrah!"))
+   (duration
+    :initarg :duration
+    :accessor duration
+    :initform (error "Please give me a duration used sirrah!"))
+   (status
+    :initarg :status
+    :accessor status
+    :initform (error "Please give me a status sirrah!"))
    (thumbnail-source
     :initarg :thumbnail
     :accessor project-thumbnail-location
@@ -32,10 +44,13 @@
                    :description ,(project-description object)
                    :thumbnail ,(project-thumbnail-location object))
          stream))
-(defun project (&key title description thumbnail link)
+(defun project (&key title description thumbnail link technologies duration status)
   (make-instance 'project
                  :title title
                  :description description
+                 :duration duration
+                 :technologies technologies
+                 :status status
                  :thumbnail thumbnail
 :link link))
 

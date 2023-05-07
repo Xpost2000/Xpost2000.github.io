@@ -43,7 +43,7 @@
                      (:p ,(project-description project))))
                    (:br)
                    (:b (:p ,(concatenate 'string "Technologies Used: " (technologies project))))
-                   (:b (:p ,(concatenate 'string "Duration: " (duration project))))
+                   (:b (:p ,(concatenate 'string "Date: " (duration project))))
                    (:b (:p ,(concatenate 'string "Status: " (status project))))
                    (:br)))))
        projects))

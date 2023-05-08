@@ -59,7 +59,7 @@ Jerry Zhu
 <br>
 <a href=\"https://www.github.com/Xpost2000\">github</a> <a href=\"https://xpost2000.itch.io/\">itch.io</a> <a href=\"https://www.linkedin.com/in/jerry-zhu-220133215/\">linkedin</a> <a href=\"./resumes/Jerry_Zhu_Resume.pdf\">resume</a>
 <br>
-<a href=\"./projects/index.html\">projects</a> <a href=\"./blog/index.html\">personal blog</a> 
+<a href=\"./projects/index.html\">projects</a>
 ")
                (:br)
                (:div ((:id "displays"))
@@ -79,7 +79,7 @@ Jerry Zhu
                                            ;; TODO(jerry): make this not automatically append .html
                                            ;; too lazy to do it today.
                                             (list
-                                             "./blog/index.html"
+                                             ;; "./blog/index.html"
                                              ;; "./game_diary/index.html"
                                              "./projects/index.html"
                                             ; "./art_gallery/index.html"

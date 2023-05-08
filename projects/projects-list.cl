@@ -64,6 +64,36 @@
           :STATUS "Complete")
 
  (PROJECT
+  :TITLE "TreeWatcher - Ludum Dare 46"
+  :LINK "https://xpost2000.itch.io/treewatcher-ld46"
+  :THUMBNAIL "projects/treewatcher//thumb.png"
+  :DESCRIPTION "An environmentalist tower defense game written in C++ with SDL2 in a weekend. The game features four different enemy types and three different types of turret units. The game is complete with a main menu and tutorial/instruction menu to learn how to play the game."
+  :TECHNOLOGIES "C++ SDL2"
+  :DURATION "April 2020 - (2 days)"
+  :STATUS "Released"
+  )
+
+ (PROJECT
+  :TITLE "L4DRL - 7 Day Roguelike"
+  :LINK "https://xpost2000.itch.io/l4drl7drl"
+  :THUMBNAIL "projects/l4drl//thumb.png"
+  :DESCRIPTION "A roguelike take on Left 4 Dead made in the Godot Game Engine in one week for the 7 Day Roguelike Challenge. This game effectively created a custom ASCII roguelike engine within Godot and features: raycast based visibility, Dijkstra map based pathfinding for mass actor support, and a simple map generation scheme. The 4 survivors of L4D are also present and have reasonably intelligent AI (they follow the player and know how to heal themselves.) This game features interpretations of all L4D1 special infected."
+  :TECHNOLOGIES "Godot Game Engine GDScript"
+  :DURATION "March 2021 - (7 Days)"
+  :STATUS "Released"
+  )
+
+ (PROJECT
+  :TITLE "Fateless Challenge"
+  :LINK "https://xpost2000.itch.io/fateless-challenge-minijam-83"
+  :THUMBNAIL "projects/fatelesschallenge//thumb.png"
+  :DESCRIPTION "A small wave-based survival game. This game was made in one week for minijam83 and was a take on the theme restriction which required dice. The main gameplay mechanic is the level layout which is randomized according to a dice as well as various player buffs or debuffs which are applied based on a set of randomly rolled adjectives."
+  :TECHNOLOGIES "Godot Game Engine GDScript"
+  :DURATION "June 2021 - (7 Days)"
+  :STATUS "Released"
+  )
+
+ (PROJECT
   :TITLE "2D Games Framework"
   :LINK "https://github.com/Xpost2000/2D-Game-Framework/blob/main/README.md"
   :THUMBNAIL "projects/2dframework//thumb.png"

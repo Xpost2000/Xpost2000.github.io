@@ -15,11 +15,11 @@
   '("Hello, and welcome to my personal/portfolio website!"
 
     "I'm Jerry Zhu, and I'm a software developer with focus in game programming and specifically engine development! I have been programming games since middle school, I enjoy working with and learning about various technologies."
-    "My skills primarily lie in C and C++, where I develop custom game engines and games with various technologies such as OpenGL or completely from scratch."
+    "My skills primarily lie in C and C++, where I develop games with custom engines/technology completely from scratch with C++/C. Personally I love programming when I can fully understand my entire program and have as much control as possible over my creation."
 
-    "Outside of programming engines and technology in C++ I am also a solo game developer, and a consistent participant in game jams whenever I have time in between studies. Since I find them a good way to exercise my creativity muscles."
+    "Outside of programming game engines and technology in C++ I am also a solo game developer, and a consistent participant in game jams whenever I have time in between studies. Since I find them a good way to exercise my creativity muscles."
 
-    "As a quick view of my work here are some of my released games. For a more in-depth look at my projects please visit the projects page for not only more information about some of these projects, but also a look at my technical projects as well!"
+    "As a quick view of my work here are some of my released games. For a more in-depth look at my projects (especially my technical ones) please visit the projects page for more information!"
     "
 <iframe src=\"https://itch.io/embed/1105211?bg_color=31211a&amp;fg_color=ffffff&amp;link_color=5b80fa&amp;border_color=333333\" width=\"552\" height=\"167\" frameborder=\"0\"><a href=\"https://xpost2000.itch.io/fateless-challenge-minijam-83\">Fateless Challenge [minijam 83] by Xpost2000</a></iframe>
 <iframe src=\"https://itch.io/embed/296634?bg_color=e7fecc&amp;fg_color=222222&amp;link_color=fa5c5c&amp;border_color=44a72e\" width=\"552\" height=\"167\" frameborder=\"0\"><a href=\"https://xpost2000.itch.io/killbot\">Killbot by Xpost2000</a></iframe>

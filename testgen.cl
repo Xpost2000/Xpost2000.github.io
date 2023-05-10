@@ -14,7 +14,7 @@
 (defparameter *info-text*
   '("Hello, and welcome to my personal/portfolio website!"
 
-    "I'm Jerry Zhu, and I'm a software developer with focus in game programming and specifically engine development! I enjoy working with and learning about various technologies."
+    "I'm Jerry Zhu, and I'm a software developer with focus in game programming and specifically engine development! I have been programming games since middle school, I enjoy working with and learning about various technologies."
     "My skills primarily lie in C and C++, where I develop custom game engines and games with various technologies such as OpenGL or completely from scratch."
 
     "Outside of programming engines and technology in C++ I am also a solo game developer, and a consistent participant in game jams whenever I have time in between studies. Since I find them a good way to exercise my creativity muscles."

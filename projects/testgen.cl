@@ -65,7 +65,6 @@
        (:br)
        (:p "On this page you can find a brief summary of my projects, in varying states of completion.")
        (:br)
-       (:p "<b>NOTE: unless specified, all of these projects are solo projects!")
        (:br)
        (:p "This is primarily for my technical projects as opposed to my itch.io page which includes my complete public projects.")
        (:br)

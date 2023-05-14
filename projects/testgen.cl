@@ -26,27 +26,6 @@
                                           (subseq lines 3))
                      :thumbnail (concatenate 'string directory "/" (second lines)))))))
 
-(defun generate-project-cards (projects)
-  (map 'list
-       (lambda (project)
-           `(
-            (:div ((:class "project-description"))
-                  (
-                   ,(if (project-link-location project)
-                        `(:b (:a ((:href ,(project-link-location project)) (:class "project-title")) ,(project-title project)))
-                      `(:b (:p ((:class "project-title")) ,(project-title project))))
-                   (:div 
-                    (
-                     (:a ((:href ,(project-link-location project)))
-                         (:img ((:class "project-thumb")
-                                (:src ,(project-thumbnail-location project))) ""))
-                     (:p ,(project-description project))))
-                   (:br)
-                   (:b (:p ,(concatenate 'string "Technologies Used: " (technologies project))))
-                   (:b (:p ,(concatenate 'string "Date: " (duration project))))
-                   (:b (:p ,(concatenate 'string "Status: " (status project))))
-                   (:br)))))
-       projects))
 
 ;; a meta program to meta program a website.
 ;; this is only wrapped in a progn to "scope"

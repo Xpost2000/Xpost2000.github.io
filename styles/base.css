@@ -201,6 +201,16 @@ body {
     width: 120%;
     max-width: 800px;
 }
+.fp-project-description {
+    display: flow-root;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--primary-face);
+}
+
+.fp-project-description .project-thumb {
+    width: 300px;
+}
 
 @media(max-width: 550px) {
     .project-thumb {

@@ -22,6 +22,10 @@
     :initarg :technologies
     :accessor technologies
     :initform (error "Please give me a list of technologies used sirrah!"))
+   (media
+    :initarg :media
+    :accessor media
+    :initform (error "Please give me a list of media used sirrah!"))
    (duration
     :initarg :duration
     :accessor duration
@@ -34,29 +38,94 @@
     :initarg :thumbnail
     :accessor project-thumbnail-location
     :initform (error "Please give me a thumbnail sirrah!"))
-(link-source
-:initarg :link
-:accessor project-link-location
-:initform nil)))
+   (link-source
+    :initarg :link
+    :accessor project-link-location
+    :initform nil)))
 
 (defmethod print-object ((object project) stream)
   (print `(project :title ,(project-title object)
                    :description ,(project-description object)
                    :thumbnail ,(project-thumbnail-location object))
          stream))
-(defun project (&key title description thumbnail link technologies duration status)
+(defun project (&key title description thumbnail link technologies duration status media)
   (make-instance 'project
                  :title title
                  :description description
                  :duration duration
                  :technologies technologies
                  :status status
+                 :media media
                  :thumbnail thumbnail
-:link link))
+                 :link link))
 
 (defparameter *projects* '())
 (defun clear-projects ()
   (setf *projects* '()))
+
+(defun find-project (name)
+  (find-if
+   #'(lambda (obj)
+       (string= (project-title obj) name))
+   *projects*))
+
 (defun add-projects (&rest projects)
   (dolist (project projects)
     (push project *projects*)))
+
+(defun generate-project-cards (projects)
+  (map 'list
+       (lambda (project)
+         `(
+           (:div ((:class "project-description"))
+                 (
+                  ,(if (project-link-location project)
+                       `(:b (:a ((:href ,(project-link-location project)) (:class "project-title")) ,(project-title project)))
+                     `(:b (:p ((:class "project-title")) ,(project-title project))))
+                  (:div 
+                   (
+                    (:a ((:href ,(project-link-location project)))
+                        (:img ((:class "project-thumb")
+                               (:src ,(project-thumbnail-location project))) ""))
+                    (:p ,(project-description project))))
+                  (:br)
+                  (:b (:p ,(concatenate 'string "Technologies Used: " (technologies project))))
+                  (:b (:p ,(concatenate 'string "Date: " (duration project))))
+                  (:b (:p ,(concatenate 'string "Status: " (status project))))
+                  (:br)))))
+       projects))
+
+(defun frontpage-generate-project-cards (projects)
+  (map 'list
+       (lambda (project)
+         `(
+           (:div ((:class "fp-project-description"))
+                 (
+                  ,(if (project-link-location project)
+                       `(:b (:a ((:href ,(project-link-location project)) (:class "project-title")) ,(project-title project)))
+                     `(:b (:p ((:class "project-title")) ,(project-title project))))
+                  (:div 
+                   ,(list
+                     `(
+                       (:a ((:href ,(project-link-location project)))
+                           (:img ((:class "project-thumb")
+                                  (:src ,(concatenate 'string "projects/" (project-thumbnail-location project)))) ""))
+                       ,@(map
+                          'list
+                          (lambda (s)
+                            `(:a ((:href ,(project-link-location project)))
+                                 (:img ((:class "project-thumb")
+                                        (:src ,(concatenate 'string "projects/" s))) ""))
+                            )
+                          (media project)
+                          ) 
+                       (:p ,(project-description project))
+                       )
+                     ))
+                  (:br)
+                  (:b (:p ,(concatenate 'string "Technologies Used: " (technologies project))))
+                  (:b (:p ,(concatenate 'string "Date: " (duration project))))
+                  (:b (:p ,(concatenate 'string "Status: " (status project))))
+                  (:br)))))
+       projects))
+

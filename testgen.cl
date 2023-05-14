@@ -19,7 +19,7 @@
     "I'm Jerry Zhu, and I'm an aspiring software developer with focus in game programming and specifically engine development!"
     "My skills primarily lie in C and C++, where I develop games with custom engines/technology completely from scratch with C++/C. I also have some graphics programming experience with OpenGL and consequently GLSL shaders. Personally I love programming when I can fully understand my entire program and have as much control as possible over my creation."
     ""
-    "Here are my highlighted works for a more comprehensive list of projects visit the appropriate section. If you're interested feel free to learn more about these projects by clicking on them."
+    "Here are my highlighted works. For a more comprehensive list of projects visit the 'projects' link. If you're interested in these projects feel free to learn more by clicking on them to visit the README.md on GitHub or game demo."
     ))
 (defparameter *display-list*
   '("C / C++ Game Programming and Engine Programming"

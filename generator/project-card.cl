@@ -38,6 +38,10 @@
     :initarg :thumbnail
     :accessor project-thumbnail-location
     :initform (error "Please give me a thumbnail sirrah!"))
+   (code-samples
+    :initarg :code-samples
+    :accessor code-samples
+    :initform '())
    (link-source
     :initarg :link
     :accessor project-link-location
@@ -48,7 +52,7 @@
                    :description ,(project-description object)
                    :thumbnail ,(project-thumbnail-location object))
          stream))
-(defun project (&key title description thumbnail link technologies duration status media)
+(defun project (&key title description thumbnail link technologies duration status media code-samples)
   (make-instance 'project
                  :title title
                  :description description
@@ -56,6 +60,7 @@
                  :technologies technologies
                  :status status
                  :media media
+                 :code-samples code-samples
                  :thumbnail thumbnail
                  :link link))
 
@@ -123,6 +128,18 @@
                        )
                      ))
                   (:br)
+
+	          ,@(if (code-samples project)
+                      `((:b (:p "Select Code Samples: "))
+                        (:ul
+                         ,(map
+                          'list
+                          (lambda (sample)
+                            `(:li (:a ((:href ,(second sample))) ,(first sample)))
+                            )
+                          (code-samples project)
+                          ))))
+
                   (:b (:p ,(concatenate 'string "Technologies Used: " (technologies project))))
                   (:b (:p ,(concatenate 'string "Date: " (duration project))))
                   (:b (:p ,(concatenate 'string "Status: " (status project))))

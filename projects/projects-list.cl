@@ -156,6 +156,10 @@
                    "projects/legends-jrpg/game2gameplay.png"
                    "projects/legends-jrpg/options.png"
                    )
+          :CODE-SAMPLES '(("Input mapper" "https://github.com/Xpost2000/Legends-JRPG/blob/master/media/codesamples/input_system.md")
+                          ("Multithreaded job queue" "https://github.com/Xpost2000/Legends-JRPG/blob/master/media/codesamples/job_system.md")
+                          ("Serialization system" "https://github.com/Xpost2000/Legends-JRPG/blob/master/media/codesamples/serialization.md")
+                          ("Save system" "https://github.com/Xpost2000/Legends-JRPG/blob/master/media/codesamples/save_system_excerpt.md") )
           :TECHNOLOGIES "C99 Emscripten SIMD SDL2"
           :DURATION "June 2022 - Present"
           :STATUS "In-development")) 

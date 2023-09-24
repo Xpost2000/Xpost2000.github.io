@@ -16,8 +16,10 @@
 (defparameter *info-text*
   '("Hello, and welcome to my personal/portfolio website!"
 
-    "I'm Jerry Zhu, and I'm an aspiring software developer with focus in game programming and specifically engine development!"
-    "My skills primarily lie in C and C++, where I develop games with custom engines/technology completely from scratch with C++/C. I also have some graphics programming experience with OpenGL and consequently GLSL shaders. Personally I love programming when I can fully understand my entire program and have as much control as possible over my creation."
+    "I'm Jerry Zhu, and I'm an aspiring software developer with focus in game programming. I love building games and their engines, and even better when together!"
+    "My skills primarily lie in C and C++, where I develop games with custom engines/technology completely from scratch. I also have some graphics programming experience with OpenGL and consequently GLSL shaders. Personally I love programming when I can fully understand my entire program and have as much control as possible over my creation."
+    ""
+    "I've also participated in some game jams where I use either Unity or Godot as I can develop complete games faster with them. I've participated in: Ludum Dare 46, MiniJam 59, MiniJam 83, 7DRL 2021, and Dungeon Crawler Jam 2023."
     ""
     "Here are my highlighted works. For a more comprehensive list of projects visit the 'projects' link. If you're interested in these projects feel free to learn more by clicking on them to visit the README.md on GitHub or game demo."
     ))

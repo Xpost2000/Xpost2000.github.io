@@ -42,7 +42,9 @@
    (find-project "CrankLang - Programming Language")
    (find-project "ASCENSION")
    (find-project "2D Games Framework")
-   (find-project "L4DRL - 7 Day Roguelike")))
+   (find-project "L4DRL - 7 Day Roguelike")
+   (find-project "Soul Walker")
+   ))
 
 (defparameter *itch-io-releases*
   (list
@@ -61,7 +63,7 @@
       (:body
        ((:div ((:id "head-container"))
               ((:h1 ((:id "header-title-id")) "Xpost2000")
-               (:h1 ((:id "sub-sub-header-title-id")) "Software Development, Game Programming, Game Engine Programming")
+               (:h1 ((:id "sub-sub-header-title-id")) "Software Development, Game Programming")
                (:h1 ((:id "sub-header-title-id")) "
 Jerry Zhu
 <br>

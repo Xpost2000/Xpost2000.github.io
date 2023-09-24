@@ -141,8 +141,8 @@
           :THUMBNAIL "projects/crank//thumb.png"
           :TECHNOLOGIES "C++"
           :MEDIA '("projects/crank/1.gif")
-          :DURATION "April 2023 - Present"
-          :STATUS "In-development") 
+          :DURATION "April 2023 - Late May 2023"
+          :STATUS "Complete") 
 
  (PROJECT :TITLE "Legends RPG"
           :DESCRIPTION "A software rendered tactics JRPG game and engine. It is written in C completely from scratch with SDL2 as it's only dependency, and features a multithreaded software renderer to perform postprocessing in real time. There is also an integrated level editor, and many more features!"

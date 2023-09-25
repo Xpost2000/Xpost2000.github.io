@@ -145,7 +145,7 @@
           :STATUS "Complete") 
 
  (PROJECT :TITLE "Legends RPG"
-          :DESCRIPTION "A software rendered tactics JRPG game and engine. It is written in C completely from scratch with SDL2 as it's only dependency, and features a multithreaded software renderer to perform postprocessing in real time. There is also an integrated level editor, and many more features!"
+          :DESCRIPTION "A software rendered tactics JRPG game and engine. It is written in C completely from scratch with SDL2 as it's only dependency, and features a multithreaded software renderer to perform postprocessing in real time. There is also an integrated level editor, and many more features! All assets exempting music and font are self-created."
           :LINK "https://github.com/Xpost2000/Legends-JRPG/blob/master/README.md"
           :THUMBNAIL "projects/legends-jrpg//thumb.png"
           :MEDIA '(
@@ -161,5 +161,5 @@
                           ("Serialization system" "https://github.com/Xpost2000/Legends-JRPG/blob/master/media/codesamples/serialization.md")
                           ("Save system" "https://github.com/Xpost2000/Legends-JRPG/blob/master/media/codesamples/save_system_excerpt.md") )
           :TECHNOLOGIES "C99 Emscripten SIMD SDL2"
-          :DURATION "June 2022 - Present"
-          :STATUS "In-development")) 
+          :DURATION "June 2022 - September 2023"
+          :STATUS "Gameplay Functional, Paused Development")) 

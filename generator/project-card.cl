@@ -104,7 +104,7 @@
   (map 'list
        (lambda (project)
          `(
-           (:div ((:class "fp-project-description"))
+           (:div ((:class "fp-project-description") (:id ,(project-title project)))
                  (
                   ,(if (project-link-location project)
                        `(:b (:a ((:href ,(project-link-location project)) (:class "project-title")) ,(project-title project)))

@@ -37,9 +37,9 @@
 (defparameter *curated-highlights*
   (list
    (find-project "Legends RPG")
-   (find-project "CrankLang - Programming Language")
    (find-project "ASCENSION")
    (find-project "2D Games Framework")
+   (find-project "CrankLang - Programming Language")
    (find-project "L4DRL - 7 Day Roguelike")
    (find-project "Soul Walker")
    ))

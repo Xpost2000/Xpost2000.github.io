@@ -145,17 +145,21 @@
           :STATUS "Complete") 
 
  (PROJECT :TITLE "Legends RPG"
-          :DESCRIPTION "A software rendered tactics JRPG game and engine. It is written in C completely from scratch with SDL2 as it's only dependency, and features a multithreaded software renderer to perform postprocessing in real time. There is also an integrated level editor, and many more features! All assets exempting music and font are self-created."
+          :DESCRIPTION "A software rendered tactics JRPG game and engine. It is written in C completely from scratch with SDL2 as it's only dependency, and features a multithreaded software renderer optimized to allow for real time postprocessing. There is also an integrated level editor, and many more features! All assets exempting music and font are self-created."
           :LINK "https://github.com/Xpost2000/Legends-JRPG/blob/master/README.md"
           :THUMBNAIL "projects/legends-jrpg//thumb.png"
           :MEDIA '(
                    "projects/legends-jrpg/title.png"
                    "projects/legends-jrpg/leveleditor.gif"
                    "projects/legends-jrpg/combat1.png"
-                   "projects/legends-jrpg/combat2.png"
+                   ;; "projects/legends-jrpg/combat2.png"
                    "projects/legends-jrpg/game2gameplay.png"
                    "projects/legends-jrpg/options.png"
                    )
+          :YT-EMBEDS '(
+                       "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/E46HtCfgsAA?si=ltrfruxY95qWZdR7\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
+                       "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/uHFr2oshQRY?si=beWL8-UfPRiJEAI6\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>"
+                       )
           :CODE-SAMPLES '(("Input mapper" "https://github.com/Xpost2000/Legends-JRPG/blob/master/media/codesamples/input_system.md")
                           ("Multithreaded job queue" "https://github.com/Xpost2000/Legends-JRPG/blob/master/media/codesamples/job_system.md")
                           ("Serialization system" "https://github.com/Xpost2000/Legends-JRPG/blob/master/media/codesamples/serialization.md")

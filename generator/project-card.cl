@@ -26,6 +26,10 @@
     :initarg :media
     :accessor media
     :initform (error "Please give me a list of media used sirrah!"))
+   (yt-embeds
+    :initarg :yt-embeds
+    :accessor yt-embeds
+    :initform '())
    (duration
     :initarg :duration
     :accessor duration
@@ -52,7 +56,7 @@
                    :description ,(project-description object)
                    :thumbnail ,(project-thumbnail-location object))
          stream))
-(defun project (&key title description thumbnail link technologies duration status media code-samples)
+(defun project (&key title description thumbnail link technologies duration status media code-samples yt-embeds)
   (make-instance 'project
                  :title title
                  :description description
@@ -60,6 +64,7 @@
                  :technologies technologies
                  :status status
                  :media media
+                 :yt-embeds yt-embeds
                  :code-samples code-samples
                  :thumbnail thumbnail
                  :link link))
@@ -92,6 +97,9 @@
                     (:a ((:href ,(project-link-location project)))
                         (:img ((:class "project-thumb")
                                (:src ,(project-thumbnail-location project))) ""))
+                       ;; ,@(when (yt-embeds project)
+                       ;;     `((:b (:p "Videos"))
+                       ;;       ,(yt-embeds project)))
                     (:p ,(project-description project))))
                   (:br)
                   (:b (:p ,(concatenate 'string "Technologies Used: " (technologies project))))
@@ -115,6 +123,7 @@
                        (:a ((:href ,(project-link-location project)))
                            (:img ((:class "project-thumb")
                                   (:src ,(concatenate 'string "projects/" (project-thumbnail-location project)))) ""))
+                       ,(when (media project) `(:b (:p "Screenshots / Media")))
                        ,@(map
                           'list
                           (lambda (s)
@@ -124,6 +133,9 @@
                             )
                           (media project)
                           ) 
+                       ,@(when (yt-embeds project)
+                           `((:b (:p "Videos"))
+                             ,(yt-embeds project)))
                        (:p ,(project-description project))
                        )
                      ))

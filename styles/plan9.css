@@ -22,4 +22,8 @@
 
     --title-minor-color: transparent;
     --title-major-color: black;
+
+    --link-color: red;
+    --link-visited-color: blue;
+    --link-active-color: red;
 }

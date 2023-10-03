@@ -20,7 +20,7 @@
     "Here are my highlighted works. For a more comprehensive list of projects visit the 'projects' link. To learn more you can click on them to visit the README.md on GitHub or game demo."
     ))
 (defparameter *display-list*
-  '("C / C++ Game Programming and Engine Programming"
+  '("C / C++ Game Programming"
     "Web Development"
     "Contact me at: jerry.zhu@stonybrook.edu"))
 

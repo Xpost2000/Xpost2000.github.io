@@ -18,6 +18,10 @@
     :initarg :description
     :accessor project-description
     :initform (error "Please give me a description sirrah!"))
+   (short-description
+    :initarg :short-description
+    :accessor short-project-description
+    :initform "")
    (technologies
     :initarg :technologies
     :accessor technologies
@@ -49,17 +53,18 @@
    (link-source
     :initarg :link
     :accessor project-link-location
-    :initform nil)))
+    :initform "#")))
 
 (defmethod print-object ((object project) stream)
   (print `(project :title ,(project-title object)
                    :description ,(project-description object)
                    :thumbnail ,(project-thumbnail-location object))
          stream))
-(defun project (&key title description thumbnail link technologies duration status media code-samples yt-embeds)
+(defun project (&key title description short-description thumbnail link technologies duration status media code-samples yt-embeds)
   (make-instance 'project
                  :title title
                  :description description
+                 :short-description short-description
                  :duration duration
                  :technologies technologies
                  :status status
@@ -108,6 +113,10 @@
                   (:br)))))
        projects))
 
+(defun safe-subseq (l a b)
+  (let ((max-b (min b (length l))))
+    (subseq l a max-b)))
+
 (defun frontpage-generate-project-cards (projects)
   (map 'list
        (lambda (project)
@@ -121,40 +130,64 @@
                    ,(list
                      `(
                        (:a ((:href ,(project-link-location project)))
-                           (:img ((:class "project-thumb")
-                                  (:src ,(concatenate 'string "projects/" (project-thumbnail-location project)))) ""))
-                       ,(when (media project) `(:b (:p "Screenshots / Media")))
-                       ,@(map
-                          'list
-                          (lambda (s)
-                            `(:a ((:href ,(project-link-location project)))
-                                 (:img ((:class "project-thumb")
-                                        (:src ,(concatenate 'string "projects/" s))) ""))
-                            )
-                          (media project)
-                          ) 
-                       ,@(when (yt-embeds project)
-                           `((:b (:p "Videos"))
-                             ,(yt-embeds project)))
-                       (:p ,(project-description project))
+                           ,(safe-subseq
+                             `((:img ((:class "project-thumb")
+                                      (:src ,(concatenate 'string "projects/" (project-thumbnail-location project)))) "")
+                               ,@(map
+                                  'list
+                                  (lambda (s)
+                                    `(:a ((:href ,(project-link-location project)))
+                                         (:img ((:class "project-thumb")
+                                                (:src ,(concatenate 'string "projects/" s))) ""))
+                                    )
+                                  (media project)
+                                  ))
+                             0 4)  ;; this is the max amount I found that actually fit on the page
+                           )
+                       ;; ,(when (media project) `(:b (:p "Screenshots / Media")))
+                       ;; ,@(when (yt-embeds project)
+                       ;;     `((:b (:p "Videos"))
+                       ;;       ,(yt-embeds project)))
+                       (:p ((:class "float-right")) ,(project-description project))
                        )
                      ))
                   (:br)
 
-	          ,@(if (code-samples project)
-                      `((:b (:p "Select Code Samples: "))
-                        (:ul
-                         ,(map
-                          'list
-                          (lambda (sample)
-                            `(:li (:a ((:href ,(second sample))) ,(first sample)))
-                            )
-                          (code-samples project)
-                          ))))
+	          ;; ,@(if (code-samples project)
+                  ;;     `((:b (:p "Select Code Samples: "))
+                  ;;       (:ul
+                  ;;        ,(map
+                  ;;         'list
+                  ;;         (lambda (sample)
+                  ;;           `(:li (:a ((:href ,(second sample))) ,(first sample)))
+                  ;;           )
+                  ;;         (code-samples project)
+                  ;;         ))))
 
                   (:b (:p ,(concatenate 'string "Technologies Used: " (technologies project))))
                   (:b (:p ,(concatenate 'string "Date: " (duration project))))
                   (:b (:p ,(concatenate 'string "Status: " (status project))))
                   (:br)))))
        projects))
+
+;; (defun frontpage-generate-project-cards (projects)
+;;   (map 'list
+;;        (lambda (project)
+;;          `(
+;;            (:div ((:class "fp-project-description") (:id ,(project-title project)))
+;;                  (
+;;                   ,(if (project-link-location project)
+;;                        `(:b (:a ((:href ,(project-link-location project)) (:class "project-title")) ,(project-title project)))
+;;                      `(:b (:p ((:class "project-title")) ,(project-title project))))
+;;                   (:div 
+;;                    ,(list
+;;                      `(
+;;                        (:a ((:href ,(project-link-location project)))
+;;                            (:img ((:class "project-thumb")
+;;                                   (:src ,(concatenate 'string "projects/" (project-thumbnail-location project)))) ""))
+;;                        (:p ,(short-project-description project)))
+;;                      ))
+;;                   (:br)
+;;                   (:br)))))
+;;        projects))
 

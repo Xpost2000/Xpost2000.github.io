@@ -113,11 +113,15 @@ document.addEventListener("keydown",
                           }
                          );
 
-var _link_to_themeselector_open = document.createElement("a");
-_link_to_themeselector_open.setAttribute("href", "#");
-_link_to_themeselector_open.appendChild(document.createTextNode("*theme-selector*"));
-_link_to_themeselector_open.addEventListener('click',
-                                             function (event) {
+// Goodbye. I loved you while you lasted :)
+if (false) {
+  var _link_to_themeselector_open = document.createElement("a");
+  _link_to_themeselector_open.setAttribute("href", "#");
+  _link_to_themeselector_open.appendChild(document.createTextNode("*theme-selector*"));
+  _link_to_themeselector_open.addEventListener('click',
+                                               function (event) {
                                                  open_theme_selector();
-                                             });
-document.getElementById("mini-buffer-links").appendChild(_link_to_themeselector_open);
+  });
+
+  document.getElementById("mini-buffer-links").appendChild(_link_to_themeselector_open);
+}

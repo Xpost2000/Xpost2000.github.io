@@ -15,14 +15,18 @@
 
 (defparameter *info-text*
   '(
-    "I'm Jerry Zhu, and I'm an aspiring software developer with focus in game programming. I love building games and their engines, and even better when together! I also sometimes make smaller personal software tools."
-    "My skills primarily lie in C and C++, where I develop games with custom engines/technology completely from scratch. I also have some graphics programming experience with OpenGL. I've also participated in the following game jams: Ludum Dare 46, MiniJam 59, MiniJam 83, 7DRL 2021, and Dungeon Crawler Jam 2023."
-    "Here are my highlighted works. For a more comprehensive list of projects visit the 'projects' link. To learn more you can click on them to visit the README.md on GitHub or game demo."
-    ))
+    ;; "I'm Jerry, and I've been programming specifically (and playing) video games for about as long as I could remember. I've worked on programming small games, demos, and participating in game jams for about 5 years."
+    ;; "My skills are primarily in C and C++, where I develop games from scratch with custom game engines! I have graphics programming experience writing software renderers, and also APIs such as OpenGL."
+    ;; "Below are some of my projects with a short description and thumbnail. You can learn more, or view more materials such as videos and code samples by clicking on the thumbnails!"
+    "I'm Jerry, I am an avid gamer, and I am also an avid game programmer! I publish independent games on itch.io under the online alias Xpost2000."
+    "I am currently an undergraduate student at Stony Brook University studying Computer Science."
+    "I've been programming small games, demos, custom engines, and participating in various game jams for as long as I could remember."
+    "I am primarily a C++ and C programmer, and I develop games from scratch with custom game engines and tools! I have graphics programming experience with building software renderers, or using APIs like OpenGL for hardware acceleration. I also have experience working with game engines like Unity and Unreal."
+    "My projects are divided into:<ul><li><b>Projects</b>: C / C++ primarily showing technical abilities as a programmer. Gameplay is secondary, but still present!</li><li><b>Game Jam Projects</b>: C# or C++, Small complete experiences which are more gameplay oriented than technical.</li><li><b>Legacy Projects</b>: Older projects that I use to remind myself of how far I've come.</li></ul>"
+    "Below are summaries of my projects. You can learn more, and view more materials such as videos and code samples by clicking on the thumbnails!")
+)
 (defparameter *display-list*
-  '("C / C++ Game Programming"
-    "Web Development"
-    "Contact me at: jerry.zhu@stonybrook.edu"))
+  '("Contact me at: jerry.zhu@stonybrook.edu"))
 
 (defparameter *quicklink-shortcuts*
   '(
@@ -38,8 +42,19 @@
    (find-project "ASCENSION")
    (find-project "CrankLang - Programming Language")
    (find-project "2D Games Framework")
+   ))
+(defparameter *curated-gamejam-highlights*
+  (list
+   (find-project "Soul Walker - Dungeon Crawler Jam")
+   (find-project "Fateless Challenge")
    (find-project "L4DRL - 7 Day Roguelike")
-   (find-project "Soul Walker")
+   (find-project "TreeWatcher - Ludum Dare 46")
+   ))
+(defparameter *curated-legacy-highlights*
+  (list
+   (find-project "Wanderer RPG")
+   (find-project "KillBot")
+   (find-project "SDL Pong")
    ))
 
 (defparameter *itch-io-releases*
@@ -59,25 +74,32 @@
       (:body
        ((:div ((:id "head-container"))
               ((:h1 ((:id "header-title-id")) "Xpost2000")
-               (:h1 ((:id "sub-sub-header-title-id")) "Software Development, Game Programming")
+               (:h1 ((:id "sub-sub-header-title-id")) "C / C++ Game Programmer")
                (:h1 ((:id "sub-header-title-id")) "
 Jerry Zhu
 <br>
 <a href=\"https://www.github.com/Xpost2000\">github</a> <a href=\"https://xpost2000.itch.io/\">itch.io</a> <a href=\"https://www.linkedin.com/in/jerry-zhu-220133215/\">linkedin</a> <a href=\"./resumes/Jerry_Zhu_Resume.pdf\">resume</a>
-<br>
-<a href=\"./projects/index.html\">projects</a>
+
 ")
-               (:br)
                (:div ((:id "displays"))
                      ,(list (map 'list (lambda (s) `(:p ((:id "display")) (:b ,s))) *display-list*)))))
         (:div ((:id "info-container"))
               ((:div ((:id "info"))
                      ,(list
                        ;; Main intro text 
-                       (map 'list (lambda (s) `((:p ,s) (:br))) *info-text*)
-
-                       "<b><p>Highlighted Projects:</p></b>"
+                       (map 'list (lambda (s) `((:p ((:style "margin: 1.5em")) ,s))) *info-text*)
+                       "<h2 id=\"projects\" style=\"font-size: 32px;\">Projects:</h2>"
+                       "These are my main-stay projects, which are representative of either my most technically interesting work, or best/polished work."
+                       "<br>Usually, these are custom game engine projects, tech demos, and games written with C or C++. There are a few non-game projects from time to time."
                        (frontpage-generate-project-cards *curated-highlights*)
+                       "<h2 id=\"game-jam-projects\" style=\"font-size: 32px;\">Game Jam Projects:</h2>"
+                       "These are my game jam projects which are usually excursions to learn different technology. I also use these as opportunities to get creative with the jam themes and limited time."
+                       "<br>Usually these projects are more about gameplay features rather than pure technical features like my main projects."
+                       (frontpage-generate-project-cards *curated-gamejam-highlights*)
+                       "<h2 id=\"legacy-projects\" style=\"font-size: 32px;\">Legacy Projects:</h2>"
+                       "While this isn't my best work, I like to have a way to remind myself of how far I've gone :)"
+                       "<br>These projects are also C / C++ much like my normal projects. The main difference is mostly that they are way too old to be relevant to my current ability!"
+                       (frontpage-generate-project-cards *curated-legacy-highlights*)
                        ;; "<b><p>Itch.IO Releases:</p></b>"
                        ;; *itch-io-releases*
                        ))))

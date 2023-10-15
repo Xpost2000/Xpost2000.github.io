@@ -6,10 +6,13 @@ let current_theme = function() {
     let theme = localStorage.getItem('theme');
     // I wish I was joking
     if (theme === null || theme === undefined || theme === "" || theme === "null") {
-        return "default";
+        return "plan9";
     }
 
-    return theme;
+  // local storage appears to persist forever,
+  // and plan9 appears to be the most readable version to me.
+  return "plan9";
+  /* return theme; */
 }();
 
 function stylesheet_link(path) {

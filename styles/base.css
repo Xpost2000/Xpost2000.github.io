@@ -3,18 +3,35 @@
 */
 @import "default.css";
 
+/* @font-face { */
+/*     font-family: GNUUnifont; */
+/*     font-display: swap; */
+/*     src: url('../shared-resources/unifont-13.0.04.ttf'); */
+/* } */
 @font-face {
-    font-family: GNUUnifont;
+    font-family: SourceSans3;
     font-display: swap;
-    src: url('../shared-resources/unifont-13.0.04.ttf');
+    src: url('../shared-resources/SourceSans3-Medium.ttf');
 }
+/* @font-face { */
+/*     font-family: PxPlusIBM; */
+/*     font-display: swap; */
+/*     src: url('../shared-resources/Px437_IBM_VGA_8x16.ttf'); */
+
+/* } */
 
 * {
     /* scrollbar-width: none; */
     margin: 0;
     padding: 0;
-    font-size: 16px;
-    font-family: GNUUnifont;
+    font-size: 1.00em;
+    font-family: SourceSans3;
+    /* font-family: GNUUnifont; */
+}
+
+.float-right {
+    /* vertical-align: top; */
+    /* display: inline; */
 }
 
 ::selection {
@@ -202,11 +219,12 @@ body {
     border-style: solid;
     border-width: 1px;
     padding: 0.5em;
+    margin: 1.0em;
     border-color: var(--primary-face);
 }
 
 .fp-project-description .project-thumb {
-    max-width: 250px;
+    max-width: 200px;
 }
 
 @media(max-width: 550px) {

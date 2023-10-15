@@ -1,35 +1,33 @@
 #head-container {
-    padding: 5em;
+    padding: 2em;
     text-align: center;
 }
 
 #header-title-id {
-    font-size: 5em;
+    font-size: 3.5em;
 }
 
 #sub-sub-header-title-id {
     margin-top: 1.0em;
-    font-size: 1.5em;
+    font-size: 1.0em;
 }
 #sub-header-title-id {
-    margin-top: 0.4em;
-    font-size: 3em;
+    font-size: 2em;
 }
 
 #info-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 2vh;
+    /* margin-bottom: 1vh; */
 }
 #quicklink-container {
     display: flex;
     justify-content: center;
-    height: 40vh;
 }
 
 #info {
     text-align: left;
-    width: 60%;
+    width: 70%;
 }
 
 @media screen and (max-width: 650px) {

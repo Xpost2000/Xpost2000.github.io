@@ -11,13 +11,13 @@
           :DURATION "2015 - Forever?"
           :STATUS "Always Evolving")
  
- (PROJECT :TITLE "SDL Pong" :DESCRIPTION
-          "This was my first 2D game project, which is a polished game of Pong, there is a main menu and an AI driven player."
-          :LINK "https://github.com/Xpost2000/SDL-Pong"
+ (PROJECT :TITLE "SDL Pong"
+          :DESCRIPTION "This was my first 2D game project, which is a polished game of Pong, there is a main menu and an AI driven player."
+;;          :LINK "https://github.com/Xpost2000/SDL-Pong"
           :THUMBNAIL "projects/sdl-pong//pong.png"
           :MEDIA '()
           :TECHNOLOGIES "C++ SDL2"
-          :DURATION "2015 - (a few days)"
+          :DURATION "2015"
           :STATUS "Complete")
  
  ;; (PROJECT :TITLE "Something To Cry About" :DESCRIPTION
@@ -51,13 +51,13 @@
 
  (PROJECT :TITLE "KillBot"
           :DESCRIPTION
-          "KillBot was an arena survival platformer, and was made with a custom game engine in C++, with a web-based UI powered by the Chromium Embedded Framework (CEF). The engine is simple but supports event-driven animations, and the game itself has 3 bosses with several stages. This was my first publically released game. While it is a demo, the final game is not much of a deviation beyond the shown preview. The preview is really more a release-candidate."
+          "KillBot was an arena survival platformer, and was made with a custom game engine in C++, with a web-based UI powered by the Chromium Embedded Framework (CEF). The web-based UI was cool at the time, although it's just a novelty of a by-gone era (since I don't know of any game that still uses HTML for their actual UI anymore). The engine is simple but supports event-driven animations, and the game itself has 3 bosses with several stages. This was my first publically released game."
           :LINK "https://xpost2000.itch.io/killbot"
           :THUMBNAIL "projects/killbot//thumb.png"
           :TECHNOLOGIES "C++ SDL2 CEF OpenGL"
-          :MEDIA '()
+          :MEDIA '("projects/killbot/1.png" "projects/killbot/2.png" "projects/killbot/3.png")
           :DURATION "2018"
-          :STATUS "Released") 
+          :STATUS "Complete & Released") 
 
 
  (PROJECT :TITLE "slideshow-rs" :DESCRIPTION
@@ -75,10 +75,10 @@
   :LINK "https://xpost2000.itch.io/treewatcher-ld46"
   :THUMBNAIL "projects/treewatcher//thumb.png"
   :DESCRIPTION "An environmentalist tower defense game written in C++ with SDL2 in a weekend. The game features four different enemy types and three different types of turret units. The game is complete with a main menu and tutorial/instruction menu to learn how to play the game."
-  :MEDIA '()
+  :MEDIA '("projects/treewatcher/1.png" "projects/treewatcher/2.png")
   :TECHNOLOGIES "C++ SDL2"
   :DURATION "April 2020 - (2 days)"
-  :STATUS "Released"
+  :STATUS "Complete & Released"
   )
 
  (PROJECT
@@ -89,18 +89,18 @@
   :MEDIA '("projects/l4drl/1.png" "projects/l4drl/2.png")
   :TECHNOLOGIES "Godot Game Engine GDScript"
   :DURATION "March 2021 - (7 Days)"
-  :STATUS "Released"
+  :STATUS "Complete & Released"
   )
 
  (PROJECT
   :TITLE "Fateless Challenge"
   :LINK "https://xpost2000.itch.io/fateless-challenge-minijam-83"
   :THUMBNAIL "projects/fatelesschallenge//thumb.png"
-  :MEDIA '()
+  :MEDIA '("projects/fatelesschallenge/1.png" "projects/fatelesschallenge/2.png" "projects/fatelesschallenge/3.png")
   :DESCRIPTION "A small wave-based survival game. This game was made in one week for minijam83 and was a take on the theme restriction which required dice. The main gameplay mechanic is the level layout which is randomized according to a dice as well as various player buffs or debuffs which are applied based on a set of randomly rolled adjectives."
   :TECHNOLOGIES "Godot Game Engine GDScript"
   :DURATION "June 2021 - (7 Days)"
-  :STATUS "Released"
+  :STATUS "Complete & Released"
   )
 
  (PROJECT
@@ -111,7 +111,7 @@
   :DESCRIPTION "A small 2D games framework with a plugin-based system that allows for quickly setting up 2D games in C, on Windows there are no dependencies! Features hot-reloading and a debug console. This project is intended to be used for game jams and features a high performance sprite batcher."
   :TECHNOLOGIES "C99 OpenGL"
   :DURATION "July 2021 - October 2021"
-  :STATUS "Complete / Usable"
+  :STATUS "Complete"
   )
 
  (PROJECT
@@ -122,14 +122,14 @@
   :DESCRIPTION "A metroidvania platformer in vain of Hollow Knight style with a monochromatic visual style. Custom engine made from scratch in C99 with components from the 2D Games Framework. Features typical metroidvania movement mechanics such as wall jumping, dashing, and Hollow Knight style bouncing. Basis of some of the technologies that would appear in Legends."
   :TECHNOLOGIES "C99 OpenGL"
   :DURATION "February 2022 - March 2022"
-  :STATUS "Gameplay Functional, but incomplete (Ran out of time in the jam)"
+  :STATUS "Gameplay Functional, Incomplete"
   )
 
- (PROJECT :TITLE "Soul Walker"
+ (PROJECT :TITLE "Soul Walker - Dungeon Crawler Jam"
           :LINK "https://xpost2000.itch.io/soul-walker"
           :THUMBNAIL "projects/gamejamdungeoncrawler//thumb.png"
           :DESCRIPTION "This was a dungeon crawler made for the Dungeon Crawler Jam 2023. It was my first time learning Unity, and combining this with midterms whilst being a full-time student, and a solo developer was very challenging! It was designed as a surreal survival horror dungeon crawler under the jam theme \"Duality\"."
-          :MEDIA '()
+          :MEDIA '("projects/gamejamdungeoncrawler/3.png" "projects/gamejamdungeoncrawler/6.png" "projects/gamejamdungeoncrawler/9.png")
           :TECHNOLOGIES "Unity C#"
           :DURATION "April 2023 - (4 days)"
           :STATUS "Complete"
@@ -166,4 +166,5 @@
                           ("Save system" "https://github.com/Xpost2000/Legends-JRPG/blob/master/media/codesamples/save_system_excerpt.md") )
           :TECHNOLOGIES "C99 Emscripten SIMD SDL2"
           :DURATION "June 2022 - September 2023"
+          :SHORT-DESCRIPTION "A software-rendered tactics JRPG game with a custom game engine."
           :STATUS "Gameplay Functional, Paused Development")) 

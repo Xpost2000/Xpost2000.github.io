@@ -21,7 +21,7 @@
     "I'm Jerry, I am an avid gamer, and I am also an avid game programmer! I publish independent games on itch.io under the online alias Xpost2000."
     "I am currently an undergraduate student at Stony Brook University studying Computer Science."
     "I've been programming small games, demos, custom engines, and participating in various game jams for as long as I could remember."
-    "I am primarily a C++ and C programmer, and I develop games from scratch with custom game engines and tools! I have graphics programming experience with building software renderers, or using APIs like OpenGL for hardware acceleration. I also have experience working with game engines like Unity and Unreal."
+    "I am primarily a C++ and C programmer, and I develop games from scratch with custom game engines and tools! I have graphics programming experience with building software renderers, or using APIs like OpenGL for hardware acceleration. I also have experience working with game engines like Unity."
     "My projects are divided into:<ul><li><b>Projects</b>: C / C++ primarily showing technical abilities as a programmer. Gameplay is secondary, but still present!</li><li><b>Game Jam Projects</b>: C# or C++, Small complete experiences which are more gameplay oriented than technical.</li><li><b>Legacy Projects</b>: Older projects that I use to remind myself of how far I've come.</li></ul>"
     "Below are summaries of my projects. You can learn more, and view more materials such as videos and code samples by clicking on the thumbnails!")
 )

@@ -38,6 +38,7 @@
 
 (defparameter *curated-highlights*
   (list
+   (find-project "SoulStorm")
    (find-project "Legends RPG")
    (find-project "ASCENSION")
    (find-project "CrankLang - Programming Language")

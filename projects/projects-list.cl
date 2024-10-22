@@ -13,7 +13,7 @@
  
  (PROJECT :TITLE "SDL Pong"
           :DESCRIPTION "This was my first 2D game project, which is a polished game of Pong, there is a main menu and an AI driven player."
-;;          :LINK "https://github.com/Xpost2000/SDL-Pong"
+          ;;          :LINK "https://github.com/Xpost2000/SDL-Pong"
           :THUMBNAIL "projects/sdl-pong//pong.png"
           :MEDIA '()
           :TECHNOLOGIES "C++ SDL2"
@@ -143,7 +143,6 @@
           :MEDIA '("projects/crank/1.gif")
           :DURATION "April 2023 - Late May 2023"
           :STATUS "Complete") 
-
  (PROJECT :TITLE "Legends RPG"
           :DESCRIPTION "A software rendered tactics JRPG game and engine. It is written in C completely from scratch with SDL2 as it's only dependency, and features a multithreaded software renderer optimized to allow for real time postprocessing. There is also an integrated level editor, and many more features! All assets exempting music and font are self-created."
           :LINK "https://github.com/Xpost2000/Legends-JRPG/blob/master/README.md"
@@ -167,4 +166,17 @@
           :TECHNOLOGIES "C99 Emscripten SIMD SDL2"
           :DURATION "June 2022 - September 2023"
           :SHORT-DESCRIPTION "A software-rendered tactics JRPG game with a custom game engine."
-          :STATUS "Gameplay Functional, Paused Development")) 
+          :STATUS "Gameplay Functional, Paused Development")
+ (PROJECT :TITLE "SoulStorm"
+          :DESCRIPTION "A bullet-hell game with a custom game engine. It is written in C++ and supports Direct3D11, OpenGL, and a multithreaded software renderer through a graphics abstraction that simplifies the porting process. As usual, assets are all produced by hand, and this time LUA is used as the choice of scripting language for stages."
+          :LINK "https://github.com/Xpost2000/SoulStorm"
+          :TECHNOLOGIES "C++ Direct3D11 OpenGL SDL2"
+          :DURATION "October 2023 - Present"
+          :SHORT-DESCRIPTION "A bullet-hell game with a custom game engine."
+          :THUMBNAIL "projects/soulstorm/thumb.png"
+          :media '(
+                   "projects/soulstorm/controls.png"
+                   "projects/soulstorm/stage-select.png"
+                   "projects/soulstorm/game1.png")
+          :STATUS "In Development")
+ )

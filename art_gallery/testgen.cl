@@ -29,7 +29,8 @@
 
 (defun image-anchor (img)
 	`(:li (:a ((:href ,img)) 
-						(:img ((:src ,img) (:height "300px")) "."))))
+						((:p ,img)
+						 (:img ((:src ,img)) " " )))))
 
 (defun build ()
 	(let* ((inktober2026-images (get-image-listings "inktober2026/")))

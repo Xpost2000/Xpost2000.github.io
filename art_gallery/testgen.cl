@@ -28,7 +28,8 @@
 	(relative-directory-listing image-directory))
 
 (defun image-anchor (img)
-	`(:li (:a ((:href ,img)) ,img)))
+	`(:li (:a ((:href ,img)) 
+						(:img ((:src ,img) (:height "300px")) "."))))
 
 (defun build ()
 	(let* ((inktober2026-images (get-image-listings "inktober2026/")))

@@ -24,25 +24,26 @@
 
 (load "../generator/blog-bro.cl")
 
-(defun build ()
-  (html->file
-   "index.html"
-   (let* ((blog-listing-and-links (install-blog))
-          (links
-            (map 'list #'text-link->page-link
-                 (loop for item in blog-listing-and-links collect (getf item :link)))))
-     (with-common-page-template
-       :page-title "Art Gallery"
-       :current-link-text "art.html"
-       :modeline-links links
-       :body
-       `(,@(page-content
-            "Jerry's Art Gallery"
-            (list "I've taken to digital art, so stuff will appear here when I have something new to add!"
-                  ""
-                  "I am learning to illustrate anime characters, being heavily inspired by game/manga illustrators like Kousuke Fujishima for his works on the 'Tales of' franchise."
-                  )
-            '(:p (:b "Listing: "))
-            '(:br)
-            '(:p (:b "Will add later! I'm still getting ready!"))))))))
-(build)
+(defun get-image-listings (image-directory)
+	(print image-directory)
+  (let* ((entries-with-names (relative-directory-listing image-directory)))
+		(print (length entries-with-names))
+    (print entries-with-names)))
+
+(get-image-listings "./art_gallery/inktober2026/")
+
+; (defun build ()
+;   (html->file
+;    "index.html"
+;    (let* ()
+;      (with-common-page-template
+;        :page-title "Art"
+;        :current-link-text "art.html"
+;        :modeline-links links
+;        :body
+;        `(,@(page-content
+;             "Art"
+;             (list "Sometimes I draw, and it goes here.")
+;             '(:p (:b "Listing: "))
+;             '(:br)))))))
+; (build)

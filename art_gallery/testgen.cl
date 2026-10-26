@@ -25,25 +25,27 @@
 (load "../generator/blog-bro.cl")
 
 (defun get-image-listings (image-directory)
-	(print image-directory)
-  (let* ((entries-with-names (relative-directory-listing image-directory)))
-		(print (length entries-with-names))
-    (print entries-with-names)))
+	(relative-directory-listing image-directory))
 
-(get-image-listings "./art_gallery/inktober2026/")
+(defun image-anchor (img)
+	`(:a ((:href ,img)) ,img))
 
-; (defun build ()
-;   (html->file
-;    "index.html"
-;    (let* ()
-;      (with-common-page-template
-;        :page-title "Art"
-;        :current-link-text "art.html"
-;        :modeline-links links
-;        :body
-;        `(,@(page-content
-;             "Art"
-;             (list "Sometimes I draw, and it goes here.")
-;             '(:p (:b "Listing: "))
-;             '(:br)))))))
-; (build)
+(defun build ()
+	(let* ((inktober2026-images (get-image-listings "inktober2026/")))
+		(print inktober2026-images)
+		(html->file
+			"index.html"
+			(with-common-page-template
+				:page-title "Art"
+				:current-link-text "art.html"
+				:modeline-links (page-links inktober2026-images)
+				:body
+				`(,@(page-content
+							"Art"
+							(list "Sometimes I draw, and it goes here.")
+							'(:p (:b "Inktober 2026 Listing: "))
+							'(:br)
+							(mapcar #'image-anchor inktober2026-images)
+							'(:p (:b "Listing: "))
+							'(:br)))))))
+(build)

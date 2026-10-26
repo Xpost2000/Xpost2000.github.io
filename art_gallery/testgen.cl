@@ -28,7 +28,7 @@
 	(relative-directory-listing image-directory))
 
 (defun image-anchor (img)
-	`(:a ((:href ,img)) ,img))
+	`(:li (:a ((:href ,img)) ,img)))
 
 (defun build ()
 	(let* ((inktober2026-images (get-image-listings "inktober2026/")))
@@ -45,7 +45,7 @@
 							(list "Sometimes I draw, and it goes here.")
 							'(:p (:b "Inktober 2026 Listing: "))
 							'(:br)
-							(mapcar #'image-anchor inktober2026-images)
+							`(:ul ,(mapcar #'image-anchor inktober2026-images))
 							'(:p (:b "Listing: "))
 							'(:br)))))))
 (build)
